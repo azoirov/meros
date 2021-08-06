@@ -1,0 +1,89 @@
+<% var productBrands, totalCount %>
+<%- include('header') %>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Meros</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search brands" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="/admin/exit">Sign out</a>
+        </li>
+    </ul>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <%- include('nav') %>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Product brands</h1>
+                <div class="d-flex">
+                    <span class="me-3">Filter:</span>
+                    <button class="btn btn-outline-secondary me-1">A-Z</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card p-2">
+                        <form id="product-brand-create-form">
+                            <label class="d-block mb-4">
+                                <span>Product brand name</span>
+                                <input class="form-control" id="product-brand-name" type="text" required minlength="3" placeholder="Product brand name">
+                            </label>
+                            <button class="btn btn-outline-primary">Add new product brand</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Product brand name</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="brands-table-body">
+                        <% if (productBrands.length > 0) { %>
+                            <% productBrands.forEach(productBrand => { %>
+                                <tr>
+                                    <td>
+                                        <%= productBrand.brand_name.toUpperCase() %>
+                                    </td>
+                                    <td style="width: 130px">
+                                        <button class="btn btn-primary" data-product-brand-edit id="<%= productBrand.product_brand_id %>">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger" data-product-brand-remove id="<%= productBrand.product_brand_id %>">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <%})%>
+                        <% } else { %>
+                            <tr>
+                                <td class="text-center text-danger h5" colspan="2">Empty</td>
+                            </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                    <nav class="mb-4" aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            <% for (let i = 0; i < Math.ceil(totalCount / 30); i++) { %>
+                                <li class="page-item">
+                                    <a class="page-link" href="/admin/product-brands?c_page=<%= i + 1 %>&p_page=30"><%= i + 1 %></a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<%- include('modal') %>
+<%- include('footer') %>

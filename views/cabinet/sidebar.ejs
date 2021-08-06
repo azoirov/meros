@@ -1,0 +1,217 @@
+<% var user %>
+<aside class="cabinet__sidebar">
+    <div class="cabinet__profile__img__wrapper">
+        <img class="cabinet__profile__img" src="/images/users/<%= user.img %>" alt="Profile img">
+        <div id="change-avatar-modal-open">
+            <img src="/images/icons/camera.svg" alt="camera icon">
+        </div>
+    </div>
+    <div class="cabinet__texts__wrapper">
+        <div class="cabinet__sidebar__part">
+            <h2 class="cabinet__username">
+                <%= user.name %>
+            </h2>
+            <a class="cabinet__sidebar__link mb-15 <%= path === '/cabinet/edit' ? 'active' : null %>"
+                href="/cabinet/edit">
+                Изменить профиль
+            </a>
+        </div>
+        <div class="cabinet__sidebar__part">
+            <h3 class="cabinet__sidebar__heading">
+                Покупки
+            </h3>
+            <ul class="cabinet__sidebar__list">
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/orders' ? 'active' : null %>"
+                        href="/cabinet/orders">
+                        Заказы
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/bought-products' ? 'active' : null %>"
+                        href="/cabinet/bought-products">
+                        Купленные товары
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/regular-deliveries' ? 'active' : null %>"
+                        href="#">
+                        Регулярные доставки
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/refunds' ? 'active' : null %>"
+                        href="#">
+                        Возвраты
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/digital-products' ? 'active' : null %>"
+                        href="#">
+                        Цифровые товары
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/for-me' ? 'active' : null %>"
+                        href="#">
+                        Для меня
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="cabinet__sidebar__part">
+            <h3 class="cabinet__sidebar__heading">
+                Личная информация
+            </h3>
+            <ul class="cabinet__sidebar__list">
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/my-details' ? 'active' : null %>"
+                        href="/cabinet/my-details">
+                        Мои данные
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/my-reviews' ? 'active' : null %>"
+                        href="#">
+                        Мои отзывы
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/points' ? 'active' : null %>"
+                        href="#">
+                        Баллы
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/codeword' ? 'active' : null %>"
+                        href="#">
+                        Кодовое слово
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/meros-discount' ? 'active' : null %>"
+                        href="#">
+                        Meros Дисконт %
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/saved-cards' ? 'active' : null %>"
+                        href="#">
+                        Сохранённые карты
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/meros-card' ? 'active' : null %>"
+                        href="#">
+                        Meros Card
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="cabinet__sidebar__part">
+            <h3 class="cabinet__sidebar__heading">
+                Акции и подписки
+            </h3>
+            <ul class="cabinet__sidebar__list">
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/promotion' ? 'active' : null %>"
+                        href="#">
+                        Акция "1+1=3"
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link <%= path === '/cabinet/notification-settings' ? 'active' : null %>"
+                        href="#">
+                        Настройки уведомлений
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="cabinet__sidebar__part">
+            <h3 class="cabinet__sidebar__heading">
+                Доставка и магазин
+            </h3>
+            <ul class="cabinet__sidebar__list">
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link" href="#">
+                        Ташкент
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link" href="#">
+                        Наши официальные магазины на карте
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link" href="#">
+                        Стоимость доставки
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="cabinet__sidebar__part">
+            <h3 class="cabinet__sidebar__heading">
+                Центр коммуникации
+            </h3>
+            <ul class="cabinet__sidebar__list">
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link" href="#">
+                        Уведомления
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link" href="#">
+                        Сообщения
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link" href="#">
+                        Помощь
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="cabinet__sidebar__part">
+            <h3 class="cabinet__sidebar__heading">
+                Популярные вопросы
+            </h3>
+            <ul class="cabinet__sidebar__list">
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link" href="#">
+                        Способы доставки
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link" href="#">
+                        Способы оплаты
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="cabinet__sidebar__part">
+            <h3 class="cabinet__sidebar__heading">
+                Приложение
+            </h3>
+            <ul class="cabinet__sidebar__list">
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link" href="#">
+                        Возврат товаров
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link" href="#">
+                        Аккаунт и безопасность
+                    </a>
+                </li>
+                <li class="cabinet__sidebar__item">
+                    <a class="cabinet__sidebar__link" href="#">
+                        О приложение
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <button class="cabinet__sidebar__menu">
+        <img src="/images/icons/catalog.svg" alt="">
+    </button>
+</aside>

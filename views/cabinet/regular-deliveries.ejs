@@ -1,0 +1,283 @@
+<% var user %>
+
+<%- include('../partials/header') %>
+
+<div class="container pt-20">
+    <nav class="breadcrumb">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/">
+                    Главная
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/cabinet">
+                    Личный кабинет
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                Регулярные доставки
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<section class="cabinet">
+    <div class="container">
+        <div class="cabinet__content">
+            <%- include("sidebar") %>
+            <main class="main--message">
+                <ul class="tab-panel__list">
+                    <li class="tab-panel__item">
+                        <a href="/cabinet" class="tab-panel__link">
+                            Регулярные доставки
+                        </a>
+                    </li>
+                </ul>
+                <div class="custom-select filter__product">
+                    <select>
+                        <option value="0">Все</option>
+                    </select>
+                </div>
+                <div class="tab__content">
+                    <ul class="order-card__list">
+                        <li class="order-card__item">
+                            <div class="card__header">
+                                <div class="order__info-box">
+                                    <h3 class="order__info__heading">
+                                        Заказ от 8 октября
+                                    </h3>
+                                    <span class="order__id">
+                                        51066532-0001
+                                    </span>
+                                </div>
+                                <div class="order__cost-box">
+                                    <h3 class="order__cost__heading">
+                                        50 000 сум
+                                    </h3>
+                                    <span class="order__pay-type">
+                                        Картой онлайн
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card__body order__submitted">
+                                <div class="card__body--texts">
+                                    <div class="row">
+                                        <h3 class="courier__heading">
+                                            Доставка курьером
+                                        </h3>
+                                        <div class="status__order">Отправлен
+                                            <div class="status-levels__order">
+                                                <ul class="status-level__list">
+                                                    <li class="status-level__item active">
+                                                        <h3 class="status-level__heading">
+                                                            ОЖИДАЕТ ОПЛАТЫ
+                                                        </h3>
+                                                        <span>
+                                                            Заказ ожидает оплаты
+                                                        </span>
+                                                    </li>
+                                                    <li class="status-level__item active">
+                                                        <h3 class="status-level__heading">
+                                                            ПРИНЯТО В РАБОТУ
+                                                        </h3>
+                                                        <span>
+                                                            Заказ оплачен. На данном этапе производится
+                                                            комплектация
+                                                            и упаковка товаров
+                                                        </span>
+                                                    </li>
+                                                    <li class="status-level__item active">
+                                                        <h3 class="status-level__heading">
+                                                            ПЕРЕДАНО В ДОСТАВКУ
+                                                        </h3>
+                                                        <span>
+                                                            На данном этапе происходит транспортировка товаров
+                                                            до
+                                                            точки, из которой его заберет курьер
+                                                        </span>
+                                                    </li>
+                                                    <li class="status-level__item active">
+                                                        <h3 class="status-level__heading">
+                                                            У КУРЬЕРА
+                                                        </h3>
+                                                        <span>
+                                                            Курьер забрал ваши товары со склада и начал
+                                                            развозить
+                                                            заказы
+                                                        </span>
+                                                    </li>
+                                                    <li class="status-level__item">
+                                                        <h3 class="status-level__heading">
+                                                            ПОЛУЧЕНО
+                                                        </h3>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="card__text mb-10">
+                                        Дата доставки: 8 октября в 12:30
+                                    </p>
+                                    <p class="card__text">
+                                        Адрес: Тошкент шаҳар, Шайхонтоҳур тумани, Фаровон 3-тор кўча, 2 уй.
+                                    </p>
+                                </div>
+                                <div class="card__body--img">
+                                    <img src="/images/cabinet/product__img.jpg" alt="product img" class="product__img">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="order-card__item">
+                            <div class="card__header">
+                                <div class="order__info-box">
+                                    <h3 class="order__info__heading">
+                                        Заказ от 8 октября
+                                    </h3>
+                                    <span class="order__id">
+                                        51066532-0001
+                                    </span>
+                                </div>
+                                <div class="order__cost-box">
+                                    <h3 class="order__cost__heading">
+                                        50 000 сум
+                                    </h3>
+                                    <span class="order__pay-type">
+                                        Картой онлайн
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card__body order__awaiting-payment">
+                                <div class="card__body--texts">
+                                    <div class="row">
+                                        <h3 class="courier__heading">
+                                            Доставка курьером
+                                        </h3>
+                                        <div class="status__order">Ожидает оплаты
+                                            <div class="status-levels__order">
+                                                <ul class="status-level__list">
+                                                    <li class="status-level__item active">
+                                                        <h3 class="status-level__heading">
+                                                            ОЖИДАЕТ ОПЛАТЫ
+                                                        </h3>
+                                                        <span>
+                                                            Заказ ожидает оплаты
+                                                        </span>
+                                                    </li>
+                                                    <li class="status-level__item">
+                                                        <h3 class="status-level__heading">
+                                                            ПРИНЯТО В РАБОТУ
+                                                        </h3>
+                                                        <span>
+                                                            Заказ оплачен. На данном этапе производится
+                                                            комплектация
+                                                            и упаковка товаров
+                                                        </span>
+                                                    </li>
+                                                    <li class="status-level__item">
+                                                        <h3 class="status-level__heading">
+                                                            ПЕРЕДАНО В ДОСТАВКУ
+                                                        </h3>
+                                                        <span>
+                                                            На данном этапе происходит транспортировка товаров
+                                                            до
+                                                            точки, из которой его заберет курьер
+                                                        </span>
+                                                    </li>
+                                                    <li class="status-level__item">
+                                                        <h3 class="status-level__heading">
+                                                            У КУРЬЕРА
+                                                        </h3>
+                                                        <span>
+                                                            Курьер забрал ваши товары со склада и начал
+                                                            развозить
+                                                            заказы
+                                                        </span>
+                                                    </li>
+                                                    <li class="status-level__item">
+                                                        <h3 class="status-level__heading">
+                                                            ПОЛУЧЕНО
+                                                        </h3>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <img src="/images/icons/info.svg" alt="info icon">
+                                    </div>
+                                    <div class="row alert--warning">
+                                        <img src="/images/icons/warning.svg" alt="warning icon">
+                                        <span>
+                                            Оплатите заказ, чтобы мы начали его собирать и доставили
+                                            вовремя.
+                                        </span>
+                                    </div>
+                                    <div class="row order__awaiting-payment__footer">
+                                        <button class="button-blue" type="submit">Оплатить</button>
+                                        <button class="button-blue" type="submit">В
+                                            корзину
+                                        </button>
+                                        <span>
+                                            Заказ отменится через:
+                                            <span class="order-cancel-time">
+                                                00:29:15
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card__body--img">
+                                    <img class="product__img" src="/images/cabinet/product__img.jpg" alt="product img">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="order-card__item">
+                            <div class="card__header">
+                                <div class="order__info-box">
+                                    <h3 class="order__info__heading">
+                                        Заказ от 8 октября
+                                    </h3>
+                                    <span class="order__id">
+                                        51066532-0001
+                                    </span>
+                                </div>
+                                <div class="order__cost-box">
+                                    <h3 class="order__cost__heading">
+                                        50 000 сум
+                                    </h3>
+                                    <span class="order__pay-type">
+                                        Картой онлайн
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card__body order__canceled">
+                                <div class="card__body--texts">
+                                    <div class="row">
+                                        <h3 class="courier__heading">
+                                            Доставка курьером
+                                        </h3>
+                                        <div class="status__order">Отменено</div>
+                                    </div>
+                                    <p class="card__text mb-10">
+                                        Дата отмены: 8 октября в 11:30
+                                    </p>
+                                    <p class="card__text">
+                                        Причина отмены: Возникли проблемы при обработке заказа
+                                    </p>
+                                </div>
+                                <div class="card__body--img">
+                                    <img src="/images/cabinet/product__img.jpg" alt="product img" class="product__img">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+
+<%- include('toast') %>
+<%- include('modal-change-avatar') %>
+<%- include('../partials/catalog-modal') %>
+<%- include('../partials/categories-modal') %>
+
+<%- include('../partials/footer') %>

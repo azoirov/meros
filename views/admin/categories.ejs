@@ -1,0 +1,336 @@
+<% var categories, totalCount %>
+<%- include('header') %>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Meros</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search brands" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="/admin/exit">Sign out</a>
+        </li>
+    </ul>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <%- include('nav') %>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Categories</h1>
+                <div class="d-flex">
+                    <span class="me-3">Filter:</span>
+                    <button class="btn btn-outline-secondary me-1">A-Z</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card p-2">
+                        <form id="category-create-form">
+                            <label class="d-block mb-2">
+                                <span>Categories image(<b>.png or .jpg</b>)</span>
+                                <input class="form-control" id="category-img" type="file" accept=".png, .jpeg, .webp" required>
+                            </label>
+                            <label class="d-block mb-2">
+                                <span>Category icon(<b>only .svg</b>)</span>
+                                <input class="form-control" id="category-icon" type="file" accept="image/svg+xml" required>
+                            </label>
+                            <label class="d-block mb-2">
+                                <span>Category name (UZ)</span>
+                                <input class="form-control" id="category-name-uz" type="text" required minlength="3" name="category-name-uz" placeholder="Category name (UZ)">
+                            </label>
+                            <label class="d-block mb-2">
+                                <span>Category name (RU)</span>
+                                <input class="form-control" id="category-name-ru" type="text" required minlength="3" name="category-name-ru" placeholder="Category name (RU)">
+                            </label>
+                            <label class="d-block mb-2">
+                                <span>Category name (EN)</span>
+                                <input class="form-control" id="category-name-en" type="text" required minlength="3" name="category-name-en" placeholder="Category name (EN)">
+                            </label>
+                            <button class="btn btn-outline-primary">Add new category</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Category name</th>
+                            <th>Category image</th>
+                            <th>Category icon</th>
+                            <th>Category URL</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="categories-table-body">
+                        <% if (categories.length > 0) { %>
+                            <% categories.forEach(category => { %>
+                                <tr>
+                                    <td>
+                                        <ul>
+                                            <li class="category-name__li">
+                                                <strong>uz</strong>
+                                                <span class="category-name__decoration"></span>
+                                                <span><%= category.uz_name %></span>
+                                            </li>
+                                            <li class="category-name__li">
+                                                <strong>ru</strong>
+                                                <span class="category-name__decoration"></span>
+                                                <span><%= category.ru_name %></span>
+                                            </li>
+                                            <li class="category-name__li">
+                                                <strong>en</strong>
+                                                <span class="category-name__decoration"></span>
+                                                <span><%= category.en_name %></span>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center" style="width: 150px">
+                                        <img class="w-50" src="/images/categories/<%= category.thumb %>" alt="">
+                                    </td>
+                                    <td class="text-center" style="width: 150px">
+                                        <img class="w-25" src="/images/categories-icons/<%= category.icon_thumb %>" alt="">
+                                    </td>
+                                    <td>
+                                        /categories/<%= category.slug %>
+                                    </td>
+                                    <td style="width: 110px">
+                                        <button class="btn btn-primary" data-category-edit id="<%= category.category_id%>">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger" data-category-remove id="<%= category.category_id%>" >
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <%})%>
+                        <% } else { %>
+                            <tr>
+                                <td class="text-center text-danger h5" colspan="6">Empty</td>
+                            </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            <% for (let i = 0; i < Math.ceil(totalCount / 10); i++) { %>
+                                <li class="page-item">
+                                    <a class="page-link" href="/admin/categories?c_page=<%= i + 1 %>&p_page=10" data-category-page="<%= i + 1%>"><%= i + 1 %></a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+<!--            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">-->
+<!--                <h1 class="h2">Types</h1>-->
+<!--                <div class="d-flex">-->
+<!--                    <span class="me-3">Filter:</span>-->
+<!--                    <button class="btn btn-outline-secondary me-1">A-Z</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-3">-->
+<!--                    <div class="card p-2">-->
+<!--                        <form>-->
+<!--                            <label class="d-block mb-2">-->
+<!--                                <span>Categories</span>-->
+<!--                                <select class="form-control">-->
+<!--                                    <option>books</option>-->
+<!--                                    <option>for-men</option>-->
+<!--                                    <option>for-kids</option>-->
+<!--                                </select>-->
+<!--                            </label>-->
+<!--                            <label class="d-block mb-2">-->
+<!--                                <span>Type name (UZ)</span>-->
+<!--                                <input class="form-control" type="text" required minlength="3" name="type-name-uz" placeholder="Type name (UZ)">-->
+<!--                            </label>-->
+<!--                            <label class="d-block mb-2">-->
+<!--                                <span>Type name (RU)</span>-->
+<!--                                <input class="form-control" type="text" required minlength="3" name="type-name-ru" placeholder="Type name (RU)">-->
+<!--                            </label>-->
+<!--                            <label class="d-block mb-2">-->
+<!--                                <span>Type name (EN)</span>-->
+<!--                                <input class="form-control" type="text" required minlength="3" name="type-name-en" placeholder="Type name (EN)">-->
+<!--                            </label>-->
+<!--                            <button class="btn btn-outline-primary">Add new type</button>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-9">-->
+<!--                    <table class="table table-responsive table-bordered">-->
+<!--                        <thead>-->
+<!--                        <tr>-->
+<!--                            <th>№</th>-->
+<!--                            <th>Type name</th>-->
+<!--                            <th>Type URL</th>-->
+<!--                            <th>Actions</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                        <tr>-->
+<!--                            <td>1</td>-->
+<!--                            <td>-->
+<!--                                <ul>-->
+<!--                                    <li class="category-name__li">-->
+<!--                                        <strong>uz</strong>-->
+<!--                                        <span class="category-name__decoration"></span>-->
+<!--                                        <span>jahon</span>-->
+<!--                                    </li>-->
+<!--                                    <li class="category-name__li">-->
+<!--                                        <strong>ru</strong>-->
+<!--                                        <span class="category-name__decoration"></span>-->
+<!--                                        <span>мир</span>-->
+<!--                                    </li>-->
+<!--                                    <li class="category-name__li">-->
+<!--                                        <strong>en</strong>-->
+<!--                                        <span class="category-name__decoration"></span>-->
+<!--                                        <span>world</span>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                /books/world-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <button class="btn btn-primary">-->
+<!--                                    <i class="fa fa-edit"></i>-->
+<!--                                </button>-->
+<!--                                <button class="btn btn-danger">-->
+<!--                                    <i class="fa fa-trash"></i>-->
+<!--                                </button>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                    <nav aria-label="Page navigation example">-->
+<!--                        <ul class="pagination justify-content-end">-->
+<!--                            <li class="page-item">-->
+<!--                                <a class="page-link" href="#" aria-label="Previous">-->
+<!--                                    <span aria-hidden="true">&laquo;</span>-->
+<!--                                    <span class="sr-only">Previous</span>-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--                            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--                            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--                            <li class="page-item">-->
+<!--                                <a class="page-link" href="#" aria-label="Next">-->
+<!--                                    <span aria-hidden="true">&raquo;</span>-->
+<!--                                    <span class="sr-only">Next</span>-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </nav>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">-->
+<!--                <h1 class="h2">Subtypes</h1>-->
+<!--                <div class="d-flex">-->
+<!--                    <span class="me-3">Filter:</span>-->
+<!--                    <button class="btn btn-outline-secondary me-1">A-Z</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-3">-->
+<!--                    <div class="card p-2">-->
+<!--                        <form>-->
+<!--                            <label class="d-block mb-2">-->
+<!--                                <span>Categories</span>-->
+<!--                                <select class="form-control">-->
+<!--                                    <option>books</option>-->
+<!--                                    <option>for-men</option>-->
+<!--                                    <option>for-kids</option>-->
+<!--                                </select>-->
+<!--                            </label>-->
+<!--                            <label class="d-block mb-2">-->
+<!--                                <span>Types</span>-->
+<!--                                <select class="form-control">-->
+<!--                                    <option>world</option>-->
+<!--                                    <option>koran</option>-->
+<!--                                    <option>drama</option>-->
+<!--                                </select>-->
+<!--                            </label>-->
+<!--                            <label class="d-block mb-2">-->
+<!--                                <span>Subtype name (UZ)</span>-->
+<!--                                <input class="form-control" type="text" required minlength="3" name="type-name-uz" placeholder="Subtype name (UZ)">-->
+<!--                            </label>-->
+<!--                            <label class="d-block mb-2">-->
+<!--                                <span>Subtype name (RU)</span>-->
+<!--                                <input class="form-control" type="text" required minlength="3" name="type-name-ru" placeholder="Subtype name (RU)">-->
+<!--                            </label>-->
+<!--                            <label class="d-block mb-2">-->
+<!--                                <span>Subtype name (EN)</span>-->
+<!--                                <input class="form-control" type="text" required minlength="3" name="type-name-en" placeholder="Subtype name (EN)">-->
+<!--                            </label>-->
+<!--                            <button class="btn btn-outline-primary">Add new subtype</button>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-9">-->
+<!--                    <table class="table table-responsive table-bordered">-->
+<!--                        <thead>-->
+<!--                        <tr>-->
+<!--                            <th>№</th>-->
+<!--                            <th>Subtype name</th>-->
+<!--                            <th>Subtype URL</th>-->
+<!--                            <th>Actions</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                        <tr>-->
+<!--                            <td>1</td>-->
+<!--                            <td>-->
+<!--                                <ul>-->
+<!--                                    <li class="category-name__li">-->
+<!--                                        <strong>uz</strong>-->
+<!--                                        <span class="category-name__decoration"></span>-->
+<!--                                        <span>drama</span>-->
+<!--                                    </li>-->
+<!--                                    <li class="category-name__li">-->
+<!--                                        <strong>ru</strong>-->
+<!--                                        <span class="category-name__decoration"></span>-->
+<!--                                        <span>мир</span>-->
+<!--                                    </li>-->
+<!--                                    <li class="category-name__li">-->
+<!--                                        <strong>en</strong>-->
+<!--                                        <span class="category-name__decoration"></span>-->
+<!--                                        <span>drama</span>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                /books/world/drama-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <button class="btn btn-primary">-->
+<!--                                    <i class="fa fa-edit"></i>-->
+<!--                                </button>-->
+<!--                                <button class="btn btn-danger">-->
+<!--                                    <i class="fa fa-trash"></i>-->
+<!--                                </button>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                    <nav aria-label="Page navigation example">-->
+<!--                        <ul class="pagination justify-content-end">-->
+<!--                            <% for (let i = 0; i <= 4; i++) { %>-->
+<!--                                <li class="page-item"><a class="page-link" data-page="<%= i + 1%>" href="#"><%= i + 1 %></a></li>-->
+<!--                            <% } %>-->
+<!--                        </ul>-->
+<!--                    </nav>-->
+<!--                </div>-->
+<!--            </div>-->
+        </main>
+    </div>
+</div>
+
+<%- include('modal') %>
+<%- include('footer') %>

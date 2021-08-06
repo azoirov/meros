@@ -1,0 +1,53 @@
+.warning-modal {
+   position: fixed;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   z-index: 6;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: rgba(39, 49, 66, 0.4);
+   overflow: auto;
+}
+
+.warning-modal-content {
+   position: relative;
+   max-width: 590px;
+   padding: 50px 100px;
+   background: #FFFFFF;
+   border-radius: 4px;
+   text-align: center;
+
+   h3 {
+      margin-bottom: 20px;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 28px;
+      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      color: #273142;
+   }
+
+   p {
+      margin-bottom: 50px;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
+      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      color: #666666;
+   }
+
+   .button-blue-sm {
+      margin: 0 auto;
+   }
+}
+
+.warning-modal-close {
+   position: absolute;
+   padding: 0;
+   top: 30px;
+   right: 30px;
+   background-color: transparent;
+}

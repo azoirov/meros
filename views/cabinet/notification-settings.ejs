@@ -1,0 +1,167 @@
+<% var user %>
+
+<%- include('../partials/header') %>
+
+<div class="container pt-20">
+    <nav class="breadcrumb">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/">
+                    Главная
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/cabinet">
+                    Личный кабинет
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                Настройки уведомлений
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<section class="cabinet">
+    <div class="container">
+        <div class="cabinet__content">
+            <%- include("sidebar")%>
+            <main class="main--setting-notification">
+                <h2 class="section__heading">
+                    Настройки уведомлений
+                </h2>
+                <div class="status-order__box">
+                    <h3 class="box__heading">
+                        Статус заказа
+                    </h3>
+                    <p class="box__text">
+                        Отслеживайте заказы в реальном времени
+                    </p>
+                    <div class="box__edit">
+                        <div class="box__edit__left">
+                            <p class="edit__heading">
+                                Телефон
+                            </p>
+                            <p class="edit__content">
+                                +998 97 992 48 78
+                            </p>
+                            <button class="edit__btn" type="button">
+                                Изменить
+                            </button>
+                        </div>
+                        <div class="box__edit__right">
+                            <p class="edit__heading">
+                                E-mail
+                            </p>
+                            <p class="edit__content">
+                                iamvakhabov@gmail.com
+                            </p>
+                            <button class="edit__btn" type="button">
+                                Изменить
+                            </button>
+                        </div>
+                    </div>
+                    <p class="edit__notification">
+                        Чтобы получать интересующие вас push-уведомления, не забудьте включить их в настройках
+                        вашего телефона
+                    </p>
+                </div>
+                <div class="row pb-50">
+                    <div class="featured-products__box">
+                        <h3 class="box__heading">
+                            Избранные товары
+                        </h3>
+                        <p class="box__text">
+                            Узнавайте о снижении цены и появлении в продаже любимых товаров
+                        </p>
+                        <div class="row mb-20">
+                            <span class="switch__heading">Push-уведомления</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="row">
+                            <span class="switch__heading">Email</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="discounts-promotions__box">
+                        <h3 class="box__heading">
+                            Скидки и акции
+                        </h3>
+                        <p class="box__text">
+                            Экономьте на акциях и распродажах
+                        </p>
+                        <div class="row mb-20">
+                            <span class="switch__heading">Push-уведомления</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="row">
+                            <span class="switch__heading">Email</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="que-abo-products__box pb-50">
+                    <!-- Questions about products -->
+                    <h3 class="box__heading">
+                        Вопросы о товарах
+                    </h3>
+                    <p class="box__text mb-20">
+                        Помогайте людям, отвечая на вопросы о купленных вами товарах
+                    </p>
+                    <p class="box__select__heading">
+                        Email
+                    </p>
+                    <div class="custom-select">
+                        <select>
+                            <option value="0">Раз в 3 дня</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ans-abo-products__box pb-50">
+                    <!-- Answers to your questions about products -->
+                    <h3 class="box__heading">
+                        Ответы на ваши вопросы о товарах
+                    </h3>
+                    <p class="box__text mb-20">
+                        Получайте уведомления, когда на ваш вопрос о товаре ответят
+                    </p>
+                    <p class="box__select__heading">
+                        Email
+                    </p>
+                    <div class="custom-select">
+                        <select>
+                            <option value="0">Раз в 3 дня</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="users-rewiev__box">
+                    <h3 class="box__heading mb-20">
+                        Подписки на отзывы пользователей
+                    </h3>
+                    <p class="box__text">
+                        Список подписок пуст.
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+
+<%- include('toast') %>
+<%- include('modal-change-avatar') %>
+<%- include('../partials/catalog-modal') %>
+<%- include('../partials/categories-modal') %>
+
+<%- include('../partials/footer') %>

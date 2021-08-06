@@ -1,0 +1,293 @@
+.auth-section {
+   padding-top: 24px;
+   padding-bottom: 134px;
+   background-color: $background-grey-color;
+}
+
+.auth-card {
+   width: 554px;
+   max-width: 554px;
+   margin: 0 auto;
+   padding: 50px 50px 60px 50px;
+   background-color: #FFFFFF;
+   border-radius: 4px;
+
+   h2 {
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 33px;
+      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      color: $primary-text-color;
+   }
+}
+
+.input {
+   display: block;
+   width: 100%;
+   height: 49px;
+   padding-right: 20px;
+   padding-left: 20px;
+   border: 1px solid #D2D2D2;
+   box-sizing: border-box;
+   border-radius: 4px;
+   font-family: "Roboto", Arial, sans-serif;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on;
+   color: $primary-text-color;
+
+   &::placeholder {
+      color: #D2D2D2;
+   }
+
+   &.valid {
+      background-color: #F4F7F8;
+      border-color: #15CF74;
+   }
+
+   &.invalid {
+      background-color: #FFFFFF;
+      border-color: #F83333;
+   }
+
+   &[readonly] {
+      background-color: #F4F7F8;
+      border-color: #15CF74;
+   }
+}
+
+.validation-warning {
+   margin-top: 10px;
+   font-weight: 500;
+   font-size: 12px;
+   line-height: 12px;
+   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
+   color: #F83333;
+}
+
+.auth-label {
+   display: block;
+   margin-bottom: 30px;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: $primary-text-color;
+
+   span {
+      display: block;
+      margin-bottom: 15px;
+   }
+}
+
+.auth-checkbox {
+   display: flex;
+   align-items: flex-start;
+   margin-bottom: 30px;
+
+   input {
+      &:checked ~ .auth-checkbox-rectangle {
+         background-image: url("../images/icons/checked.svg");
+         background-repeat: no-repeat;
+         background-size: contain;
+         border: none
+      }
+
+      &:checked ~ .auth-checkbox-text {
+         opacity: 1;
+      }
+   }
+}
+
+.auth-checkbox-rectangle {
+   display: block;
+   margin-right: 10px;
+   width: 24px;
+   height: 24px;
+   border: 1px solid #D2D2D2;
+   border-radius: 4px;
+}
+.auth-checkbox-text {
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: $primary-text-color;
+   opacity: 0.5;
+}
+
+.button-blue {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 60px;
+   margin-bottom: 10px;
+   background-color: $primary-blue-color;
+   border-radius: 4px;
+   font-weight: 600;
+   font-size: 18px;
+   line-height: 21px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #FFFFFF;
+   transition: 0.2s all ease;
+
+   &:hover {
+      background-color: $primary-yellow-color;
+   }
+
+   &[data-loading] .loading-spinner {
+      display: block;
+   }
+}
+
+.button-outline {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 60px;
+   background-color: #FFFFFF;
+   border: 1px solid #8D909B;
+   box-sizing: border-box;
+   border-radius: 4px;
+   font-weight: 600;
+   font-size: 18px;
+   line-height: 21px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #666666;
+
+   &:hover {
+      color: $primary-text-color;
+   }
+}
+
+.button-outline-sm {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   height: 45px;
+   background-color: #FFFFFF;
+   border: 1px solid #8D909B;
+   border-radius: 4px;
+   font-weight: 600;
+   font-size: 18px;
+   line-height: 21px;
+   color: #8D909B;
+}
+
+.forgot-password {
+   width: 100%;
+   padding-top: 20px;
+   text-align: center;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on;
+   color: $primary-text-color;
+   opacity: 0.5;
+
+   &:hover {
+      opacity: 1;
+      text-decoration: underline;
+   }
+}
+
+.reset-password {
+   .auth-label {
+      margin-bottom: 15px;
+   }
+}
+
+.reset-password-deadline {
+   display: flex;
+
+   span {
+      margin-right: 20px;
+      font-family: "Roboto", sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      color: #8D909B;
+   }
+
+   time {
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      color: #32386B;
+   }
+}
+
+.auth-label-text {
+   display: block;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on;
+   color: #8D909B;
+}
+
+.exists-account {
+   margin-top: 15px;
+   text-align: center;
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on;
+   color: #273142;
+
+   a {
+      color: #114FEF;
+
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}
+
+.loading-spinner {
+   display: none;
+   margin-left: 10px;
+}
+
+.alert-danger {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   min-height: 50px;
+   margin-bottom: 15px;
+   padding: 10px;
+   border: 1px solid #F83333;
+   border-radius: 4px;
+   background-color: rgba(#F83333, 0.1);
+   font-family: "Roboto", sans-serif;
+   line-height: 20px;
+   color: #273142;
+   text-align: center;
+}
+
+.alert-success {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   min-height: 50px;
+   margin-bottom: 15px;
+   padding: 10px;
+   border: 1px solid #3AC267;
+   border-radius: 4px;
+   background-color: rgba(#3AC267, 0.1);
+   font-family: "Roboto", sans-serif;
+   line-height: 20px;
+   color: #273142;
+   text-align: center;
+}

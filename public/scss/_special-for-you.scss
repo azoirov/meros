@@ -1,0 +1,43 @@
+.special-for-you__card {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 460px;
+   height: 170px;
+   border-radius: 4px;
+
+   &:first-child {
+      background-image: url('/images/special-for-you/1.jpg');
+   }
+
+   &:nth-child(2) {
+      background-image: url('/images/special-for-you/2.jpg');
+   }
+
+   &:last-child {
+      background-image: url('/images/special-for-you/3.jpg');
+   }
+
+   img {
+      margin-right: 20px;
+   }
+
+   h3 {
+      width: 270px;
+      font-weight: 700;
+      font-size: 45px;
+      line-height: 88.4%;
+      text-align: center;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      color: #FFFFFF;
+   }
+
+   a {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+   }
+}

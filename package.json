@@ -1,0 +1,43 @@
+{
+  "name": "meros",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sultonbayevogabek/meros.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sultonbayevogabek/meros/issues"
+  },
+  "homepage": "https://github.com/sultonbayevogabek/meros#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "node-fetch": "^2.6.1",
+    "node-telegram-bot-api": "^0.53.0",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2",
+    "slugify": "^1.5.3",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "webpack": "^5.47.0",
+    "webpack-cli": "^4.7.2"
+  }
+}

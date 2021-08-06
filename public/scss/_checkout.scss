@@ -1,0 +1,238 @@
+.checkout {
+   padding-top: 50px;
+   padding-bottom: 100px;
+
+   .row {
+      justify-content: space-between;
+   }
+}
+
+.checkout__form {
+   display: flex;
+   justify-content: space-between;
+
+   .select__selected {
+      height: 48px;
+      border: 1px solid #D2D2D2;
+   }
+
+   .select__list {
+      top: 48px;
+   }
+
+   textarea {
+      height: 200px;
+      padding: 20px;
+      resize: none;
+   }
+
+   .select__list {
+      max-height: 300px;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+         width: 3px;
+         background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+         background: #cccccc;
+      }
+   }
+}
+
+.checkout__left {
+   width: 675px;
+}
+
+.checkout__right {
+   width: 675px;
+
+   .input {
+      width: 360px;
+   }
+}
+
+.checkout__form__text {
+   display: block;
+   margin-bottom: 15px;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: $primary-text-color
+}
+
+.radio-label {
+   display: flex;
+   align-items: center;
+   margin-bottom: 15px;
+}
+
+.radio-input {
+   display: none;
+
+   &:checked ~ .radio-round {
+      border: none;
+      background-image: url("/images/icons/radio-fill.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+   }
+
+   &:checked ~ .radio-text {
+      color: $primary-text-color;
+   }
+}
+
+.radio-round {
+   flex-shrink: 0;
+   width: 20px;
+   height: 20px;
+   margin-right: 15px;
+   border-radius: 50%;
+   border: 1.5px solid #D2D2D2;
+}
+
+.radio-text {
+   font-weight: 600;
+   font-size: 18px;
+   line-height: 21px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #8D909B;
+}
+
+.textarea {
+   display: block;
+   width: 100%;
+   height: 196px;
+   padding-top: 15px;
+   padding-right: 20px;
+   padding-left: 20px;
+   border: 1px solid #D2D2D2;
+   box-sizing: border-box;
+   border-radius: 4px;
+   font-family: "Roboto", Arial, sans-serif;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on;
+   color: $primary-text-color;
+   resize: none;
+
+   &::placeholder {
+      color: #D2D2D2;
+   }
+}
+
+.checkout__form__payment-systems {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding-bottom: 30px;
+   border-bottom: 1px solid #E8EDF1;
+}
+
+.checkout__form__total-price {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 15px;
+   padding-top: 15px;
+
+   span:first-child {
+      font-family: "Roboto", sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 22px;
+      line-height: 26px;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      color: #32386B;
+   }
+}
+
+.custom-select {
+   position: relative;
+   width: 100%;
+   border: 1px solid #D2D2D2;
+   border-radius: 4px;
+}
+
+.custom-select select {
+   display: none;
+}
+
+.select-selected {
+   width: 100%;
+   height: 49px;
+   padding: 15px 20px !important;
+   border: none !important;
+   background-color: #ffffff;
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on;
+   color: #8D909B !important;
+}
+
+.select-selected:after {
+   position: absolute;
+   content: "";
+   top: 20px;
+   width: 16px;
+   right: 20px;
+   height: 9px;
+   background-image: url('/images/icons/dropdownarrow.svg');
+   background-repeat: no-repeat;
+   background-size: contain;
+   background-position: center;
+}
+
+
+.select-items div, .select-selected {
+   width: 100%;
+   height: 49px;
+   padding: 15px 20px !important;
+   border: none !important;
+   background-color: #ffffff;
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on;
+   color: #8D909B !important;
+   cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+   position: absolute;
+   top: 100%;
+   left: 0;
+   right: 0;
+   z-index: 99;
+   border-top: 1px solid #d2d2d2;
+
+   div {
+      border-right: 1px solid #d2d2d2 !important;
+      border-left: 1px solid #d2d2d2 !important;
+      border-bottom: 1px solid #d2d2d2 !important;
+   }
+}
+
+.select-hide {
+   display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+   background-color: #F4F7F8;
+}
+
+.checkout__form__left {
+   width: 750px;
+}
+
+.checkout__form__field {
+   width: 360px;
+}

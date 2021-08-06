@@ -1,0 +1,106 @@
+<% var user %>
+<%- include('../partials/header') %>
+
+<div class="container pt-20">
+    <nav class="breadcrumb">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/">
+                    Главная
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/cabinet">
+                    Личный кабинет
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                Изменить профиль
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<section class="cabinet">
+    <div class="container">
+        <div class="cabinet__content">
+            <%- include("sidebar") %>
+            <main class="main--my-details">
+                <h2 class="section__heading">
+                    Личные данные
+                </h2>
+                <form class="personal-data__form">
+                    <%
+                    let firstName = '', lastName = ''
+                    if (user.name.indexOf(' ') !== - 1) {
+                        firstName = user.name.split(' ')[0]
+                        lastName = user.name.split(' ')[1]
+                    } else {
+                        firstName = user.name
+                    }
+                    %>
+                    <div class="row">
+                        <div class="input__wrapper">
+                            <label>Имя</label>
+                            <input id="first-name" type="text" value="<%= firstName %>" required minlength="3">
+                        </div>
+                        <div class="input__wrapper">
+                            <label>Фамилия</label>
+                            <input id="last-name" type="text" value="<%= lastName %>" required minlength="3">
+                        </div>
+                    </div>
+                    <button class="my-details__btn button-blue" type="submit">Сохранить</button>
+                </form>
+                <h2 class="section__heading pt50">
+                    Учётные данные
+                </h2>
+                <form class="credentials__form">
+                    <div class="row mb50">
+                        <div class="input__wrapper">
+                            <label>Телефон</label>
+                            <input type="tel" id="phone" value="<%= user.phone %>" required>
+                        </div>
+                        <div class="input__wrapper">
+                            <label>E-mail</label>
+                            <input type="email" id="email" value="<%= user.email %>" required>
+                        </div>
+                    </div>
+                    <button class="my-details__btn button-blue">Сохранить</button>
+                </form>
+                <h2 class="section__heading pt50">
+                    Управление аккаунтом
+                </h2>
+                <ul class="exit__list">
+                    <li class="exit__item">
+                        <% function addZero(num) {
+                            if (num < 10) {
+                                return `0${num}`
+                            }
+                            return num
+                        } %>
+                        Вы с нами
+                        с <%= addZero(user.createdAt.getDay()) + '.' + addZero(user.createdAt.getMonth()) + '.' + addZero(user.createdAt.getFullYear()) %>
+                    </li>
+                    <li class="exit__item">
+                        <a class="exit__link" id="logout-all">
+                            Выйти на всех устройствах
+                        </a>
+                    </li>
+                    <li class="exit__item">
+                        <a class="exit__link" href="/exit">
+                            Выйти из аккаунта
+                        </a>
+                    </li>
+                </ul>
+            </main>
+        </div>
+    </div>
+</section>
+
+<%- include('toast') %>
+<%- include('modal-change-avatar') %>
+<%- include('../partials/catalog-modal') %>
+<%- include('../partials/warning-modal') %>
+<%- include('../partials/categories-modal') %>
+
+<%- include('../partials/footer') %>

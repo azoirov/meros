@@ -1,0 +1,187 @@
+<%- include('partials/header') %>
+
+<div class="container pt-20">
+    <nav class="breadcrumb">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/">
+                    Главная
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/cart">
+                    Корзина
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                Оформления
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<!--<section class="checkout">-->
+<!--    <div class="container">-->
+<!--        <h2 class="section__heading">Оформление</h2>-->
+<!--        <form class="checkout__form">-->
+<!--            <div class="checkout__left">-->
+<!--                <p class="checkout__form__text">Ваш адрес доставки* по умолчанию</p>-->
+<!--                <label class="radio-label">-->
+<!--                    <input class="radio-input" type="radio" name="address">-->
+<!--                    <span class="radio-round"> </span>-->
+<!--                    <span class="radio-text">г. Ташкент, Мирабадский район, ул. Шота Руставели, 12-7</span>-->
+<!--                </label>-->
+<!--                <p class="checkout__form__text">или вводите другой адрес</p>-->
+<!--                <label class="radio-label mb-30">-->
+<!--                    <input class="radio-input" type="radio" name="address">-->
+<!--                    <span class="radio-round"> </span>-->
+<!--                    <input class="input" type="text" placeholder="г. Ташкент, ...">-->
+<!--                </label>-->
+<!--                <p class="checkout__form__text">Оставьте комментарий к заказу (до 1000 символов)</p>-->
+<!--                <textarea class="textarea" placeholder="г. Ташкент, ..."></textarea>-->
+<!--            </div>-->
+<!--            <div class="checkout__right">-->
+<!--                <p class="checkout__form__text">Номер телефона*</p>-->
+<!--                <label class="radio-label">-->
+<!--                    <input class="radio-input" type="radio" name="phone">-->
+<!--                    <span class="radio-round"> </span>-->
+<!--                    <span class="radio-text">+998 91 123 45 67</span>-->
+<!--                </label>-->
+<!--                <label class="radio-label mb-30">-->
+<!--                    <input class="radio-input" type="radio" name="phone">-->
+<!--                    <span class="radio-round"> </span>-->
+<!--                    <input class="input" type="tel" id="user_phone" name="user_phone">-->
+<!--                </label>-->
+<!--                <p class="checkout__form__text mb-20">Выберите платежную систему для оплаты</p>-->
+<!--                <div class="checkout__form__payment-systems">-->
+<!--                    <label class="radio-label">-->
+<!--                        <input class="radio-input" type="radio" name="payment_system">-->
+<!--                        <span class="radio-round"> </span>-->
+<!--                        <img src="/images/logos/payme.svg" alt="">-->
+<!--                    </label>-->
+<!--                    <label class="radio-label">-->
+<!--                        <input class="radio-input" type="radio" name="payment_system">-->
+<!--                        <span class="radio-round"> </span>-->
+<!--                        <img src="/images/logos/webmoney.svg" alt="">-->
+<!--                    </label>-->
+<!--                    <label class="radio-label">-->
+<!--                        <input class="radio-input" type="radio" name="payment_system">-->
+<!--                        <span class="radio-round"> </span>-->
+<!--                        <img src="/images/logos/payme.svg" alt="">-->
+<!--                    </label>-->
+<!--                    <label class="radio-label">-->
+<!--                        <input class="radio-input" type="radio" name="payment_system">-->
+<!--                        <span class="radio-round"> </span>-->
+<!--                        <img src="/images/logos/webmoney.svg" alt="">-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--                <div class="checkout__form__total-price">-->
+<!--                    <span>К оплате:</span>-->
+<!--                    <span class="price">244 000 UZS</span>-->
+<!--                </div>-->
+<!--                <button class="button-blue-sm">Оплатить</button>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--<hr>-->
+
+<!--<div class="container pt-20">-->
+<!--    <nav class="breadcrumb">-->
+<!--        <ol class="breadcrumb-list">-->
+<!--            <li class="breadcrumb-item">-->
+<!--                <a class="breadcrumb-link" href="/">-->
+<!--                    Главная-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li class="breadcrumb-item">-->
+<!--                <a class="breadcrumb-link" href="/cart">-->
+<!--                    Корзина-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li class="breadcrumb-item">-->
+<!--                Оформления-->
+<!--            </li>-->
+<!--        </ol>-->
+<!--    </nav>-->
+<!--</div>-->
+
+<section class="checkout">
+    <div class="container">
+        <h2 class="section__heading">Оформление</h2>
+        <form class="checkout__form" id="order-form">
+            <div class="checkout__form__left">
+                <div class="row">
+                    <div class="checkout__form__field w-100">
+                        <label class="checkout__form__text">Выберите область</label>
+                        <div class="select mb-20 w-100">
+                            <div class="select__selected w-100" id="region"></div>
+                            <ul class="select__list d-none">
+                                <li class="select__item">Андижанская область</li>
+                                <li class="select__item">Бухарская область</li>
+                                <li class="select__item">Джизакская область</li>
+                                <li class="select__item">Кашкадарьинская область</li>
+                                <li class="select__item">Навоийская область</li>
+                                <li class="select__item">Наманганская область</li>
+                                <li class="select__item">Самаркандская область</li>
+                                <li class="select__item">Сурхандарьинская область</li>
+                                <li class="select__item">Сырдарьинская область</li>
+                                <li class="select__item">Ташкентская область</li>
+                                <li class="select__item">Ферганская область</li>
+                                <li class="select__item">Хорезмская область</li>
+                                <li class="select__item">Республика Каракалпакстан</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-30">
+                    <label class="checkout__form__text" for="address">Адрес</label>
+                    <input class="input" id="address" required minlength="3" type="text" placeholder="пример: Ташкентская область, Бектемирский район, улица ...">
+                </div>
+                <div class="row mb-20">
+                    <div class="checkout__form__field">
+                        <label class="checkout__form__text" for="name">ФИО получателя</label>
+                        <input class="input" type="text" id="name" required minlength="3" placeholder="Имя фамилия">
+                    </div>
+                    <div class="checkout__form__field">
+                        <label class="checkout__form__text" for="user_phone">Номер телефона</label>
+                        <input class="input" type="tel" id="phone" required minlength="3" name="phone">
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="checkout__form__text">Оставьте комментарий к заказу</label>
+                    <textarea class="input" id="review" required></textarea>
+                </div>
+            </div>
+            <div class="cart__products__total">
+                <div class="cart__products__total__top">
+                    <ul class="cart__products__total__ul">
+                        <li class="cart__products__total__li">
+                            <span>Стоимость:</span>
+                            <span><%= totalPrice %> UZS</span>
+                        </li>
+                        <li class="cart__products__total__li">
+                            <span>Доставка:</span>
+                            <span>0 UZS</span>
+                        </li>
+<!--                        <li class="cart__products__total__li cart__products__total__li&#45;&#45;discount">-->
+<!--                            <span>Скидка:</span>-->
+<!--                            <span>-15 000 UZS</span>-->
+<!--                        </li>-->
+                    </ul>
+                    <div class="cart__products__total__price">
+                        <span>К оплате:</span>
+                        <span class="price"><%= totalPrice %> UZS</span>
+                    </div>
+                </div>
+                <button class="button-blue" style="cursor: pointer;" id="order-form-submit">Оформить заказ</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<%- include('partials/catalog-modal') %>
+<%- include('partials/categories-modal') %>
+
+<%- include('partials/footer') %>

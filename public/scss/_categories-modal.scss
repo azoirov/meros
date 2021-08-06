@@ -1,0 +1,78 @@
+.categories-modal {
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   z-index: 2;
+   background: rgba(0, 0, 0, 0.5);
+   backdrop-filter: blur(2px);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.categories-modal__inner {
+   width: 655px;
+   padding: 50px;
+   background-color: #FFFFFF;
+   border-radius: 5px;
+}
+
+.categories-modal__header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+   h2 {
+      display: flex;
+      align-items: center;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
+      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      color: $primary-text-color;
+
+      img {
+         margin-right: 10px;
+      }
+   }
+
+   #categories-modal-close {
+      cursor: pointer;
+   }
+}
+
+.categories-modal__main {
+   display: flex;
+   align-items: flex-start;
+   flex-wrap: wrap;
+   padding-top: 50px;
+}
+
+.categories-modal__ul {
+   width: 275px;
+}
+
+.categories-modal__li {
+   display: flex;
+   align-items: center;
+   margin-bottom: 20px;
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 21px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: $primary-text-color;
+   cursor: pointer;
+
+   img {
+      width: 24px;
+      margin-right: 10px;
+   }
+
+   &:hover {
+      color: $primary-yellow-color;
+   }
+}

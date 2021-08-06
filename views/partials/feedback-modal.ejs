@@ -1,0 +1,39 @@
+<div class="modal feedback-modal">
+    <div class="feedback-modal__content">
+        <h2 class="feedback-modal__heading">Ваша оценка:</h2>
+        <form class="feedback-modal__form" action="/" method="POST">
+            <div class="feedback-modal__rating">
+            </div>
+            <label class="feedback-modal__label">
+                <span>Достоинства</span>
+                <input class="feedback-modal__input" type="text" placeholder="Что вам понравилось">
+            </label>
+            <label class="feedback-modal__label">
+                <span>Комментарий</span>
+                <textarea class="feedback-modal__textarea" placeholder="Другие впечатления о модели"></textarea>
+            </label>
+            <label class="feedback-modal__label mb-40">
+                <input class="visually-hidden" type="file">
+                <span>Фотографии товара</span>
+                <div class="feedback-modal__file">
+                    <div class="feedback-modal__file-btn">Загрузить</div>
+                    <div class="feedback-modal__images">
+                        <div class="feedback-modal__images__item">
+                            <img src="https://picsum.photos/40?rand=1" alt="">
+                        </div>
+                        <div class="feedback-modal__images__item">
+                            <img src="https://picsum.photos/40?rand=2" alt="">
+                        </div>
+                        <div class="feedback-modal__images__item">
+                            <img src="https://picsum.photos/40?rand=3" alt="">
+                        </div>
+                    </div>
+                </div>
+            </label>
+            <button class="feedback-modal__submit" type="submit">Оставить отзыв</button>
+        </form>
+        <button class="feedback-modal__close">
+            <img src="/images/icons/feedbackmodalclose.svg" alt="">
+        </button>
+    </div>
+</div>

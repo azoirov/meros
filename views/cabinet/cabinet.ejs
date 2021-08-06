@@ -1,0 +1,73 @@
+<% var user %>
+
+<%- include('../partials/header') %>
+
+<div class="container pt-20">
+    <nav class="breadcrumb">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/">
+                    Главная
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                Личный кабинет
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<section class="cabinet">
+    <div class="container">
+        <div class="cabinet__content">
+            <%- include("sidebar")%>
+            <main class="cabinet__main">
+                <h2 class="section__heading">
+                    Мои данные
+                </h2>
+                <ul class="my-details__list">
+                    <li class="my-details__item">
+                        <h3>Meros Дисконт %</h3>
+                        <p>10% - 25%</p>
+                    </li>
+                    <li class="my-details__item">
+                        <h3>Meros Card</h3>
+                        <p>Кэшбэк 5%</p>
+                    </li>
+                    <li class="my-details__item">
+                        <h3>Баллы</h3>
+                        <p>15 Баллов</p>
+                    </li>
+                </ul>
+                <div class="my-details__footer">
+                    <div class="promocode__wrapper">
+                        <h3 class="section__heading">
+                            Используйте промокод
+                        </h3>
+                        <form class="promocode__form">
+                            <label class="visually-hidden" for="promocode__input">Promo Code</label>
+                            <input class="input" type="text" placeholder="Введите промокод или сертификат"
+                                id="promocode__input" name="promocode">
+                            <button class="button-blue" type="submit" disabled>Привязать</button>
+                        </form>
+                    </div>
+                    <div>
+                        <h3 class="section__heading">
+                            Наши официальные магазины на карте
+                        </h3>
+                        <div class="our-address">
+                            <img src="/images/cabinet/map.jpg" alt="Map">
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+
+<%- include('toast') %>
+<%- include('modal-change-avatar') %>
+<%- include('../partials/catalog-modal') %>
+<%- include('../partials/categories-modal') %>
+
+<%- include('../partials/footer') %>

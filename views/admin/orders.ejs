@@ -1,0 +1,92 @@
+<%- include('header') %>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Meros</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search customer" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="/admin/exit">Sign out</a>
+        </li>
+    </ul>
+</header>
+<div class="container-fluid">
+    <div class="row">
+        <%- include('nav') %>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Orders</h1>
+                <div class="d-flex">
+                    <span class="me-3">Filter:</span>
+                    <button class="btn btn-outline-secondary me-1">A-Z</button>
+                    <button class="btn btn-outline-secondary">Date</button>
+                </div>
+            </div>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer name</th>
+                    <th>Customer phone</th>
+                    <th>Address</th>
+                    <th>Region</th>
+                    <th>Ordered time</th>
+                    <th>Is shipped</th>
+                    <th>Is payed</th>
+                    <th>Payment method</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% orders.forEach(order => { %>
+                    <tr>
+                        <td><%= order.order_id%></td>
+                        <td><%= order.full_name%></td>
+                        <td><%= order.phone_number%></td>
+                        <td><%= order.shipping_address %></td>
+                        <td><%= order.shipping_region%></td>
+                        <td><%= order.createdAt %></td>
+                        <td><%= order.is_shipped %></td>
+                        <td><%= order.is_payed %></td>
+                        <td><%= order.payment_method %></td>
+                        <td><%= order.description %></td>
+                        <td style="width: 150px">
+                            <button class="btn btn-primary">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+<!--            <nav aria-label="Page navigation example">-->
+<!--                <ul class="pagination justify-content-end">-->
+<!--                    <li class="page-item">-->
+<!--                        <a class="page-link" href="#" aria-label="Previous">-->
+<!--                            <span aria-hidden="true">&laquo;</span>-->
+<!--                            <span class="sr-only">Previous</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--                    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--                    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--                    <li class="page-item">-->
+<!--                        <a class="page-link" href="#" aria-label="Next">-->
+<!--                            <span aria-hidden="true">&raquo;</span>-->
+<!--                            <span class="sr-only">Next</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </nav>-->
+        </main>
+    </div>
+</div>
+<%- include('footer') %>

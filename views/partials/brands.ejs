@@ -1,0 +1,20 @@
+<section class="section brands">
+    <div class="container">
+        <header class="section__header">
+            <h2 class="section__heading">Популярные бренды</h2>
+        </header>
+        <div class="brands__slider splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <% brands.forEach(el => { %>
+                        <li class="splide__slide">
+                            <a href="<%= el.brand_site %>">
+                                <img src="/images/catalog-brands/<%= el.brand_thumb %>" alt="hilol">
+                            </a>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

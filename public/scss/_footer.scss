@@ -1,0 +1,78 @@
+.footer {
+   background-color: $background-grey-color;
+}
+
+.footer__top {
+   display: flex;
+   align-items: flex-start;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   padding-top: 30px;
+   padding-bottom: 30px;
+   border-bottom: 1px solid $grey-border-color;
+}
+
+.footer__heading {
+   margin-bottom: 20px;
+   font-weight: 700;
+   font-size: 18px;
+   line-height: 21px;
+   font-feature-settings: 'pnum' on, 'lnum' on;
+   color: $primary-text-color;
+}
+
+.footer__li:not(:last-child) {
+   margin-bottom: 10px;
+}
+
+.footer__link {
+   font-family: 'Roboto', Arial, sans-serif;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #666666;
+
+   &:hover {
+      text-decoration: underline;
+   }
+}
+
+.socials {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 13px;
+   padding: 0 3px;
+}
+
+.socials__link {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   background-color: #8D909B;
+   transition: 0.3s all ease;
+
+   &:hover {
+      background-color: $primary-yellow-color;
+   }
+}
+
+.app-store {
+   display: block;
+   margin-bottom: 10px;
+}
+
+.footer__bottom {
+   padding-top: 20px;
+   padding-bottom: 30px;
+   text-align: center;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #8D909B;
+}

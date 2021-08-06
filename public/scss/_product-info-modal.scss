@@ -1,0 +1,88 @@
+.product-info-modal__content {
+   position: relative;
+   width: 1100px;
+   display: flex;
+   background-color: #FFFFFF;
+   border-radius: 4px;
+}
+
+.product-info-modal__close {
+   position: absolute;
+   top: 40px;
+   right: 40px;
+   padding: 0;
+   background-color: transparent;
+}
+
+.product-info-modal__gallery {
+   width: 500px;
+   padding: 54px 50px 46px;
+   border-right: 1px solid #E8EDF1;
+}
+
+.product-info-modal__display {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 400px;
+   height: 500px;
+   margin-bottom: 20px;
+   border: 1px solid #E8EDF1;
+
+   .product-card__discount {
+      top: 0;
+      left: 0;
+      bottom: auto;
+      border-radius: 0;
+   }
+}
+
+.product-info-modal__thumbs {
+   display: flex;
+
+   &__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 75px;
+      height: 80px;
+      margin-right: 10px;
+      border: 1px solid #E8EDF1;
+   }
+
+   &__item.active {
+      border: 2px solid #114FEF;
+   }
+}
+
+.product-info-modal__info {
+   padding: 54px 0 46px 50px;
+
+   .product-name {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 28px;
+      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      color: #F5921C;
+   }
+}
+
+.product-info-modal__more-info {
+   display: block;
+   width: 100%;
+   margin-bottom: 12px;
+   padding: 0;
+   background-color: transparent;
+   text-align: left;
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 16px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #273142;
+
+   &:hover {
+      color: $primary-yellow-color;
+   }
+}

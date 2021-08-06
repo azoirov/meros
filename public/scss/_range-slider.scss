@@ -1,0 +1,114 @@
+.header-ct h2 {
+   text-transform: capitalize;
+   margin: 20px 0;
+   color: #ffffff;
+}
+
+.price-range-block {
+   padding: 0 8px;
+}
+
+#slider-range {
+   width: 100%;
+   margin-bottom: 30px;
+}
+
+.header-ct p,
+.by a {
+   color: #ffffff;
+}
+
+.by a:hover {
+   text-decoration: none;
+}
+
+.ui-slider-horizontal {
+   height: 5px;
+}
+
+.ui-slider-horizontal {
+   margin-bottom: 15px;
+   width: 40%;
+}
+
+.ui-widget-header {
+   background: #F5921C;
+   outline: 1px solid #F5921C;
+}
+
+.ui-widget.ui-widget-content {
+   background: #D2D2D2;
+   border-color: #d2d2d2;
+}
+
+.price-range-search {
+   width: 40.5%;
+   background-color: #f9f9f9;
+   border: 1px solid #6e6666;
+   min-width: 40%;
+   display: inline-block;
+   height: 32px;
+   border-radius: 5px;
+   float: left;
+   margin-bottom: 20px;
+   font-size: 16px;
+}
+
+.price-range-field {
+   width: 20%;
+   min-width: 16%;
+   background-color: #f9f9f9;
+   border: 1px solid #6e6666;
+   color: black;
+   border-radius: 5px;
+   height: 26px;
+   padding: 5px;
+}
+
+.search-results-block {
+   position: relative;
+   display: block;
+   clear: both;
+}
+
+.ui-slider-handle {
+   top: -9px !important;
+   width: 17px;
+   height: 17px;
+   border: 1px solid #8D909B;
+   border-radius: 50%;
+   background-color: #F4F7F8;
+
+   &:focus {
+      outline: none;
+      background-color: #F4F7F8;
+      border-color: #8D909B;
+   }
+
+   &:hover {
+      background-color: #F4F7F8;
+      border-color: #8D909B;
+      transform: scale(1.02);
+   }
+}
+
+.slider-range-values {
+   display: flex;
+   margin-left: -8px;
+   margin-bottom: 30px;
+}
+
+.slider-range-values__input {
+   width: 110px;
+   height: 30px;
+   padding-left: 7px;
+   background-color: transparent;
+   border: 0.5px solid #8D909B;
+   border-radius: 1px;
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 16px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #273142;
+}

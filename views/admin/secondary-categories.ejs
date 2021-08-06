@@ -1,0 +1,138 @@
+<% var categories, totalCount %>
+<%- include('header') %>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Meros</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search brands" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="/admin/exit">Sign out</a>
+        </li>
+    </ul>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <%- include('nav') %>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Secondary categories</h1>
+                <div class="d-flex">
+                    <span class="me-3">Filter:</span>
+                    <button class="btn btn-outline-secondary me-1">A-Z</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card p-2">
+                        <form id="secondary-category-create-form">
+                            <label class="d-block mb-2">
+                                <span>Secondary categories image(<b>.png or .jpg</b>)</span>
+                                <input class="form-control" id="secondary-category-img" type="file" accept=".png, .jpeg, .jpg, .webp" required>
+                            </label>
+                            <label class="d-block mb-2">
+                                <span>Categories</span>
+                                <select class="form-control" id="secondary-category-categories">
+                                    <% categories.forEach(category => { %>
+                                        <option value="<%= category.category_id %>"><%= category.uz_name %></option>
+                                    <% }) %>
+                                </select>
+                            </label>
+                            <label class="d-block mb-2">
+                                <span>Secondary category name (UZ)</span>
+                                <input class="form-control" id="secondary-category-name-uz" type="text" required minlength="3" placeholder="Secondary category name (UZ)">
+                            </label>
+                            <label class="d-block mb-2">
+                                <span>Secondary category name (RU)</span>
+                                <input class="form-control" id="secondary-category-name-ru" type="text" required minlength="3" placeholder="Secondary category name (RU)">
+                            </label>
+                            <label class="d-block mb-2">
+                                <span>Secondary category name (EN)</span>
+                                <input class="form-control" id="secondary-category-name-en" type="text" required minlength="3" placeholder="Secondary category name (EN)">
+                            </label>
+                            <button class="btn btn-outline-primary" type="submit">Add new secondary category</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-9 overflow-auto">
+                    <table class="table table-responsive table-bordered min-width-1000">
+                        <thead>
+                        <tr>
+                            <th>Secondary category name</th>
+                            <th>Secondary category image</th>
+                            <th>Category</th>
+                            <th>Secondary category URL</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="categories-table-body">
+                        <% if (sub_categories.length > 0) { %>
+                            <% sub_categories.forEach(secondaryCategory => { %>
+                                <tr>
+                                    <td>
+                                        <ul>
+                                            <li class="category-name__li">
+                                                <strong>uz</strong>
+                                                <span class="category-name__decoration"></span>
+                                                <span><%= secondaryCategory.sub_category_name_uz %></span>
+                                            </li>
+                                            <li class="category-name__li">
+                                                <strong>ru</strong>
+                                                <span class="category-name__decoration"></span>
+                                                <span><%= secondaryCategory.sub_category_name_ru %></span>
+                                            </li>
+                                            <li class="category-name__li">
+                                                <strong>en</strong>
+                                                <span class="category-name__decoration"></span>
+                                                <span><%= secondaryCategory.sub_category_name_en %></span>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center" style="width: 200px">
+                                        <img class="w-50" src="/images/sub_categories/<%= secondaryCategory.sub_category_image %>" alt="">
+                                    </td>
+                                    <td>
+                                        <%= secondaryCategory['category.uz_name']%> %>
+                                    </td>
+                                    <td>
+                                        /<%= secondaryCategory['category.slug']%>/<%= secondaryCategory.sub_category_slug %>
+                                    </td>
+                                    <td style="width: 110px">
+                                        <button class="btn btn-primary" data-secondary-category-edit id="<%= secondaryCategory.sub_category_id %>">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger" data-secondary-category-remove id="<%= secondaryCategory.sub_category_id %>" >
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <%})%>
+                        <% } else { %>
+                            <tr>
+                                <td class="text-center text-danger h5" colspan="6">Empty</td>
+                            </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            <% for (let i = 0; i < Math.ceil(totalCount / 10); i++) { %>
+                                <li class="page-item">
+                                    <a class="page-link" href="/admin/secondary-categories?c_page=<%= i + 1 %>&p_page=10" data-category-page="<%= i + 1%>"><%= i + 1 %></a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<%- include('modal') %>
+<%- include('footer') %>

@@ -1,0 +1,135 @@
+<% var categories, productBrands %>
+<%- include('header') %>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="/admin/exit">Sign out</a>
+        </li>
+    </ul>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <%- include('nav') %>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Add new product</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card p-3">
+                        <form id="product-create-form">
+                            <fieldset class="mb-3">
+                                <legend>Product images (only .png or .jpg extension)</legend>
+                                <div class="product-images mb-2"></div>
+                                <label class="product-image__add">
+                                    <i class="fa fa-image"></i>
+                                    <input class="d-none" id="product-images-file-input" type="file" multiple accept=".png, .jpeg, .jpg, .webp" required>
+                                </label>
+                            </fieldset>
+                            <fieldset class="mb-3">
+                                <legend>Product name</legend>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="mb-1">Product name (UZ)</p>
+                                        <input class="form-control" id="product-name-uz" type="text" placeholder="Product name (UZ)" required minlength="3">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="mb-1">Product name (RU)</p>
+                                        <input class="form-control" id="product-name-ru" type="text" placeholder="Product name (RU)" required minlength="3">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="mb-1">Product name (EN)</p>
+                                        <input class="form-control" id="product-name-en" type="text" placeholder="Product name (EN)" required minlength="3">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="mb-3">
+                                <legend>Category, secondary category, tertiary category, product brand</legend>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p class="mb-1">Category</p>
+                                        <select class="form-control" id="product-category">
+                                            <% categories.forEach(category => { %>
+                                                <option value="<%= category.category_id %>"><%= category.uz_name %></option>
+                                            <% }) %>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="mb-1">Secondary category</p>
+                                        <select class="form-control" id="secondary-category" disabled>
+                                            <option class="text-center" value="" selected> - </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="mb-1">Tertiary category</p>
+                                        <select class="form-control" id="tertiary-category" disabled>
+                                            <option class="text-center" value="" selected> - </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="mb-1">Product brand</p>
+                                        <select class="form-control" id="product-brand">
+                                            <% productBrands.forEach(productBrand => { %>
+                                                <option value="<%= productBrand.product_brand_id%>"><%= productBrand.brand_name %></option>
+                                            <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="mb-3">
+                                <legend>Product price, percent</legend>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="mb-1">Product price</p>
+                                        <input class="form-control" id="product-price" type="number" min="1000" max="100000000" placeholder="Product price" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="mb-1">Percent</p>
+                                        <input class="form-control" id="product-percent" type="number" min="0" max="100" placeholder="Product percent" required>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="mb-3">
+                                <legend>Product description</legend>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="mb-1">Product description(UZ)</p>
+                                        <textarea class="form-control" id="product-description-uz" style="height: 200px" required></textarea>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="mb-1">Product description(RU)</p>
+                                        <textarea class="form-control" id="product-description-ru" style="height: 200px" required></textarea>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="mb-1">Product description(EN)</p>
+                                        <textarea class="form-control" id="product-description-en" style="height: 200px" required></textarea>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="mb-4 pb-3 border-bottom">
+                                <legend>Product features</legend>
+                                <div class="product-features mb-3">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <button class="btn btn-success w-100" id="product-feature-add-btn" type="button">Add new feature</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button class="btn btn-primary w-100">Create product</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<%- include('footer') %>

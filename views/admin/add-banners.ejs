@@ -1,0 +1,140 @@
+<%- include('header') %>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Meros</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search brands" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="/admin/exit">Sign out</a>
+        </li>
+    </ul>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <%- include('nav') %>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Banners and ads</h1>
+                <div class="d-flex">
+                    <span class="me-3">Filter:</span>
+                    <button class="btn btn-outline-secondary me-1">A-Z</button>
+                </div>
+            </div>
+            <form id="add-banner-form">
+                <label class="d-block mb-2">
+                    <span>Secondary category name (UZ)</span>
+                    <select class="form-control" id="banner-category-select">
+                        <% categories.forEach(c => { %>
+                            <option value="<%= c.category_id %>"><%= c.uz_name %></option>
+                        <% }) %>
+                    </select>
+                </label>
+                <div class="banners mb-3">
+                    <div class="banners__left">
+                        <label class="banners__label banners__label--side">
+                            <span>Banner left side <br> 290 x 790</span>
+                            <img src="" alt="">
+                            <input class="d-none" id="banner-left-input" type="file" accept=".jpg, .png">
+                        </label>
+                    </div>
+                    <div class="banners__main">
+                        <div class="banners__big">
+                            <label class="banners__label">
+                                <span>Banner big - 2x <br> 1440 x 350</span>
+                                <img src="" alt="">
+                                <input class="d-none" id="banner-big-2x-input" type="file" accept=".jpg, .png">
+                            </label>
+                        </div>
+                        <div class="banners__big-x">
+                            <label class="banners__label">
+                                <span>Banner big - 1x <br> 340 x 140</span>
+                                <img src="" alt="">
+                                <input class="d-none" id="banner-big-x-input" type="file" accept=".jpg, .png">
+                            </label>
+                        </div>
+                        <div class="banners__smalls">
+                            <div class="banners__small">
+                                <label class="banners__label">
+                                    <span>Banner small - 1<br> 460 x 170</span>
+                                    <img src="" alt="">
+                                    <input class="d-none" id="banner-small-1-input" type="file" accept=".jpg, .png">
+                                </label>
+                            </div>
+                            <div class="banners__small">
+                                <label class="banners__label">
+                                    <span>Banner small - 2<br> 460 x 170</span>
+                                    <img src="" alt="">
+                                    <input class="d-none" id="banner-small-2-input" type="file" accept=".jpg, .png">
+                                </label>
+                            </div>
+                            <div class="banners__small">
+                                <label class="banners__label">
+                                    <span>Banner small - 3<br> 460 x 170</span>
+                                    <img src="" alt="">
+                                    <input class="d-none" id="banner-small-3-input" type="file" accept=".jpg, .png">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="banners__right">
+                        <label class="banners__label banners__label--side">
+                            <span>Banner right side <br> 290 x 790</span>
+                            <img src="" alt="">
+                            <input class="d-none" id="banner-right-input" type="file" accept=".jpg, .png">
+                        </label>
+                    </div>
+                </div>
+                <div class="banners-url">
+                    <div class="row">
+                        <div class="col-4 mb-3">
+                            <label class="d-block w-100">
+                                <span>Big banner URL</span>
+                                <input class="form-control mt-2" id="banner-big-url" type="url" required>
+                            </label>
+                        </div>
+                        <div class="col-4 mb-3">
+                            <label class="d-block w-100">
+                                <span>Left side banner URL</span>
+                                <input class="form-control mt-2" id="banner-left-url" type="url" required>
+                            </label>
+                        </div>
+                        <div class="col-4 mb-3">
+                            <label class="d-block w-100">
+                                <span>Right side banner URL</span>
+                                <input class="form-control mt-2" id="banner-right-url" type="url" required>
+                            </label>
+                        </div>
+                        <div class="col-4 mb-3">
+                            <label class="d-block w-100">
+                                <span>Small - 1 banner URL</span>
+                                <input class="form-control mt-2" id="banner-small-1-url" type="url" required>
+                            </label>
+                        </div>
+                        <div class="col-4 mb-3">
+                            <label class="d-block w-100">
+                                <span>Small - 2 banner URL</span>
+                                <input class="form-control mt-2" id="banner-small-2-url" type="url" required>
+                            </label>
+                        </div>
+                        <div class="col-4 mb-3">
+                            <label class="d-block w-100">
+                                <span>Small - 3 banner URL</span>
+                                <input class="form-control mt-2" id="banner-small-3-url" type="url" required>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary w-100">Add banners</button>
+            </form>
+        </main>
+    </div>
+</div>
+<%- include('modal') %>
+<%- include('footer') %>

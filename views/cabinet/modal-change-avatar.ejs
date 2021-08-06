@@ -1,0 +1,27 @@
+<div class="modal modal--change-avatar d-none">
+    <div class="modal-content">
+        <h2>Изображение профиля</h2>
+        <form class="modal-form modal-form--change-avatar">
+            <div class="modal-form__section">
+                <label class="modal-form__label">
+                    <span class="modal-form__label-text">Загрузить изображение:</span>
+                    <span class="modal-form__label-rect">Загрузить</span>
+                    <input class="d-none" id="avatar-img-input" type="file" accept="image/png, image/jpeg">
+                </label>
+                <label class="modal-form__label">
+                    <span class="modal-form__prompt-text">Вы можете загружать изображения в форматах PNG или JPG.
+                        Изображение должно быть не менее 300x300 пикселей и не более 7 МБ.</span>
+                </label>
+            </div>
+            <div class="modal-form__section">
+                <div class="modal-form__user-avatar">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="modal-form__btns">
+                <button class="modal-form__btn modal-form__btn--cancel red-on-hover" id="change-avatar-cancel" type="button">Отмена</button>
+                <button class="modal-form__btn modal-form__btn--save yellow-on-hover">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>

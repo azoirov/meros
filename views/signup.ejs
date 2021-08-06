@@ -1,0 +1,34 @@
+<%- include('partials/header') %>
+
+<section class="auth-section">
+    <div class="auth-card mb-30">
+        <h2>Регистрация</h2>
+        <form class="auth__form" id="signup-form" autocomplete="off">
+            <label class="auth-label">
+                <span>Телефон</span>
+                <input class="input" type="tel" id="phone" name="phone" placeholder="Пароль">
+            </label>
+            <label class="auth-label">
+                <span>Имя</span>
+                <input class="input" type="text" id="name" name="name" placeholder="Имя" data-name="true">
+            </label>
+            <label class="auth-label">
+                <span>E-mail</span>
+                <input class="input" type="email" id="email" name="email" placeholder="E-mail">
+            </label>
+            <button class="button-blue" type="submit" disabled>
+                Зарегистрироваться
+                <img class="loading-spinner" src="/images/icons/spinner.svg" alt="">
+            </button>
+        </form>
+    </div>
+    <div class="exists-account">
+        <span>Есть аккаунт?</span>
+        <a href="/users/login">Войти</a>
+    </div>
+</section>
+
+<%- include('partials/catalog-modal') %>
+<%- include('partials/categories-modal') %>
+
+<%- include('partials/footer') %>

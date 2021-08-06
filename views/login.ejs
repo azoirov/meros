@@ -1,0 +1,24 @@
+<% var error %>
+<%- include('partials/header') %>
+
+<section class="auth-section">
+    <div class="auth-card" id="login-card">
+        <h2>Авторизация</h2>
+        <form class="auth__form" id="login-phone-form" autocomplete="off">
+            <label class="auth-label">
+                <span>Телефон</span>
+                <input class="input" type="tel" id="phone" name="phone">
+            </label>
+            <button class="button-blue" type="submit" disabled>
+                Получить смс код
+                <img class="loading-spinner" src="/images/icons/spinner.svg" alt="loading spinner">
+            </button>
+            <a class="button-outline" href="/users/signup">Зарегистрироваться</a>
+        </form>
+    </div>
+</section>
+
+<%- include('partials/catalog-modal') %>
+<%- include('partials/categories-modal') %>
+
+<%- include('partials/footer') %>

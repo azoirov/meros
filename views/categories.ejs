@@ -1,0 +1,20 @@
+<% categories %>
+<%- include('partials/header') %>
+
+<section class="categories">
+    <div class="container">
+        <ul class="categories__list">
+            <% categories.forEach(category => { %>
+                <li class="categories__item">
+                    <div class="categories__img">
+                        <img src="/images/categories/<%= category.thumb %>" alt="">
+                    </div>
+                    <div class="categories__name"><%= category.ru_name[0].toUpperCase() + category.ru_name.substring(1) %></div>
+                    <a class="categories__link" href="/category/<%= category.slug %>"></a>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

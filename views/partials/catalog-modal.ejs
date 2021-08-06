@@ -1,0 +1,53 @@
+<% var categories %>
+<div class="catalog d-none">
+    <div class="catalog__inner">
+        <div class="decoration-layer"></div>
+        <div class="container">
+            <aside class="catalog__sidebar">
+                <ul class="catalog__list">
+                    <% categories.forEach(category => { %>
+                        <li class="catalog__item">
+                            <a class="catalog__link" href="/categories/<%= category.slug %>">
+                                <span></span>
+                                <span><%= category.ru_name[0].toUpperCase() + category.ru_name.substring(1) %></span>
+                            </a>
+                        </li>
+                    <% }) %>
+                </ul>
+            </aside>
+            <main class="catalog__content">
+                <% categories.forEach(category => { %>
+                    <div class="catalog__content__item">
+                        <div class="catalog__content__item__left">
+                            <% category.sub_categories.forEach(sub_cat => { %>
+                                <div class="catalog__content__item__card">
+                                <h3 class="catalog__content__item__heading">
+                                    <a style="color: #273142" href="/category/<%= category.slug%>/<%= sub_cat.sub_category_slug %>">
+                                        <%= sub_cat.sub_category_name_ru[0].toUpperCase() + sub_cat.sub_category_name_ru.substring(1) %>
+                                    </a>
+                                </h3>
+                                <ul class="catalog__content__item__ul">
+                                    <% sub_cat.sub_sub_categories.forEach(el => { %>
+                                        <li class="catalog__content__item__li">
+                                            <a class="catalog__content__item__link" href="/category/<%= category.slug%>/<%= sub_cat.sub_category_slug %>/<%= el.sub_sub_category_slug%>">
+                                                <%= el.sub_sub_category_name_ru[0].toUpperCase() + el.sub_sub_category_name_ru.substring(1) %>
+                                            </a>
+                                        </li>
+                                    <% }) %>
+                                </ul>
+                            </div>
+                            <% }) %>
+                        </div>
+                        <div class="catalog__content__item__right">
+                            <% category.brands.forEach(el => { %>
+                                <a href="<%= el.brand_site %>">
+                                    <img src="/images/catalog-brands/<%= el.brand_thumb %>" alt="">
+                                </a>
+                            <% }) %>
+                        </div>
+                    </div>
+                <% }) %>
+            </main>
+        </div>
+    </div>
+</div>

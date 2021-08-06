@@ -1,0 +1,141 @@
+.feedback-modal__content {
+   position: relative;
+   width: 550px;
+   padding: 50px;
+   background-color: #FFFFFF;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+   border-radius: 4px;
+}
+
+.feedback-modal__close {
+   position: absolute;
+   top: 30px;
+   right: 30px;
+   padding: 0;
+   background-color: transparent;
+}
+
+.feedback-modal__heading {
+   margin-bottom: 13px;
+   text-align: center;
+   font-weight: 600;
+   font-size: 18px;
+   line-height: 21px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #273142;
+}
+
+.feedback-modal__rating {
+   margin-bottom: 30px;
+   text-align: center;
+}
+
+.feedback-modal__rating-star {
+   stroke: #d2d2d2;
+   fill: #FFFFFF;
+
+   &.active {
+      stroke: $primary-yellow-color;
+      fill: $primary-yellow-color;
+   }
+}
+
+.feedback-modal__label {
+   display: block;
+   margin-bottom: 30px;
+
+   span {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      color: #273142;
+   }
+}
+
+.feedback-modal__input {
+   width: 100%;
+   height: 40px;
+   padding-left: 10px;
+   padding-right: 10px;
+   border: 1px solid #D2D2D2;
+   border-radius: 4px;
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 16px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #273142;
+
+   &::placeholder {
+      color: #d2d2d2;
+   }
+}
+
+.feedback-modal__textarea {
+   width: 100%;
+   height: 120px;
+   padding-top: 12px;
+   padding-left: 10px;
+   padding-right: 10px;
+   border: 1px solid #D2D2D2;
+   border-radius: 4px;
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 16px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #273142;
+   resize: none;
+
+   &::placeholder {
+      color: #d2d2d2;
+   }
+}
+
+.feedback-modal__file-btn {
+   display: inline-block;
+   margin-right: 30px;
+   padding: 10px 50px;
+   border: 1px solid #D2D2D2;
+   border-radius: 4px;
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 19px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #273142;
+}
+
+.feedback-modal__file,
+.feedback-modal__images {
+   display: flex;
+}
+
+.feedback-modal__images__item {
+   width: 40px;
+   height: 40px;
+   margin-right: 10px;
+   border: 1px solid #E8EDF1;
+   border-radius: 4px;
+   overflow: hidden;
+}
+
+.feedback-modal__submit {
+   display: block;
+   margin: 0 auto;
+   padding: 10px 50px;
+   background-color: #32386B;
+   border-radius: 4px;
+   font-weight: 500;
+   font-size: 18px;
+   line-height: 21px;
+   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   color: #FFFFFF;
+
+   &:hover {
+      background-color: $primary-yellow-color;
+   }
+}
