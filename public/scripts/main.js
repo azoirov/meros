@@ -31,7 +31,6 @@ import bestsellerRecommendation from './_bestseller-recommendation'
 import addBanners from './_add-banners'
 import addHomeBanners from './_add-home-banner'
 import userCabinet from './_user-cabinet'
-import cartIncDec from './_cart-inc-dec';
 import wishList from './_wish-list'
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -59,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
    productActions()
    addToCart()
    orderPost()
+   wishList()
    categoryIntroNav()
    adminSecondaryCategory()
    adminTertiaryCategory()
@@ -66,6 +66,4 @@ document.addEventListener('DOMContentLoaded', () => {
    addBanners()
    addHomeBanners()
    userCabinet()
-   cartIncDec()
-   wishList()
 })
