@@ -34,6 +34,12 @@ module.exports = async (req, res, next) => {
             raw: true,
         })
 
+        const productCountInCart = await req.db.carts.sum('count', {
+            where: {
+                user_id: session.user_id
+            }
+        })
+
         req.user = {
             id: user.user_id,
             name: user.full_name,
@@ -41,7 +47,8 @@ module.exports = async (req, res, next) => {
             phone: user.phone_number,
             img: user.avatar,
             role: user.role,
-            createdAt: user.createdAt
+            productCountInCart,
+            createdAt: user.createdAt,
         }
     }
 
