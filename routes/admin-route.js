@@ -77,6 +77,8 @@ const {
     BestSellerDeleteController,
     BestsellersRenderController,
 
+    ProductInStock
+
 } = require("../controllers/admin/admin-controller");
 
 const AdminMiddleware = require("../middlewares/admin-middleware");
@@ -123,6 +125,7 @@ router.post("/api/product", FileUpload(), ProductPostController);
 router.get("/product", ProductsGetController);
 router.get('/product/edit/:id', ProductUpdateRenderController)
 router.post('/product/edit', FileUpload(), ProductsPatchController)
+router.post('/product/in-stock', ProductInStock)
 router.post("/api/product-brands", ProductBrandPostController);
 router.post("/api/product-brands/delete", ProductBrandDeleteController);
 router.post("/api/product-brands/update", ProductBrandUpdateController);

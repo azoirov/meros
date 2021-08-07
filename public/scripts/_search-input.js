@@ -86,6 +86,5 @@ export default function searchInput() {
             })
         })
     } catch (e) {
-        console.log(e)
     }
 }

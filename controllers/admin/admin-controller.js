@@ -2647,4 +2647,26 @@ module.exports = class AdminController {
             });
         }
     }
+
+    static async ProductInStock(req, res) {
+        try {
+            const { productId, inStock } = req.body
+            let p = await req.db.products.update({
+                in_stock: inStock
+            }, {
+                where: {
+                    product_id: productId
+                }
+            })
+            res.status(200).json({
+                ok: true,
+                message: 'edited'
+            })
+        } catch (e) {
+            res.status(400).json({
+                ok: false,
+                message: 'not edited'
+            })
+        }
+    }
 };

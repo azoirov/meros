@@ -43,6 +43,25 @@ export default function () {
             }
          })
       }
+
+      const inStockCheckboxes = selectAll('[data-in-stock]')
+      inStockCheckboxes.forEach(el => {
+         el.addEventListener('change', async e => {
+            let response = await fetch('/admin/product/in-stock', {
+               headers: {
+                  'Content-Type': 'application/json; charset=utf-8'
+               },
+               method: 'POST',
+               body: JSON.stringify({
+                  productId: e.target.id,
+                  inStock: e.target.checked
+               })
+            })
+
+            response = await response.json()
+            console.log(response)
+         })
+      })
    } catch (e) {
       console.log(e)
    }

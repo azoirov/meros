@@ -116,7 +116,7 @@
                                         <%= product.sale %>
                                     </td>
                                     <td>
-                                        <%= product.in_stock %>
+                                        <input id="<%= product.product_id %>" type="checkbox" data-in-stock <%= product.in_stock ? "checked": '' %>>
                                     </td>
                                     <td style="width: 190px">
                                         <a class="btn btn-primary" href="/admin/product/edit/<%= product.product_id %>" data-product-edit id="<%= product.product_id %>">
