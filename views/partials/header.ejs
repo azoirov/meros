@@ -395,8 +395,10 @@
                 <li class="bottom-nav__li">
                     <a class="bottom-nav__link <%= (path === '/cart') ? 'active' : '' %>" href="<%= user ? '/cart' : '/users/login' %>">
                         <span class="bottom-nav__link--cart">
-                            <% if (user.productCountInCart > 0) { %>
-                                <span class="bottom-nav__link--cart-count"><%= user.productCountInCart %></span>
+                            <% if (user) { %>
+                                <% if (user.productCountInCart > 0) { %>
+                                    <span class="bottom-nav__link--cart-count"><%= user.productCountInCart %></span>
+                                <% } %>
                             <% } %>
                             <img src="/images/bottom-nav/cart<%= (path === '/cart') ? '-active' : '' %>.svg" alt="icon">
                         </span>
