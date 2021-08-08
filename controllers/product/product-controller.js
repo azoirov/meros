@@ -249,7 +249,7 @@ module.exports = class ProductsController {
             comments.forEach(comment => {
                 stars += comment.star
             })
-
+            stars = Math.round(stars/comments.length)
             product.star = stars
 
             res.render("single-product", {
@@ -817,9 +817,9 @@ module.exports = class ProductsController {
 
             let goodOffers = await req.db.products.findAll({
                 where: {
-                    category_id: category.category_id,
+                    category_id: sub_sub_category.category_id,
                     sale: {
-                        [Op.gte]: 50
+                        [Op.gte]: 0
                     },
                 },
                 include: [
@@ -831,16 +831,19 @@ module.exports = class ProductsController {
                     }
                 ],
                 raw: true
-            })
+            });
+
+
+
 
             if (req.user) {
                 products = await inCart(req.db, products, req.user.id);
                 goodOffers = await inCart(req.db, goodOffers, req.user.id)
             }
 
+
             products = await howManyStar(req.db, products)
             goodOffers = await howManyStar(req.db, goodOffers)
-            console.log(rec)
             res.render("sub-category", {
                 title: "Meros | " + category.ru_name.toUpperCase(),
                 path: "/category/" + category.dataValues.category_slug,
@@ -852,7 +855,7 @@ module.exports = class ProductsController {
                 sponsors,
                 categories: req.categories,
                 products,
-                goodOffers,
+                goodOffers: sale,
                 recommendation: rec,
             });
         } catch (e) {
@@ -931,7 +934,9 @@ module.exports = class ProductsController {
             });
             rec = arr
             rec = await howManyStar(req.db, rec)
-            rec = await inCart(req.db, rec, req.user.id);
+            if(req.user) {
+                rec = await inCart(req.db, rec, req.user.id);
+            }
 
             let banners = await req.db.banners.findOne({
                 where: {
@@ -1100,9 +1105,44 @@ module.exports = class ProductsController {
                 raw: true,
             });
 
-            products = await inCart(req.db, products, req.user.id);
-            products = await howManyStar(req.db, products)
 
+            let goodOffers = await req.db.products.findAll({
+                where: {
+                    category_id: sub_sub_category.category_id,
+                    sale: {
+                        [Op.gte]: 0
+                    },
+                },
+                include: [
+                    {
+                        model: req.db.categories
+                    },
+                    {
+                        model: req.db.sub_category
+                    }
+                ],
+                raw: true
+            });
+
+            let sale = [];
+            while (sale.length<=8 && goodOffers.length > 0) {
+                let i = Math.random() * goodOffers.length - 1;
+                let item = goodOffers.pop(goodOffers[i]);
+                sale.push(item)
+            }
+
+            if(req.user) {
+                products = await inCart(req.db, products, req.user.id);
+                sale = await inCart(req.db, sale, req.user.id);
+            }
+
+            let home_banners = await fs.readFile(path.join(__dirname, "..", "..", "banners.json"), {encoding: "utf-8"});
+
+            home_banners = await JSON.parse(home_banners);
+
+            console.log(home_banners)
+
+            console.log(sale)
             res.render("category", {
                 title:
                     "Meros | " +
