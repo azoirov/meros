@@ -297,11 +297,13 @@ module.exports = class ProductsController {
 
     static async CartPlusPatchController(req, res) {
         try {
-            let { product_id } = req.body;
+            let { product_id } = req.body
+
             if(!req.user) {
                 throw new Error("User is not logged in")
             }
-            let cart;
+
+            let cart
             if (req.user) {
                 cart = await req.db.carts.increment("count", {
                     by: 1,
@@ -316,10 +318,11 @@ module.exports = class ProductsController {
                     returning: true,
                 });
             }
+
             res.status(200).json({
                 ok: true,
                 message: "added",
-                cart_incremented: cart,
+                cart_incremented: cart[0][0][0],
                 user: req.user,
             });
         } catch (e) {
@@ -374,13 +377,14 @@ module.exports = class ProductsController {
             res.status(200).json({
                 ok: true,
                 message: "decremented",
-                cart: cart,
-                user: req.user,
+                cart_decremented: cart[0][0][0],
+                user: req.user
             });
         } catch (e) {
             res.status(400).json({
                 ok: false,
                 message: e + "",
+                user: req.user
             });
         }
     }
@@ -811,6 +815,8 @@ module.exports = class ProductsController {
 
             products = await howManyStar(req.db, products)
             goodOffers = await howManyStar(req.db, goodOffers)
+
+            console.log(products[0])
 
             res.render("sub-category", {
                 title: "Meros | " + category.ru_name.toUpperCase(),

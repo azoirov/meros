@@ -338,7 +338,9 @@
                                       13.75H17.7833L17.8009 13.7502C18.016 13.7543 18.2257 13.6826 18.3933 13.5477C18.5601 13.4134 18.6746 13.225 18.717
                                       13.0152L19.9753 6.41666H6.619Z" fill=""/>
                                     </svg>
-                                    <span class="header-middle__link--cart-count">3</span>
+                                    <% if (user.productCountInCart > 0) { %>
+                                        <span class="header-middle__link--cart-count"><%= user.productCountInCart %></span>
+                                    <% } %>
                                 </span>
                                 <span>Корзина</span>
                             </a>
@@ -393,7 +395,11 @@
                 <li class="bottom-nav__li">
                     <a class="bottom-nav__link <%= (path === '/cart') ? 'active' : '' %>" href="<%= user ? '/cart' : '/users/login' %>">
                         <span class="bottom-nav__link--cart">
-                            <span class="bottom-nav__link--cart-count">3</span>
+                            <% if (user) { %>
+                                <% if (user.productCountInCart > 0) { %>
+                                    <span class="bottom-nav__link--cart-count"><%= user.productCountInCart %></span>
+                                <% } %>
+                            <% } %>
                             <img src="/images/bottom-nav/cart<%= (path === '/cart') ? '-active' : '' %>.svg" alt="icon">
                         </span>
                         <span>Корзина</span>

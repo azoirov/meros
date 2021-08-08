@@ -35,6 +35,7 @@ import cartIncDec from './_cart-inc-dec';
 import wishList from './_wish-list';
 import singleProductCart from './_single-product-cart';
 import singleProductAddCart from "./_single-product-cart-add"
+import wishList from './_wish-list'
 
 document.addEventListener('DOMContentLoaded', () => {
    cabinetDropdown()
@@ -61,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
    productActions()
    addToCart()
    orderPost()
+   wishList()
    categoryIntroNav()
    adminSecondaryCategory()
    adminTertiaryCategory()
