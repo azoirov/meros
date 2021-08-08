@@ -758,21 +758,32 @@ module.exports = class ProductsController {
 
             let recomendations = await req.db.recomendations.findAll({
                 raw: true,
+                category_id: category.category_id,
                 include: {
-                    model: req.db.products
+                    model: req.db.products,
+                    include: req.db.categories
                 }
             });
 
             let bestsellers = await req.db.bestsellers.findAll({
                 raw: true,
+                category_id: category.category_id,
                 include: {
-                    model: req.db.products
+                    model: req.db.products,
+                    include: req.db.categories
                 }
             });
 
             let rec = [...recomendations, ...bestsellers];
-            rec = await howManyStar(req.db, products)
-            rec = await inCart(req.db, products, req.user.id);
+            let arr = [];
+            rec.forEach(el => {
+                if(!arr.includes(el)) {
+                    arr.push(el)
+                }
+            });
+            rec = arr
+            rec = await howManyStar(req.db, rec)
+            rec = await inCart(req.db, rec, req.user.id);
 
             let banners = await req.db.banners.findOne({
                 where: {
@@ -825,7 +836,7 @@ module.exports = class ProductsController {
 
             products = await howManyStar(req.db, products)
             goodOffers = await howManyStar(req.db, goodOffers)
-
+            console.log(rec)
             res.render("sub-category", {
                 title: "Meros | " + category.ru_name.toUpperCase(),
                 path: "/category/" + category.dataValues.category_slug,
@@ -841,6 +852,7 @@ module.exports = class ProductsController {
                 recommendation: rec,
             });
         } catch (e) {
+            console.log(e)
             res.send(e);
         }
     }
@@ -890,17 +902,32 @@ module.exports = class ProductsController {
 
             let recomendations = await req.db.recomendations.findAll({
                 raw: true,
+                category_id: sub_category.category_id,
                 include: {
-                    model: req.db.products
+                    model: req.db.products,
+                    include: req.db.categories
                 }
             });
 
             let bestsellers = await req.db.bestsellers.findAll({
                 raw: true,
+                category_id: sub_category.category_id,
                 include: {
-                    model: req.db.products
+                    model: req.db.products,
+                    include: req.db.categories
                 }
             });
+
+            let rec = [...recomendations, ...bestsellers];
+            let arr = [];
+            rec.forEach(el => {
+                if(!arr.includes(el)) {
+                    arr.push(el)
+                }
+            });
+            rec = arr
+            rec = await howManyStar(req.db, rec)
+            rec = await inCart(req.db, rec, req.user.id);
 
             let banners = await req.db.banners.findOne({
                 where: {
@@ -970,8 +997,6 @@ module.exports = class ProductsController {
                 title: "Meros | " + sub_category.sub_category_name_ru.toUpperCase(),
                 user: req.user,
                     sub_category,
-                recomendations,
-                bestsellers,
                 banners,
                 brands,
                 sponsors,
@@ -979,7 +1004,8 @@ module.exports = class ProductsController {
                 products,
                 goodOffers,
                 sub_sub_categories,
-                category
+                category,
+                recommendation: rec
             });
         } catch (e) {
             console.log(e)
@@ -1026,21 +1052,32 @@ module.exports = class ProductsController {
 
             let recomendations = await req.db.recomendations.findAll({
                 raw: true,
+                category_id: sub_sub_category.category_id,
                 include: {
-                    model: req.db.products
+                    model: req.db.products,
+                    include: req.db.categories
                 }
             });
 
             let bestsellers = await req.db.bestsellers.findAll({
                 raw: true,
+                category_id: sub_sub_category.category_id,
                 include: {
-                    model: req.db.products
+                    model: req.db.products,
+                    include: req.db.categories
                 }
             });
 
             let rec = [...recomendations, ...bestsellers];
-            rec = await howManyStar(req.db, products)
-            rec = await inCart(req.db, products, req.user.id);
+            let arr = [];
+            rec.forEach(el => {
+                if(!arr.includes(el)) {
+                    arr.push(el)
+                }
+            });
+            rec = arr
+            rec = await howManyStar(req.db, rec)
+            rec = await inCart(req.db, rec, req.user.id);
 
             let brands = await req.db.brands.findAll({
                 where: {

@@ -155,4 +155,36 @@ document.addEventListener('DOMContentLoaded', function () {
       }).mount()
    } catch (e) {
    }
+   try {
+      new Splide('.bests-for-you__slider', {
+         type: 'loop',
+         speed: 400,
+         autoplay: true,
+         arrows: true,
+         interval: 2000,
+         pauseOnHover: true,
+         pauseOnFocus: true,
+         perPage: 5,
+         perMove: 1,
+         gap: '30px',
+         pagination: false,
+         breakpoints: {
+            '1300': {
+               perPage: 4,
+               width: '100%',
+               gap: '20px',
+            },
+            '1060': {
+               perPage: 3,
+               width: '100%',
+               gap: '20px',
+            },
+            '800': {
+               perPage: 2,
+               width: '100%',
+               gap: '20px',
+            }
+         }
+      }).mount()
+   } catch(e) {}
 })
