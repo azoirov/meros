@@ -252,6 +252,8 @@ module.exports = class ProductsController {
 
             product.star = stars
 
+            console.log(comments)
+
             res.render("single-product", {
                 title: `Meros | ${product.ru_name}`,
                 product,

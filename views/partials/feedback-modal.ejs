@@ -1,7 +1,7 @@
-<div class="modal feedback-modal">
+<div class="modal feedback-modal d-none">
     <div class="feedback-modal__content">
         <h2 class="feedback-modal__heading">Ваша оценка:</h2>
-        <form class="feedback-modal__form">
+        <form class="feedback-modal__form" id="<%= product.product_id %>">
             <div class="feedback-modal__rating"></div>
             <input class="feedback-modal__rating-number d-none" type="number" min="0" max="5" value="0">
             <label class="feedback-modal__label">
@@ -10,7 +10,7 @@
             </label>
             <button class="feedback-modal__submit" type="submit">Оставить отзыв</button>
         </form>
-        <button class="feedback-modal__close">
+        <button class="feedback-modal__close" id="feedback-modal-closer">
             <img src="/images/icons/feedbackmodalclose.svg" alt="">
         </button>
     </div>
