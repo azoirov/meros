@@ -1,11 +1,12 @@
 import { closingToast, openToast } from './_toast'
+import { selectAll } from './_functions'
 
 export default function () {
     try {
-        let wishListBtn = document.querySelectorAll(".wish-list-btn")
-        wishListBtn.forEach(btn => {
+        let wishListBtns = selectAll("[data-wishlist-btn]")
+        wishListBtns.forEach(btn => {
             btn.addEventListener("click", async e => {
-                let target = e.currentTarget
+                const target = e.currentTarget
                 if (target.classList.contains("in-wish-list")) {
                     let product_id = e.currentTarget.id;
                     let response = await fetch("/wishlist", {
@@ -16,7 +17,9 @@ export default function () {
                         }
                     });
 
-                    response = await response.json();
+                    response = await response.json()
+
+                    console.log(response)
 
                     if (response.ok) {
                         let btns = document.querySelectorAll('button.wish-list-btn');
@@ -30,7 +33,6 @@ export default function () {
                         closingToast()
                     }
                 } else {
-
                     let product_id = e.currentTarget.id;
                     let response = await fetch("/wishlist", {
                         method: "POST",

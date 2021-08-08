@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
    addBanners()
    addHomeBanners()
    userCabinet()
-   cartIncDec()
    wishList()
    singleProductAddCart()
    singleProductCart()
