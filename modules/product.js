@@ -34,7 +34,7 @@ const howManyStar = async (db, products) => {
         let c = comments.filter(comment => comment.product_id === product.product_id);
         let stars = 0;
         for(let i of c) {
-            stars += c.star;
+            stars += Number(i.star)
         };
         stars = c.length ? stars / c.length : 0;
         product.stars = Math.round(stars);
