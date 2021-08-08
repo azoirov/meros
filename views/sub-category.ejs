@@ -1,8 +1,14 @@
-<% var products %>
 <%
-    const capitalize = text => {
-        return text[0].toUpperCase() + text.substring(1)
+var products
+const capitalize = text => {
+    return text[0].toUpperCase() + text.substring(1)
+}
+const titleNormalize = title => {
+    if (title.length <= 50) {
+        return title
     }
+    return title.substring(0, 50) + '...'
+}
 %>
 <%- include('partials/header') %>
 
@@ -126,10 +132,11 @@
                                                href="/category/<%= product['category.ru_name'] %>"><%= capitalize(product['category.ru_name']) %></a>
                                             <h3 class="product-card__title">
                                                 <a style="color: #273142" href="/product/<%= product.slug %>">
-                                                    <%= capitalize(product.ru_name) %>
+                                                    <%= titleNormalize(product.ru_name) %>
                                                 </a>
                                             </h3>
-                                            <img class="product-card__rating-stars" src="/images/rating-stars/<%= product.stars %>.svg"
+                                            <img class="product-card__rating-stars"
+                                                 src="/images/rating-stars/<%= product.stars %>.svg"
                                                  alt="rating stars">
                                         </div>
                                     </div>
@@ -266,10 +273,11 @@
                                    href="/category/<%= product['category.ru_name'] %>"><%= capitalize(product['category.ru_name']) %></a>
                                 <h3 class="product-card__title">
                                     <a style="color: #273142" href="/product/<%= product.slug %>">
-                                        <%= capitalize(product.ru_name) %>
+                                        <%= titleNormalize(product.ru_name) %>
                                     </a>
                                 </h3>
-                                <img class="product-card__rating-stars" src="/images/rating-stars/<%= product.stars %>.svg"
+                                <img class="product-card__rating-stars"
+                                     src="/images/rating-stars/<%= product.stars %>.svg"
                                      alt="rating stars">
                             </div>
                         </div>
@@ -332,10 +340,7 @@
 </section>
 
 <%- include('cabinet/toast') %>
-
 <%- include('partials/brands') %>
-
 <%- include('partials/catalog-modal') %>
 <%- include('partials/categories-modal') %>
-
 <%- include('partials/footer') %>
