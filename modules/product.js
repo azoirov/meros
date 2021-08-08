@@ -37,7 +37,7 @@ const howManyStar = async (db, products) => {
             stars += c.star;
         };
         stars = c.length ? stars / c.length : 0;
-        product.stars = stars;
+        product.stars = Math.round(stars);
         return product
     });
 

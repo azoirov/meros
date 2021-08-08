@@ -193,7 +193,12 @@ const titleNormalize = title => {
                                          alt="<%= el.sub_category_name_ru %>">
                                 </div>
                                 <h3><%= capitalize(el.sub_category_name_ru) %></h3>
+
+                                <a class=""
+                                   href="/category/<%= category.slug %>/<%= el.sub_category_slug %>"></a>
+
                                 <a href="/"></a>
+
                             </div>
                         </li>
                     <% }) %>
