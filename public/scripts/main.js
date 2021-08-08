@@ -31,9 +31,9 @@ import bestsellerRecommendation from './_bestseller-recommendation'
 import addBanners from './_add-banners'
 import addHomeBanners from './_add-home-banner'
 import userCabinet from './_user-cabinet'
+import wishList from './_wish-list';
 import singleProductCart from './_single-product-cart';
 import singleProductAddCart from "./_single-product-cart-add"
-import wishList from './_wish-list'
 
 document.addEventListener('DOMContentLoaded', () => {
    cabinetDropdown()

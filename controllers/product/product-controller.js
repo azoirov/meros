@@ -339,8 +339,7 @@ module.exports = class ProductsController {
             if(!req.user) {
                 throw new Error("User is not logged in")
             }
-            let cart;
-                cart = await req.db.carts.findOne({
+               let cart = await req.db.carts.findOne({
                     where: {
                         user_id: req.user.id,
                         product_id,
@@ -846,9 +845,9 @@ module.exports = class ProductsController {
 
             c_page = c_page || 1;
 
-            let sub_category = await req.db.categories.findOne({
+            let sub_category = await req.db.sub_category.findOne({
                 where: {
-                    slug: sub_category_slug
+                    sub_category_slug: sub_category_slug
                 },
             });
 
@@ -913,7 +912,12 @@ module.exports = class ProductsController {
                 raw: true,
             })
 
-            let sub_sub_categories = await req.db.sub_sub_category.findAll({raw: true});
+            let sub_sub_categories = await req.db.sub_sub_category.findAll({
+                where: {
+                    sub_category_id: sub_category.sub_category_id
+                },
+                raw: true
+            });
 
             // sub_categories = sub_categories.map(el => {
             //     el.sub_sub_categories = sub_sub_categories.filter(c => c.sub_category_id === el.sub_category_id)
@@ -922,7 +926,7 @@ module.exports = class ProductsController {
 
             let goodOffers = await req.db.products.findAll({
                 where: {
-                    category_id: category.category_id,
+                    category_id: sub_category.category_id,
                     sale: {
                         [Op.gte]: 50
                     },
@@ -938,6 +942,13 @@ module.exports = class ProductsController {
                 raw: true
             })
 
+            let category = req.db.categories.findOne({
+                where: {
+                    category_id: sub_category.category_id
+                },
+                raw: true
+            })
+
             if(req.user) {
                 products = await inCart(req.db, products, req.user.id);
                 goodOffers = await inCart(req.db, goodOffers, req.user.id)
@@ -945,13 +956,11 @@ module.exports = class ProductsController {
 
             products = await howManyStar(req.db, products)
             goodOffers = await howManyStar(req.db, goodOffers)
-
-            res.render("sub-category", {
-                title: "Meros | " + category.ru_name.toUpperCase(),
-                path: "/category/" + category.dataValues.category_slug,
+            console.log(goodOffers)
+            res.render("sub-sub-category", {
+                title: "Meros | " + sub_category.sub_category_name_ru.toUpperCase(),
                 user: req.user,
-                category: category.dataValues,
-                sub_category,
+                    sub_category,
                 recomendations,
                 bestsellers,
                 banners,
@@ -959,9 +968,12 @@ module.exports = class ProductsController {
                 sponsors,
                 categories: req.categories,
                 products,
-                goodOffers
+                goodOffers,
+                sub_sub_categories,
+                category
             });
         } catch (e) {
+            console.log(e)
             res.send(e);
         }
     }
