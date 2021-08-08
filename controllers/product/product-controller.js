@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 const fs = require("fs/promises");
 const path = require("path");
 const { inCart, howManyStar } = require("../../modules/product");
+const moment = require("moment");
 module.exports = class ProductsController {
     // static async ProductsGetController(req, res) {
     //     try {
@@ -233,6 +234,11 @@ module.exports = class ProductsController {
                 },
                 raw: true,
             });
+
+            comments.forEach(comment => {
+                let time = moment(comment.createdAt).locale("ru").format("LL")
+                comment.time = time
+            })
 
             let comment_thumbs = await req.db.comment_thumbs.findAll({
                 raw: true,
@@ -819,7 +825,7 @@ module.exports = class ProductsController {
 
             let goodOffers = await req.db.products.findAll({
                 where: {
-                    category_id: sub_sub_category.category_id,
+                    category_id: category.category_id,
                     sale: {
                         [Op.gte]: 0
                     },
@@ -857,7 +863,7 @@ module.exports = class ProductsController {
                 sponsors,
                 categories: req.categories,
                 products,
-                goodOffers: sale,
+                goodOffers: goodOffers,
                 recommendation: rec,
             });
         } catch (e) {
