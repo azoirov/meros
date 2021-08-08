@@ -942,12 +942,14 @@ module.exports = class ProductsController {
                 raw: true
             })
 
-            let category = req.db.categories.findOne({
+            let category = await req.db.categories.findOne({
                 where: {
                     category_id: sub_category.category_id
                 },
                 raw: true
             })
+
+
 
             if(req.user) {
                 products = await inCart(req.db, products, req.user.id);
@@ -956,7 +958,6 @@ module.exports = class ProductsController {
 
             products = await howManyStar(req.db, products)
             goodOffers = await howManyStar(req.db, goodOffers)
-            console.log(goodOffers)
             res.render("sub-sub-category", {
                 title: "Meros | " + sub_category.sub_category_name_ru.toUpperCase(),
                 user: req.user,
@@ -981,6 +982,10 @@ module.exports = class ProductsController {
     static async ProductsGetController(req, res) {
         try {
             const { sub_sub_category_slug } = req.params;
+            let { c_page } = req.query;
+
+            c_page = c_page || 1;
+
             let sub_sub_category = await req.db.sub_sub_category.findOne({
                 where: {
                     sub_sub_category_slug,
@@ -996,30 +1001,19 @@ module.exports = class ProductsController {
                         sub_sub_category.dataValues.sub_sub_category_id,
                 },
                 raw: true,
-            });
 
-            let cart = await req.db.cart.findAll({
-                where: {
-                    user_id: req.user.id,
-                },
-                raw: true,
-            });
+                include: [
+                    {
+                        model: req.db.categories
+                    },
+                    {
+                        model: req.db.sub_sub_category
+                    }
+                ],
 
-            let wishlist = await req.db.wishlists.findOne({
-                where: {
-                    user_id: req.user.id,
-                },
-                raw: true,
-            });
+                offset: 8 * (c_page - 1),
+                limit: 8
 
-            products = products.map(async (product) => {
-                let flag = wishlist.find(
-                    (wish) => wish.product_id === product.product_id
-                );
-                let c = cart.find((a) => a.product_id === product.product_id);
-                product.in_cart = c ? c.count : 0;
-                flag ? (product.wishlist = true) : (product.wishlist = false);
-                return product;
             });
 
             let recomendations = await req.db.recomendations.findAll({
@@ -1030,7 +1024,7 @@ module.exports = class ProductsController {
             });
             let brands = await req.db.brands.findAll({
                 where: {
-                    category_id: category.dataValues.category_id,
+                    category_id: sub_sub_category.dataValues.category_id,
                 },
                 raw: true,
             });
@@ -1038,34 +1032,32 @@ module.exports = class ProductsController {
             let sponsors = await req.db.sponsors.findAll({
                 raw: true,
             });
-            let banners = await req.psql.banners.findOne({
+            let banners = await req.db.banners.findOne({
                 where: {
-                    category_id: category.dataValues.category_id,
+                    category_id: sub_sub_category.dataValues.category_id,
                 },
                 raw: true,
             });
-            res.render("products", {
+
+            products = await inCart(req.db, products, req.user.id);
+            products = await howManyStar(req.db, products)
+
+            res.render("category", {
                 title:
                     "Meros | " +
-                    sub_sub_category.dataValues.sub_sub_category_name,
-                path:
-                    "/category/" +
-                    sub_sub_category.dataValues.slug +
-                    "/" +
-                    sub_sub_category.dataValues.sub_category_slug +
-                    "/" +
-                    sub_sub_category.dataValues.sub_sub_category_slug,
+                    sub_sub_category.dataValues.sub_sub_category_name_ru,
                 user: req.user,
                 sub_sub_category: sub_sub_category.dataValues,
                 products,
                 recomendations,
+                categories: req.categories,
                 bestsellers,
                 banners,
                 brands,
                 sponsors,
-                cart,
             });
         } catch (e) {
+            console.log(e)
             res.send(e);
         }
     }

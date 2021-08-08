@@ -25,7 +25,7 @@ const titleNormalize = title => {
                         <% if(index <= 5)  { %>
                             <li class="category-intro__li">
                                 <a class="category-intro__link"
-                                   href="/category/<%= category.slug %>/<%= sub_cat.sub_sub_category_slug %>"><%= sub_cat.sub_sub_category_name_ru %></a>
+                                   href="/category/<%= category.slug %>/<%= sub_category.sub_category_slug %>/<%= sub_cat.sub_sub_category_slug %>"><%= sub_cat.sub_sub_category_name_ru %></a>
                             </li>
                         <% } %>
                     <% }) %>
@@ -197,7 +197,8 @@ const titleNormalize = title => {
                                          alt="<%= el.sub_sub_category_name_ru %>">
                                 </div>
                                 <h3><%= capitalize(el.sub_sub_category_name_ru) %></h3>
-                                <a href="/"> </a>
+                                <a class=""
+                                   href="/category/<%= category.slug %>/<%= sub_category.sub_category_slug %>/<%= el.sub_sub_category_slug%>"></a>
                             </div>
                         </li>
                     <% }) %>
