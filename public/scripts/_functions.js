@@ -15,7 +15,7 @@ function removeClass(element, className) {
 }
 
 function clearText(text) {
-   return text.trim().toLowerCase()
+   return text.trim()
 }
 
 async function fetchFunction(url, method, body) {
