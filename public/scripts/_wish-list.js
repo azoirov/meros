@@ -1,53 +1,62 @@
-import { closingToast, openToast } from './_toast'
+import {closingToast, openToast} from './_toast'
+import {selectAll} from './_functions'
 
 export default function () {
     try {
-        let wishListBtn = document.querySelectorAll(".wish-list-btn")
-        wishListBtn.forEach(btn => {
-            btn.addEventListener("click", async e => {
-                let target = e.currentTarget
-                if (target.classList.contains("in-wish-list")) {
-                    let product_id = e.currentTarget.id;
-                    let response = await fetch("/wishlist", {
-                        method: "DELETE",
-                        body: JSON.stringify({ product_id }),
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    });
+        let wishListButtons = selectAll("[data-wishlist-btn]")
 
-                    response = await response.json();
+        wishListButtons.forEach(el => {
+            el.addEventListener('click', async e => {
+                const target = e.currentTarget
+                const product_id = target.getAttribute('data-wishlist-btn')
+
+                if (target.classList.contains('in-wish-list')) {
+                    let response = await fetch('/wishlist', {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        method: 'DELETE',
+                        body: JSON.stringify({
+                            product_id
+                        })
+                    })
+
+                    response = await response.json()
 
                     if (response.ok) {
-                        let btns = document.querySelectorAll('button.wish-list-btn');
-                        btns.forEach(btn => {
-                            if (btn.id === target.id) {
-                                btn.style.backgroundColor = "#666666"
-                                btn.classList.remove("in-wish-list")
+                        wishListButtons.forEach(el => {
+                            if (el.getAttribute('data-wishlist-btn') === product_id) {
+                                if (el.classList.contains('product-card__favourite')) {
+                                    el.querySelector('img').src = '/images/icons/favourites-passive.svg'
+                                    el.classList.remove('in-wish-list')
+                                }
+                                el.classList.remove('in-wish-list')
                             }
                         })
                         openToast("failed", "Товар удален из избранного")
                         closingToast()
                     }
                 } else {
-
-                    let product_id = e.currentTarget.id;
-                    let response = await fetch("/wishlist", {
-                        method: "POST",
-                        body: JSON.stringify({ product_id }),
+                    let response = await fetch('/wishlist', {
                         headers: {
-                            "Content-Type": "application/json"
-                        }
-                    });
+                            'Content-Type': 'application/json'
+                        },
+                        method: 'POST',
+                        body: JSON.stringify({
+                            product_id
+                        })
+                    })
 
-                    response = await response.json();
+                    response = await response.json()
 
                     if (response.ok) {
-                        let btns = document.querySelectorAll('button.wish-list-btn');
-                        btns.forEach(btn => {
-                            if (btn.id === target.id) {
-                                btn.style.backgroundColor = "#32386B"
-                                btn.classList.add("in-wish-list")
+                        wishListButtons.forEach(el => {
+                            if (el.getAttribute('data-wishlist-btn') === product_id) {
+                                if (el.classList.contains('product-card__favourite')) {
+                                    el.querySelector('img').src = '/images/icons/favourites-active.svg'
+                                    el.classList.add('in-wish-list')
+                                }
+                                el.classList.add('in-wish-list')
                             }
                         })
                         openToast("success", "Товар добавлен в избранное")

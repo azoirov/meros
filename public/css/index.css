@@ -284,6 +284,14 @@ button[disabled], button[disabled]:hover {
   margin-right: 0 !important;
 }
 
+.in-wish-list {
+  background-color: #32386B !important;
+}
+
+.product-card__favourite.in-wish-list {
+  background-color: transparent !important;
+}
+
 .header {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 }
@@ -812,7 +820,7 @@ button[disabled], button[disabled]:hover {
   border-bottom: 1px solid #E8EDF1;
 }
 
-.cetegories-menu__round {
+.categories-menu__round {
   width: 20px;
   height: 20px;
   border: 1.5px solid #D2D2D2;
