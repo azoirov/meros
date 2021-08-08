@@ -4,13 +4,14 @@ const {
     ProductsSearchGetController,
     CategoryGetController,
     SubCategoryGetController,
-    cartIncre
+    CommentsPostController,
 } = require("../controllers/product/product-controller");
 const { SubSubCategory } = require("../models/models");
 
 const router = require("express").Router();
 
 router.get("/product/search", ProductsSearchGetController);
+router.post("/product/comment", CommentsPostController);
 router.get("/:category_slug", CategoryGetController);
 router.get("/:category_slug/:sub_category_slug", SubCategoryGetController);
 router.get(

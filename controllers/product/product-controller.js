@@ -228,12 +228,16 @@ module.exports = class ProductsController {
                 where: {
                     product_id: product.product_id,
                 },
+                include: {
+                    model: req.db.users
+                },
                 raw: true,
             });
 
             let comment_thumbs = await req.db.comment_thumbs.findAll({
                 raw: true,
             });
+
             for (let comment of comments) {
                 let thumbs = comment_thumbs.filter(
                     (e) => e.comment_id === comment.comment_id
