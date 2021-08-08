@@ -46,9 +46,12 @@
    position: relative;
    height: 210px;
    overflow: hidden;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 
    img {
-      width: 100%;
+      height: 90%;
       object-fit: contain;
    }
 }
