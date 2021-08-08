@@ -95,7 +95,8 @@ const titleNormalize = title => {
                                                 </li>
                                                 <li class="product-card__action__item">
                                                     <% if (product.inWishList) { %>
-                                                        <button class="in-wish-list" data-wishlist-btn="<%= product.product_id %>">
+                                                        <button class="in-wish-list"
+                                                                data-wishlist-btn="<%= product.product_id %>">
                                                             <img src="/images/icons/star.svg" alt="star icon">
                                                         </button>
                                                     <% } else { %>
@@ -111,11 +112,13 @@ const titleNormalize = title => {
                                                 </li>
                                             </ul>
                                             <% if (product.inWishList) { %>
-                                                <button class="product-card__favourite" data-wishlist-btn="<%= product.product_id %>">
+                                                <button class="product-card__favourite in-wish-list"
+                                                        data-wishlist-btn="<%= product.product_id %>">
                                                     <img src="/images/icons/favourites-active.svg" alt="">
                                                 </button>
                                             <% } else { %>
-                                                <button class="product-card__favourite" data-wishlist-btn="<%= product.product_id %>">
+                                                <button class="product-card__favourite"
+                                                        data-wishlist-btn="<%= product.product_id %>">
                                                     <img src="/images/icons/favourites-passive.svg" alt="">
                                                 </button>
                                             <% } %>
@@ -245,11 +248,13 @@ const titleNormalize = title => {
                                     </li>
                                 </ul>
                                 <% if (product.inWishList) { %>
-                                    <button class="product-card__favourite" data-wishlist-btn="<%= product.product_id %>">
+                                    <button class="product-card__favourite in-wish-list"
+                                            data-wishlist-btn="<%= product.product_id %>">
                                         <img src="/images/icons/favourites-active.svg" alt="">
                                     </button>
                                 <% } else { %>
-                                    <button class="product-card__favourite" data-wishlist-btn="<%= product.product_id %>">
+                                    <button class="product-card__favourite"
+                                            data-wishlist-btn="<%= product.product_id %>">
                                         <img src="/images/icons/favourites-passive.svg" alt="">
                                     </button>
                                 <% } %>

@@ -285,7 +285,11 @@ button[disabled], button[disabled]:hover {
 }
 
 .in-wish-list {
-  background-color: #32386B;
+  background-color: #32386B !important;
+}
+
+.product-card__favourite.in-wish-list {
+  background-color: transparent !important;
 }
 
 .header {
