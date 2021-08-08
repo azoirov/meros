@@ -819,7 +819,7 @@ module.exports = class ProductsController {
 
             let goodOffers = await req.db.products.findAll({
                 where: {
-                    category_id: sub_sub_category.category_id,
+                    category_id: category.category_id,
                     sale: {
                         [Op.gte]: 0
                     },
@@ -857,7 +857,7 @@ module.exports = class ProductsController {
                 sponsors,
                 categories: req.categories,
                 products,
-                goodOffers: sale,
+                goodOffers: goodOffers,
                 recommendation: rec,
             });
         } catch (e) {
