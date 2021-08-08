@@ -67,115 +67,7 @@ const titleNormalize = title => {
     </div>
 </section>
 
-<section class="section recommends-for-you mb-70">
-    <div class="container">
-        <header class="section__header">
-            <h2 class="section__heading">Лучшие предложения!</h2>
-        </header>
 
-        <% if(goodOffers.length > 0) { %>
-            <div class="recommends-for-you__slider splide">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <% goodOffers.forEach(product => { %>
-                            <li class="splide__slide">
-                                <div class="product-card">
-                                    <div>
-                                        <div class="product-card__header">
-                                            <img src="/images/products/<%= product.thumb[0] %>"
-                                                 alt="<%= product.ru_name %>">
-                                            <% if (product.sale) { %>
-                                                <span class="product-card__discount">-<%= product.sale %>%</span>
-                                            <% } %>
-                                            <ul class="product-card__action">
-                                                <li class="product-card__action__item">
-                                                    <button>
-                                                        <img src="/images/icons/eye.svg" alt="eye icon">
-                                                    </button>
-                                                </li>
-                                                <li class="product-card__action__item">
-                                                    <% if (product.inWishList) { %>
-                                                        <button class="in-wish-list"
-                                                                data-wishlist-btn="<%= product.product_id %>">
-                                                            <img src="/images/icons/star.svg" alt="star icon">
-                                                        </button>
-                                                    <% } else { %>
-                                                        <button data-wishlist-btn="<%= product.product_id %>">
-                                                            <img src="/images/icons/star.svg" alt="star icon">
-                                                        </button>
-                                                    <% } %>
-                                                </li>
-                                                <li class="product-card__action__item">
-                                                    <button>
-                                                        <img src="/images/icons/trash.svg" alt="trash icon">
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                            <% if (product.inWishList) { %>
-                                                <button class="product-card__favourite in-wish-list"
-                                                        data-wishlist-btn="<%= product.product_id %>">
-                                                    <img src="/images/icons/favourites-active.svg" alt="">
-                                                </button>
-                                            <% } else { %>
-                                                <button class="product-card__favourite"
-                                                        data-wishlist-btn="<%= product.product_id %>">
-                                                    <img src="/images/icons/favourites-passive.svg" alt="">
-                                                </button>
-                                            <% } %>
-                                        </div>
-                                        <div class="product-card__body">
-                                            <a class="product-card__category"
-                                               href="/category/<%= product['category.ru_name'] %>"><%= capitalize(product['category.ru_name']) %></a>
-                                            <h3 class="product-card__title">
-                                                <a style="color: #273142" href="/product/<%= product.slug %>">
-                                                    <%= titleNormalize(product.ru_name) %>
-                                                </a>
-                                            </h3>
-                                            <img class="product-card__rating-stars"
-                                                 src="/images/rating-stars/<%= product.stars %>.svg"
-                                                 alt="rating stars">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="product-card__footer">
-                                            <span class="product-card__new-price"><%= Math.round(product.price * (100 - product.sale) / 100) %> сум</span>
-                                            <del class="product-card__old-price"><%= product.price %> сум</del>
-                                        </div>
-                                        <button class="to-cart <%= product.inCart ? 'd-none' : '' %>"
-                                                data-add-cart="<%= product.product_id %>">
-                                            В корзину
-                                        </button>
-                                        <div class="product-card__cart <%= product.inCart ? '' : 'd-none' %>">
-                                            <button class="product-card__cart__btn product-card__cart__btn--increment"
-                                                    data-increment-product="<%= product.product_id %>">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 5V19" stroke="#8D909B" stroke-width="2"
-                                                          stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M5 12H19" stroke="#8D909B" stroke-width="2"
-                                                          stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                            <span><%= product.inCart %></span>
-                                            <button class="product-card__cart__btn product-card__cart__btn--decrement"
-                                                    data-decrement-product="<%= product.product_id %>">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M5 12H19" stroke="#8D909B" stroke-width="2"
-                                                          stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        <% }) %>
-                    </ul>
-                </div>
-            </div>
-        <% } %>
-    </div>
-</section>
 
 <section class="section popular-categories">
     <div class="container">
@@ -314,6 +206,8 @@ const titleNormalize = title => {
         </div>
     </div>
 </section>
+
+<%- include("recommendation") %>
 
 <section class="additional">
     <div class="container">
