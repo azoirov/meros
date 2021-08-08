@@ -23,8 +23,6 @@ export default function () {
                     })
                     response = await response.json()
 
-                    console.log(response)
-
                     if (response.ok) {
                         addToCartBtns.forEach(btn => {
                             if (btn.getAttribute('data-add-cart') === productId) {
@@ -58,7 +56,6 @@ export default function () {
 
                     response = await response.json()
 
-                    console.log(response)
 
                     if (response.ok) {
                         productIncrementBtns.forEach(el => {
@@ -91,7 +88,6 @@ export default function () {
 
                     response = await response.json()
 
-                    console.log(response)
 
                     if (response.ok) {
                         productDecrementBtns.forEach(el => {
