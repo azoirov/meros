@@ -1192,6 +1192,44 @@
          width: 15px;
       }
    }
+
+   .feedback-modal__content {
+      padding: 30px;
+   }
+
+   .feedback-modal__heading {
+      margin-bottom: 10px;
+      font-size: 16px;
+      line-height: 19px;
+   }
+
+   .feedback-modal__label {
+      margin-bottom: 15px;
+      span {
+         margin-bottom: 5px;
+         font-size: 14px;
+         line-height: 16px;
+      }
+   }
+
+   .feedback-modal__submit {
+      font-size: 16px;
+      line-height: 19px;
+   }
+
+   .feedback-modal__close {
+      top: 20px;
+      right: 20px;
+      width: 20px;
+      height: 20px;
+   }
+
+   .feedback-modal__rating {
+      margin-bottom: 20px;
+      svg {
+         width: 20px;
+      }
+   }
 }
 
 @include media(500px) {

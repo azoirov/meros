@@ -5,7 +5,7 @@ import searchInput from './_search-input'
 import catalogModal from './_catalog-modal'
 import categoriesModal from './_categories-modal'
 import selectElement from './_select-element'
-import feedbackRating from './_feedback-rating'
+import feedback from './_feedback'
 import categoriesMenu from './_categories-menu'
 import filterModal from './_filter-modal'
 import validateForm from './_validate-forms'
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
    categoriesModal()
    selectElement()
    searchInput()
-   feedbackRating()
+   feedback()
    categoriesMenu()
    filterModal()
    validateForm()

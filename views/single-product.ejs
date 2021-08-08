@@ -71,8 +71,8 @@ if (product.sub_sub_category_id) {
             <div class="product-info">
                 <h2 class="product-name"><%= product.ru_name %></h2>
                 <div class="product-rating">
-                    <img src="/images/rating-stars/2.svg" alt="rating stars"/>
-                    <a href="#comments">Отзывы (50)</a>
+                    <img src="/images/rating-stars/<%= product.star %>.svg" alt="rating stars"/>
+                    <a href="#comment">Отзывы (<%= comments.length %>)</a>
                 </div>
                 <div class="product-short-info">
                     <% if(JSON.parse(product.options).length > 0 && Object.keys(JSON.parse(product.options)[0]).length > 0) { %>
@@ -83,50 +83,18 @@ if (product.sub_sub_category_id) {
                                                                                      index) => { %>
                                     <li class="product-short-info__li">
                                         <div class="product-short-info__definition">
-                                            <%= capitalize(option['ru']['key']) %>
+                                            <%= option['ru']['key'] %>
                                         </div>
                                         <div class="product-short-info__value">
-                                            <%= capitalize(option['ru']['value']) %>
+                                            <%= option['ru']['value'] %>
                                         </div>
                                     </li>
                                 <% }) %>
                             </ul>
                         </div>
                     <% } %>
-                    <!--                    <div class="product-short-info__part product-color">-->
-                    <!--                        <h4>Цвет:</h4>-->
-                    <!--                        <div class="row">-->
-                    <!--                            <div class="product-color__item">-->
-                    <!--                                <img src="/images/single-product/color-1.png" alt="">-->
-                    <!--                            </div>-->
-                    <!--                            <div class="product-color__item">-->
-                    <!--                                <img src="/images/single-product/color-2.png" alt="">-->
-                    <!--                            </div>-->
-                    <!--                            <div class="product-color__item">-->
-                    <!--                                <img src="/images/single-product/color-3.png" alt="">-->
-                    <!--                            </div>-->
-                    <!--                            <div class="product-color__item">-->
-                    <!--                                <img src="/images/single-product/color-4.png" alt="">-->
-                    <!--                            </div>-->
-                    <!--                            <div class="product-color__item">-->
-                    <!--                                <img src="/images/single-product/color-5.png" alt="">-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="product-short-info__part product-size mb-0">-->
-                    <!--                        <h4>Размер:</h4>-->
-                    <!--                        <div class="row">-->
-                    <!--                            <div class="product-size__item">L for 70-80kg</div>-->
-                    <!--                            <div class="product-size__item">XL for 80-90kg</div>-->
-                    <!--                            <div class="product-size__item">XXL for 85-95kg</div>-->
-                    <!--                            <div class="product-size__item">4XL for 95kg-105kg</div>-->
-                    <!--                            <div class="product-size__item">5XL for 100-110kg</div>-->
-                    <!--                            <div class="product-size__item">XXXL for 90-100kg</div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
                     <div class="product-count">
                         <% if(product.cart > 0) { %>
-
                             <h4>Количество:</h4>
                             <div class="product-count__change">
                                 <button id="<%= product.product_id %>" class="single_dec_cart">
@@ -137,15 +105,13 @@ if (product.sub_sub_category_id) {
                                     <img src="/images/icons/plus.svg" alt=""/>
                                 </button>
                             </div>
-                            <!--                        <div class="product-count__additional-info">-->
-                            <!--                            Дополнительно Скидка 5% (от 2 шт.)-->
-                            <!--                            2239581 шт. в наличии-->
-                            <!--                        </div>-->
                         <% } %>
                     </div>
                     <div class="product-price">
-                        <span class="price">450 000 сум - 900 000 сум</span>
-                        <del>1 000 000 сум</del>
+                        <span class="price"><%= product.price * (100 - product.sale) / 100 %> сум</span>
+                        <% if (product.sale > 0) { %>
+                            <del><%= product.price %> сум</del>
+                        <% } %>
                     </div>
                 </div>
                 <div class="product-actions">
@@ -720,7 +686,7 @@ if (product.sub_sub_category_id) {
     </div>
 </section>
 
-<section class="section reviews" id="#comments">
+<section class="section reviews" id="comment">
     <div class="container">
         <h2 class="section__heading mb-15">Отзывы</h2>
         <div class="row justify-content-between mb-50">
@@ -737,17 +703,6 @@ if (product.sub_sub_category_id) {
                                     <div class="comment__rating-stars">
                                         <img src="/images/products/rating.svg" alt="rating star"/>
                                     </div>
-                                    <div class="comment__images">
-                                        <div class="comment__images__item">
-                                            <img src="https://picsum.photos/70/70?rand=1" alt=""/>
-                                        </div>
-                                        <div class="comment__images__item">
-                                            <img src="https://picsum.photos/70/70?rand=2" alt=""/>
-                                        </div>
-                                        <div class="comment__images__item">
-                                            <img src="https://picsum.photos/70/70?rand=3" alt=""/>
-                                        </div>
-                                    </div>
                                     <p class="comment__text">
                                         Хорошая печать, качество бумаги. Перевод сделан красочным,
                                         комментарии подробные. В общем, сделанным выбором, остался
@@ -756,226 +711,6 @@ if (product.sub_sub_category_id) {
                                     </p>
                                     <div class="comment__state">
                                         <time class="comment__time">Сегодня, 13:37</time>
-                                        <div class="comment__like-dislike">
-                                            <button class="comment__like mr-20">
-                                                <svg
-                                                        width="20"
-                                                        height="20"
-                                                        viewBox="0 0 20 20"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <g clip-path="url(#clip0)">
-                                                        <path
-                                                                d="M2.08332 7.75C0.935 7.75 0 8.685 0 9.83332V16.5C0 17.6483 0.935 18.5833 2.08332 18.5833H4.58332C5.0525 18.5833 5.48414 18.425 5.83332 18.1616V7.75H2.08332Z"
-                                                                fill=""
-                                                        />
-                                                        <path
-                                                                d="M19.9998 11.8743C19.9998 11.3735 19.8015 10.9068 19.4573 10.5627C19.8465 10.1368 20.0448 9.56598 19.9906 8.97184C19.8931 7.91266 18.939 7.08266 17.8173 7.08266H12.6698C12.9248 6.30848 13.3331 4.88934 13.3331 3.74934C13.3331 1.94184 11.7973 0.416016 10.8331 0.416016C9.96732 0.416016 9.34896 0.903516 9.32232 0.923516C9.224 1.0027 9.1665 1.1227 9.1665 1.24934V4.07516L6.7665 9.27434L6.6665 9.32516V18.2568C7.34482 18.5768 8.20314 18.7493 8.74982 18.7493H16.399C17.3065 18.7493 18.1007 18.1377 18.2873 17.2935C18.3831 16.8593 18.3273 16.4218 18.1365 16.0418C18.7523 15.7318 19.1665 15.0977 19.1665 14.3743C19.1665 14.0793 19.099 13.7968 18.9707 13.541C19.5865 13.231 19.9998 12.5968 19.9998 11.8743Z"
-                                                                fill=""
-                                                        />
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0">
-                                                            <rect width="20" height="20" fill="white"/>
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-                                                <span>15</span>
-                                            </button>
-                                            <button class="comment__dislike">
-                                                <svg
-                                                        width="20"
-                                                        height="20"
-                                                        viewBox="0 0 20 20"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <g clip-path="url(#clip0)">
-                                                        <path
-                                                                d="M17.9167 12.25C19.065 12.25 20 11.315 20 10.1667V3.5C20 2.35168 19.065 1.41668 17.9167 1.41668H15.4167C14.9475 1.41668 14.5159 1.575 14.1667 1.83836V12.25H17.9167Z"
-                                                                fill=""
-                                                        />
-                                                        <path
-                                                                d="M0.000175476 8.12566C0.000175476 8.62648 0.198496 9.09316 0.542675 9.43734C0.153496 9.86316 -0.0448256 10.434 0.00935459 11.0282C0.106854 12.0873 1.06104 12.9173 2.18268 12.9173H7.33018C7.07518 13.6915 6.66686 15.1107 6.66686 16.2507C6.66686 18.0582 8.20268 19.584 9.16686 19.584C10.0327 19.584 10.651 19.0965 10.6777 19.0765C10.776 18.9973 10.8335 18.8773 10.8335 18.7507V15.9248L13.2335 10.7257L13.3335 10.6748V1.74316C12.6552 1.42316 11.7969 1.25066 11.2502 1.25066H3.601C2.6935 1.25066 1.89932 1.86234 1.71268 2.70648C1.61686 3.14067 1.67268 3.57817 1.86349 3.95816C1.24767 4.26816 0.833496 4.90234 0.833496 5.62566C0.833496 5.92066 0.900996 6.20316 1.02932 6.45898C0.413496 6.76898 0.000175476 7.40316 0.000175476 8.12566Z"
-                                                                fill=""
-                                                        />
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0">
-                                                            <rect
-                                                                    width="20"
-                                                                    height="20"
-                                                                    fill="white"
-                                                                    transform="translate(20 20) rotate(180)"
-                                                            />
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-                                                <span>23</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="comments__item">
-                                <div class="comment__owner-image">
-                                    <img src="https://i.pravatar.cc/50?img=6" alt="nimadir"/>
-                                </div>
-                                <div class="comment__info">
-                                    <h4 class="comment__owner-name">Абдукарим</h4>
-                                    <div class="comment__rating-stars">
-                                        <img src="/images/products/rating.svg" alt="rating star"/>
-                                    </div>
-                                    <div class="comment__images">
-                                        <div class="comment__images__item">
-                                            <img src="https://picsum.photos/70/70?rand=1" alt=""/>
-                                        </div>
-                                    </div>
-                                    <p class="comment__text">
-                                        Отличный продукт и ранняя поставка рекомендуем.
-                                    </p>
-                                    <div class="comment__state">
-                                        <time class="comment__time">Сегодня, 13:37</time>
-                                        <div class="comment__like-dislike">
-                                            <button class="comment__like mr-20">
-                                                <svg
-                                                        width="20"
-                                                        height="20"
-                                                        viewBox="0 0 20 20"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <g clip-path="url(#clip0)">
-                                                        <path
-                                                                d="M2.08332 7.75C0.935 7.75 0 8.685 0 9.83332V16.5C0 17.6483 0.935 18.5833 2.08332 18.5833H4.58332C5.0525 18.5833 5.48414 18.425 5.83332 18.1616V7.75H2.08332Z"
-                                                                fill=""
-                                                        />
-                                                        <path
-                                                                d="M19.9998 11.8743C19.9998 11.3735 19.8015 10.9068 19.4573 10.5627C19.8465 10.1368 20.0448 9.56598 19.9906 8.97184C19.8931 7.91266 18.939 7.08266 17.8173 7.08266H12.6698C12.9248 6.30848 13.3331 4.88934 13.3331 3.74934C13.3331 1.94184 11.7973 0.416016 10.8331 0.416016C9.96732 0.416016 9.34896 0.903516 9.32232 0.923516C9.224 1.0027 9.1665 1.1227 9.1665 1.24934V4.07516L6.7665 9.27434L6.6665 9.32516V18.2568C7.34482 18.5768 8.20314 18.7493 8.74982 18.7493H16.399C17.3065 18.7493 18.1007 18.1377 18.2873 17.2935C18.3831 16.8593 18.3273 16.4218 18.1365 16.0418C18.7523 15.7318 19.1665 15.0977 19.1665 14.3743C19.1665 14.0793 19.099 13.7968 18.9707 13.541C19.5865 13.231 19.9998 12.5968 19.9998 11.8743Z"
-                                                                fill=""
-                                                        />
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0">
-                                                            <rect width="20" height="20" fill="white"/>
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-                                                <span>15</span>
-                                            </button>
-                                            <button class="comment__dislike">
-                                                <svg
-                                                        width="20"
-                                                        height="20"
-                                                        viewBox="0 0 20 20"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <g clip-path="url(#clip0)">
-                                                        <path
-                                                                d="M17.9167 12.25C19.065 12.25 20 11.315 20 10.1667V3.5C20 2.35168 19.065 1.41668 17.9167 1.41668H15.4167C14.9475 1.41668 14.5159 1.575 14.1667 1.83836V12.25H17.9167Z"
-                                                                fill=""
-                                                        />
-                                                        <path
-                                                                d="M0.000175476 8.12566C0.000175476 8.62648 0.198496 9.09316 0.542675 9.43734C0.153496 9.86316 -0.0448256 10.434 0.00935459 11.0282C0.106854 12.0873 1.06104 12.9173 2.18268 12.9173H7.33018C7.07518 13.6915 6.66686 15.1107 6.66686 16.2507C6.66686 18.0582 8.20268 19.584 9.16686 19.584C10.0327 19.584 10.651 19.0965 10.6777 19.0765C10.776 18.9973 10.8335 18.8773 10.8335 18.7507V15.9248L13.2335 10.7257L13.3335 10.6748V1.74316C12.6552 1.42316 11.7969 1.25066 11.2502 1.25066H3.601C2.6935 1.25066 1.89932 1.86234 1.71268 2.70648C1.61686 3.14067 1.67268 3.57817 1.86349 3.95816C1.24767 4.26816 0.833496 4.90234 0.833496 5.62566C0.833496 5.92066 0.900996 6.20316 1.02932 6.45898C0.413496 6.76898 0.000175476 7.40316 0.000175476 8.12566Z"
-                                                                fill=""
-                                                        />
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0">
-                                                            <rect
-                                                                    width="20"
-                                                                    height="20"
-                                                                    fill="white"
-                                                                    transform="translate(20 20) rotate(180)"
-                                                            />
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-                                                <span>20</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="comments__item">
-                                <div class="comment__owner-image">
-                                    <img src="https://i.pravatar.cc/50?img=8" alt="nimadir"/>
-                                </div>
-                                <div class="comment__info">
-                                    <h4 class="comment__owner-name">Фаррух</h4>
-                                    <div class="comment__rating-stars">
-                                        <img src="/images/products/rating.svg" alt="rating star"/>
-                                    </div>
-                                    <p class="comment__text">
-                                        Книга легко читается, полезна для всех областей жизни
-                                        человека. Становится настольной, особенно в минуты, когда
-                                        «руки опускаются» перечитываешь некоторые моменты и вновь
-                                        находишь в себе силы и желание работать, жить,
-                                        любить,общаться с ребёнком, поддерживать родителей.
-                                    </p>
-                                    <div class="comment__state">
-                                        <time class="comment__time">Сегодня, 13:37</time>
-                                        <div class="comment__like-dislike">
-                                            <button class="comment__like mr-20">
-                                                <svg
-                                                        width="20"
-                                                        height="20"
-                                                        viewBox="0 0 20 20"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <g clip-path="url(#clip0)">
-                                                        <path
-                                                                d="M2.08332 7.75C0.935 7.75 0 8.685 0 9.83332V16.5C0 17.6483 0.935 18.5833 2.08332 18.5833H4.58332C5.0525 18.5833 5.48414 18.425 5.83332 18.1616V7.75H2.08332Z"
-                                                                fill=""
-                                                        />
-                                                        <path
-                                                                d="M19.9998 11.8743C19.9998 11.3735 19.8015 10.9068 19.4573 10.5627C19.8465 10.1368 20.0448 9.56598 19.9906 8.97184C19.8931 7.91266 18.939 7.08266 17.8173 7.08266H12.6698C12.9248 6.30848 13.3331 4.88934 13.3331 3.74934C13.3331 1.94184 11.7973 0.416016 10.8331 0.416016C9.96732 0.416016 9.34896 0.903516 9.32232 0.923516C9.224 1.0027 9.1665 1.1227 9.1665 1.24934V4.07516L6.7665 9.27434L6.6665 9.32516V18.2568C7.34482 18.5768 8.20314 18.7493 8.74982 18.7493H16.399C17.3065 18.7493 18.1007 18.1377 18.2873 17.2935C18.3831 16.8593 18.3273 16.4218 18.1365 16.0418C18.7523 15.7318 19.1665 15.0977 19.1665 14.3743C19.1665 14.0793 19.099 13.7968 18.9707 13.541C19.5865 13.231 19.9998 12.5968 19.9998 11.8743Z"
-                                                                fill=""
-                                                        />
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0">
-                                                            <rect width="20" height="20" fill="white"/>
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-                                                <span>15</span>
-                                            </button>
-                                            <button class="comment__dislike">
-                                                <svg
-                                                        width="20"
-                                                        height="20"
-                                                        viewBox="0 0 20 20"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <g clip-path="url(#clip0)">
-                                                        <path
-                                                                d="M17.9167 12.25C19.065 12.25 20 11.315 20 10.1667V3.5C20 2.35168 19.065 1.41668 17.9167 1.41668H15.4167C14.9475 1.41668 14.5159 1.575 14.1667 1.83836V12.25H17.9167Z"
-                                                                fill=""
-                                                        />
-                                                        <path
-                                                                d="M0.000175476 8.12566C0.000175476 8.62648 0.198496 9.09316 0.542675 9.43734C0.153496 9.86316 -0.0448256 10.434 0.00935459 11.0282C0.106854 12.0873 1.06104 12.9173 2.18268 12.9173H7.33018C7.07518 13.6915 6.66686 15.1107 6.66686 16.2507C6.66686 18.0582 8.20268 19.584 9.16686 19.584C10.0327 19.584 10.651 19.0965 10.6777 19.0765C10.776 18.9973 10.8335 18.8773 10.8335 18.7507V15.9248L13.2335 10.7257L13.3335 10.6748V1.74316C12.6552 1.42316 11.7969 1.25066 11.2502 1.25066H3.601C2.6935 1.25066 1.89932 1.86234 1.71268 2.70648C1.61686 3.14067 1.67268 3.57817 1.86349 3.95816C1.24767 4.26816 0.833496 4.90234 0.833496 5.62566C0.833496 5.92066 0.900996 6.20316 1.02932 6.45898C0.413496 6.76898 0.000175476 7.40316 0.000175476 8.12566Z"
-                                                                fill=""
-                                                        />
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0">
-                                                            <rect
-                                                                    width="20"
-                                                                    height="20"
-                                                                    fill="white"
-                                                                    transform="translate(20 20) rotate(180)"
-                                                            />
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-                                                <span>23</span>
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -985,81 +720,12 @@ if (product.sub_sub_category_id) {
             </div>
             <div class="reviews__right">
                 <button class="button-blue mb-20">Оставить отзыв</button>
-                <div class="reviews__filter">
-                    <ul class="filter-aside__ul">
-                        <li class="filter-aside__li">
-                            <label class="filter-aside__check-label">
-                                <input class="filter-aside__check-input" type="checkbox"/>
-                                <span class="filter-aside__check-rectangle"> </span>
-                                <span class="filter-aside__check-text">C фотографиями</span>
-                            </label>
-                        </li>
-                    </ul>
-                    <h3>Отзывы с оценкой</h3>
-                    <ul class="filter-aside__ul">
-                        <li class="filter-aside__li">
-                            <label class="filter-aside__check-label">
-                                <input class="filter-aside__check-input" type="checkbox"/>
-                                <span class="filter-aside__check-rectangle"> </span>
-                                <img
-                                        class="reviews__filter__rating-star"
-                                        src="/images/single-product/four.svg"
-                                        alt=""
-                                />
-                                <span class="filter-aside__check-text">13 отзывов</span>
-                            </label>
-                        </li>
-                        <li class="filter-aside__li">
-                            <label class="filter-aside__check-label">
-                                <input class="filter-aside__check-input" type="checkbox"/>
-                                <span class="filter-aside__check-rectangle"> </span>
-                                <img
-                                        class="reviews__filter__rating-star"
-                                        src="/images/single-product/three.svg"
-                                        alt=""
-                                />
-                                <span class="filter-aside__check-text">8 отзывов</span>
-                            </label>
-                        </li>
-                        <li class="filter-aside__li">
-                            <label class="filter-aside__check-label">
-                                <input class="filter-aside__check-input" type="checkbox"/>
-                                <span class="filter-aside__check-rectangle"> </span>
-                                <img
-                                        class="reviews__filter__rating-star"
-                                        src="/images/single-product/two.svg"
-                                        alt=""
-                                />
-                                <span class="filter-aside__check-text">5 отзывов</span>
-                            </label>
-                        </li>
-                        <li class="filter-aside__li">
-                            <label class="filter-aside__check-label">
-                                <input class="filter-aside__check-input" type="checkbox"/>
-                                <span class="filter-aside__check-rectangle"> </span>
-                                <img
-                                        class="reviews__filter__rating-star"
-                                        src="/images/single-product/one.svg"
-                                        alt=""
-                                />
-                                <span class="filter-aside__check-text">3 отзывов</span>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="ad-column">
-                    <a href="/">
-                        <img src="/images/products/img1.jpg" alt=""/>
-                    </a>
-                </div>
             </div>
-        </div>
-        <div class="show-more-views">
-            <button>Показать больше отзывов...</button>
         </div>
     </div>
 </section>
 <%- include("cabinet/toast") %>
-<!--<%- include('partials/feedback-modal') %>-->
-<%- include('partials/catalog-modal') %> <%-
-include('partials/categories-modal') %> <%- include('partials/footer.ejs') %>
+<%- include('partials/feedback-modal') %>
+<%- include('partials/catalog-modal') %>
+<%- include('partials/categories-modal') %>
+<%- include('partials/footer.ejs') %>
