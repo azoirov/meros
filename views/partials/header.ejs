@@ -1,4 +1,16 @@
 <% var path, user, categories %>
+<%
+var products
+const capitalize = text => {
+    return text[0].toUpperCase() + text.substring(1)
+}
+const titleNormalize = title => {
+    if (title.length <= 50) {
+        return title
+    }
+    return title.substring(0, 50) + '...'
+}
+%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -394,7 +406,7 @@
                     <a class="bottom-nav__link <%= (path === '/cart') ? 'active' : '' %>" href="<%= user ? '/cart' : '/users/login' %>">
                         <span class="bottom-nav__link--cart">
                             <% if (user) { %>
-                                <span class="header-middle__link--cart-count"><%= user.productCountInCart ? user.productCountInCart : 0 %></span>
+                                <span class="bottom-nav__link--cart-count"><%= user.productCountInCart ? user.productCountInCart : 0 %></span>
                             <% } %>
                             <img src="/images/bottom-nav/cart<%= (path === '/cart') ? '-active' : '' %>.svg" alt="icon">
                         </span>
@@ -433,222 +445,34 @@
                 </button>
             </header>
             <ul class="categories-menu__list">
-                <li class="categories-menu__item">
-                    <div class="categories-menu__title">
-                        <span>Книги</span>
-                        <span class="cetegories-menu__round"></span>
-                    </div>
-                    <div class="categories-menu__content">
-                        <div class="categories-menu__content__card">
-                            <h3><a href="#">Книги мира</a></h3>
-                            <ul class="categories-menu__content__ul">
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Научная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Историческая литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Художетвенная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Детектив</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Мелодрамма</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Литература Азии</a>
-                                </li>
-                            </ul>
+                <% categories.forEach(category => { %>
+                    <li class="categories-menu__item">
+                        <div class="categories-menu__title">
+                            <span><%= capitalize(category.ru_name) %></span>
+                            <span class="categories-menu__round"></span>
                         </div>
-                        <div class="categories-menu__content__card">
-                            <h3><a href="#">Книги мира</a></h3>
-                            <ul class="categories-menu__content__ul">
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Научная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Историческая литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Художетвенная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Детектив</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Мелодрамма</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Литература Азии</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="categories-menu__item">
-                    <div class="categories-menu__title">
-                        <span>Диски</span>
-                        <span class="cetegories-menu__round"></span>
-                    </div>
-                    <div class="categories-menu__content">
-                        <div class="categories-menu__content__card">
-                            <h3><a href="#">Книги мира</a></h3>
-                            <ul class="categories-menu__content__ul">
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Научная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Историческая литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Художетвенная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Детектив</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Мелодрамма</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Литература Азии</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="categories-menu__content__card">
-                            <h3><a href="#">Книги мира</a></h3>
-                            <ul class="categories-menu__content__ul">
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Научная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Историческая литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Художетвенная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Детектив</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Мелодрамма</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Литература Азии</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="categories-menu__item">
-                    <div class="categories-menu__title">
-                        <span>Атрибутика</span>
-                        <span class="cetegories-menu__round"></span>
-                    </div>
-                    <div class="categories-menu__content">
-                        <div class="categories-menu__content__card">
-                            <h3><a href="#">Книги мира</a></h3>
-                            <ul class="categories-menu__content__ul">
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Научная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Историческая литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Художетвенная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Детектив</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Мелодрамма</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Литература Азии</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="categories-menu__content__card">
-                            <h3><a href="#">Книги мира</a></h3>
-                            <ul class="categories-menu__content__ul">
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Научная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Историческая литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Художетвенная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Детектив</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Мелодрамма</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Литература Азии</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="categories-menu__item">
-                    <div class="categories-menu__title">
-                        <span>Канцтовары</span>
-                        <span class="cetegories-menu__round"></span>
-                    </div>
-                    <div class="categories-menu__content">
-                        <div class="categories-menu__content__card">
-                            <h3><a href="#">Книги мира</a></h3>
-                            <ul class="categories-menu__content__ul">
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Научная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Историческая литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Художетвенная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Детектив</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Мелодрамма</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Литература Азии</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="categories-menu__content__card">
-                            <h3><a href="#">Книги мира</a></h3>
-                            <ul class="categories-menu__content__ul">
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Научная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Историческая литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Художетвенная литература</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Детектив</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Мелодрамма</a>
-                                </li>
-                                <li class="categories-menu__content__li">
-                                    <a class="categories-menu__content__link" href="/">Литература Азии</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
+                        <% category.sub_categories.forEach(sub_cat => { %>
+                            <div class="categories-menu__content">
+                                <div class="categories-menu__content__card">
+                                    <h3>
+                                        <a href="/category/<%= category.slug %>/<%= sub_cat.sub_category_slug %>">
+                                            <%= capitalize(sub_cat.sub_category_name_ru) %>
+                                        </a>
+                                    </h3>
+                                    <ul class="categories-menu__content__ul">
+                                        <% sub_cat.sub_sub_categories.forEach(sub_sub_cat => { %>
+                                            <li class="categories-menu__content__li">
+                                                <a class="categories-menu__content__link" href="/category/<%= category.slug %>/<%= sub_cat.sub_category_slug %>/<%= sub_sub_cat.sub_sub_category_slug%>">
+                                                    <%= capitalize(sub_sub_cat.sub_sub_category_name_ru) %>
+                                                </a>
+                                            </li>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </li>
+                <% }) %>
             </ul>
         </div>
     </div>
