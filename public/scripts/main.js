@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
    productActions()
    addToCart()
    orderPost()
-   wishList()
    categoryIntroNav()
    adminSecondaryCategory()
    adminTertiaryCategory()

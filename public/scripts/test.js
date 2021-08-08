@@ -1,128 +1,61 @@
+import {closingToast, openToast} from "./_toast";
 
-    let addToCartBtns = document.querySelectorAll('[data-add-cart]'),
-    cartDiv = document.querySelectorAll(".product-card__cart")
-
-    try {
-    addToCartBtns.forEach(el => {
-        el.addEventListener('click', async e => {
-            const target = e.currentTarget
-
-            let productCardCart
-
-            if (target.classList.contains('to-cart')) {
-                productCardCart = target.parentElement
-            } else {
-                productCardCart = target.parentElement.parentElement.parentElement.parentElement.nextElementSibling.children[1]
-            }
-
-            let response = await fetch('/cart/add', {
+wishListBtns.forEach(btn => {
+    btn.addEventListener("click", async e => {
+        const target = e.currentTarget
+        if (target.classList.contains("in-wish-list")) {
+            let product_id = e.currentTarget.id;
+            let response = await fetch("/wishlist", {
+                method: "DELETE",
+                body: JSON.stringify({ product_id }),
                 headers: {
-                    'Content-Type': 'application/json; charset=utf-8',
-                    'authorization': document.cookie.substring(6)
-                },
-                method: 'POST',
-                body: JSON.stringify({
-                    product_id: e.currentTarget.id
-                })
-            })
+                    "Content-Type": "application/json"
+                }
+            });
 
             response = await response.json()
 
+            console.log(response)
+
             if (response.ok) {
-                addToCartBtns.forEach(el => {
-                    if (el.id === target.id) {
-                        let parentElement = el.parentElement
-                        parentElement.children[1].remove()
-                        parentElement.innerHTML += `
-                            <div class="product-card__cart" id="${el.id}">
-                                 <button class="product-card__cart__btn product-card__cart__btn--increment">
-                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M12 5V19" stroke="#8D909B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                          <path d="M5 12H19" stroke="#8D909B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                      </svg>
-                                  </button>
-                                  <span>1</span>
-                                  <button class="product-card__cart__btn product-card__cart__btn--decrement">
-                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M5 12H19" stroke="#8D909B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                      </svg>
-                                  </button>
-                           </div>
-                        `
+                let btns = document.querySelectorAll('button.wish-list-btn');
+                btns.forEach(btn => {
+                    if (btn.id === target.id) {
+                        btn.style.backgroundColor = "#666666"
+                        btn.classList.remove("in-wish-list")
                     }
                 })
-                cartDiv = document.querySelectorAll('.product-cart__cart')
-                addToCartBtns = document.querySelectorAll('[data-add-cart]')
+                openToast("failed", "Товар удален из избранного")
+                closingToast()
+            }
+        } else {
+            let product_id = e.currentTarget.id;
+            let response = await fetch("/wishlist", {
+                method: "POST",
+                body: JSON.stringify({ product_id }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            response = await response.json();
+
+            if (response.ok) {
+                let btns = document.querySelectorAll('button.wish-list-btn');
+                btns.forEach(btn => {
+                    if (btn.id === target.id) {
+                        btn.style.backgroundColor = "#32386B"
+                        btn.classList.add("in-wish-list")
+                    }
+                })
+                openToast("success", "Товар добавлен в избранное")
+                closingToast()
             }
 
             if (!response.ok) {
                 openToast('failed', 'Вы не вошли в систему. Пожалуйста, войдите сначала')
                 closingToast()
             }
-        })
+        }
     })
-} catch (e) {
-    console.log(e)
-}
-
-    try {
-    cartDiv.forEach(cart => {
-        let incrementBtn = cart.querySelector('.product-card__cart__btn--increment');
-        let decrementBtn = cart.querySelector('.product-card__cart__btn--decrement');
-        let id = cart.id
-        incrementBtn.addEventListener("click", async e => {
-            console.log(e.currentTarget)
-            let response = await fetch("/cart/api/plus", {
-                method: "PATCH",
-                body: JSON.stringify({ product_id: id }),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
-
-            response = await response.json();
-
-            if (response.ok) {
-                cartDiv.forEach(cart => {
-                    if (cart.id === id) {
-                        cart.querySelector('span').textContent = response.cart_incremented[0][0][0].count
-                    }
-                })
-            }
-        })
-
-        decrementBtn.addEventListener("click", async e => {
-            let response = await fetch("/cart/api/minus", {
-                method: "PATCH",
-                body: JSON.stringify({ product_id: id }),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
-
-            response = await response.json();
-
-            if (response.ok) {
-                cartDiv.forEach(cart => {
-                    if (cart.id === id) {
-                        if (response.cart === 0) {
-                            let parentElement = cart.parentElement
-                            parentElement.children[1].remove()
-                            parentElement.innerHTML += `
-                                    <button class="to-cart" data-add-cart="" id="${id}">
-                                       В корзину
-                                    </button>
-                                `
-                        } else {
-                            cart.querySelector('span').textContent = response.cart[0][0][0].count
-                        }
-                    }
-                })
-                cartDiv = document.querySelectorAll('.product-cart__cart')
-                addToCartBtns = document.querySelectorAll('[data-add-cart]')
-            }
-        })
-    })
-} catch (e) {
-    console.log(e)
-}
+})
