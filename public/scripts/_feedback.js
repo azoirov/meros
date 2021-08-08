@@ -6,7 +6,17 @@ export default function () {
             feedbackModal = selectOne('.feedback-modal'),
             feedbackForm = selectOne('.feedback-modal__form'),
             feedbackRatingInput = selectOne('.feedback-modal__rating-number'),
-            feedbackTextField = selectOne('.feedback-modal__textarea')
+            feedbackTextField = selectOne('.feedback-modal__textarea'),
+            feedbackModalOpener = selectOne('#feedback-modal-opener'),
+            feedbackModalCloser = selectOne('#feedback-modal-closer')
+        feedbackModalOpener.addEventListener('click', e => {
+            feedbackModal.classList.remove('d-none')
+            document.body.style.overflow = 'hidden'
+        })
+        feedbackModalCloser.addEventListener('click', e => {
+            feedbackModal.classList.add('d-none')
+            document.body.style.overflow = ''
+        })
 
         for (let i = 0; i < 5; i++) {
             feedbackModalRating.innerHTML += `
@@ -33,13 +43,31 @@ export default function () {
 
         feedbackForm.addEventListener('submit', async e => {
             e.preventDefault()
+            let star = feedbackRatingInput.value
+
+            if (isNaN(feedbackRatingInput.value) || feedbackRatingInput.value < 0) {
+                star = 0
+            }
+
+            if (feedbackRatingInput.value > 5) {
+                star = 5
+            }
             let response = await fetch('/category/product/comment', {
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8'
                 },
                 method: 'POST',
-                body:
+                body: JSON.stringify({
+                    comment_text: feedbackTextField.value.trim(),
+                    product_id: e.currentTarget.id,
+                    star
+                })
             })
+            response = await response.json()
+
+            if (response.ok) {
+                window.location.reload()
+            }
         })
     } catch (e) {}
 }

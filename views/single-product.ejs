@@ -694,32 +694,31 @@ if (product.sub_sub_category_id) {
                 <main class="reviews__left__main">
                     <div class="comments">
                         <ul class="comments__ul">
-                            <li class="comments__item">
-                                <div class="comment__owner-image">
-                                    <img src="https://i.pravatar.cc/50?img=4" alt="nimadir"/>
-                                </div>
-                                <div class="comment__info">
-                                    <h4 class="comment__owner-name">Санжар Фозилжонович</h4>
-                                    <div class="comment__rating-stars">
-                                        <img src="/images/products/rating.svg" alt="rating star"/>
+                            <% comments.forEach(comment => { %>
+                                <li class="comments__item">
+                                    <div class="comment__owner-image">
+                                        <img src="/images/users/<%= comment['user.avatar']%>" alt="avatar"/>
                                     </div>
-                                    <p class="comment__text">
-                                        Хорошая печать, качество бумаги. Перевод сделан красочным,
-                                        комментарии подробные. В общем, сделанным выбором, остался
-                                        доволен. Правда, с доставкой задержали, но ничего, в
-                                        принципе, страшного.
-                                    </p>
-                                    <div class="comment__state">
-                                        <time class="comment__time">Сегодня, 13:37</time>
+                                    <div class="comment__info">
+                                        <h4 class="comment__owner-name"><%= comment['user.full_name']%></h4>
+                                        <div class="comment__rating-stars">
+                                            <img src="/images/rating-stars/<%= comment.star %>.svg" alt="rating star"/>
+                                        </div>
+                                        <p class="comment__text">
+                                            <%= comment.comment_text %>
+                                        </p>
+                                        <div class="comment__state">
+                                            <time class="comment__time"><%= comment.createdAt %></time>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            <% }) %>
                         </ul>
                     </div>
                 </main>
             </div>
             <div class="reviews__right">
-                <button class="button-blue mb-20">Оставить отзыв</button>
+                <button class="button-blue mb-20" id="feedback-modal-opener">Оставить отзыв</button>
             </div>
         </div>
     </div>
