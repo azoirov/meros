@@ -32,7 +32,9 @@ import addBanners from './_add-banners'
 import addHomeBanners from './_add-home-banner'
 import userCabinet from './_user-cabinet'
 import cartIncDec from './_cart-inc-dec';
-import wishList from './_wish-list'
+import wishList from './_wish-list';
+import singleProductCart from './_single-product-cart';
+import singleProductAddCart from "./_single-product-cart-add"
 
 document.addEventListener('DOMContentLoaded', () => {
    cabinetDropdown()
@@ -68,4 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
    userCabinet()
    cartIncDec()
    wishList()
+   singleProductAddCart()
+   singleProductCart()
 })

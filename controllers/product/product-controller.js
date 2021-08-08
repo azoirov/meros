@@ -214,33 +214,20 @@ module.exports = class ProductsController {
                 raw: true,
             });
 
-            let models = await req.db.models.findAll({
+            let cart = await req.db.carts.findOne({
                 where: {
                     product_id: product.product_id,
+                    user_id: req.user.id
                 },
-                raw: true,
-            });
+                raw: true
+            })
 
-            let colors = await req.db.product_colors.findAll({
-                where: {
-                    product_id: product.product_id,
-                },
-                raw: true,
-            });
+            product.cart = cart ? cart.count : 0
 
             let comments = await req.db.comments.findAll({
                 where: {
                     product_id: product.product_id,
                 },
-                raw: true,
-            });
-
-            let token = req.headers["authorization"];
-
-            let cart = [];
-            let user;
-
-            let categories = await req.db.categories.findAll({
                 raw: true,
             });
 
@@ -253,42 +240,12 @@ module.exports = class ProductsController {
                 );
                 comment.thumb = [...thumbs];
             }
-            if (token) {
-                let { session_id } = verifyToken(token);
-                if (session_id) {
-                    let session = await req.db.sessions.findOne({
-                        where: {
-                            session_id: session_id,
-                        },
-                        raw: true,
-                    });
-                    if (session) {
-                        user = await req.db.users.findOne({
-                            where: {
-                                user_id: session.user_id,
-                            },
-                        });
-                        cart = await req.db.carts.findOne({
-                            where: {
-                                user_id: session.user_id,
-                            },
-                            raw: true,
-                            include: {
-                                model: req.db.products,
-                            },
-                        });
-                    }
-                }
-            }
 
             res.render("single-product", {
-                title: "Meros | Cart",
-                cart,
+                title: `Meros | ${product.ru_name}`,
                 product,
                 comments,
                 categories: req.categories,
-                models,
-                colors,
                 user: req.user,
             });
         } catch (e) {
@@ -791,10 +748,16 @@ module.exports = class ProductsController {
 
             let recomendations = await req.db.recomendations.findAll({
                 raw: true,
+                include: {
+                    model: req.db.products
+                }
             });
 
             let bestsellers = await req.db.bestsellers.findAll({
                 raw: true,
+                include: {
+                    model: req.db.products
+                }
             });
 
             let banners = await req.db.banners.findOne({
@@ -872,33 +835,63 @@ module.exports = class ProductsController {
     static async SubCategoryGetController(req, res) {
         try {
             const { sub_category_slug } = req.params;
-            let sub_category = await req.db.sub_category.findOne({
+
+            let { c_page } = req.query;
+
+            c_page = c_page || 1;
+
+            let sub_category = await req.db.categories.findOne({
                 where: {
-                    sub_category_slug,
+                    slug: sub_category_slug
                 },
             });
+
             if (!sub_category) {
-                throw new Error("SubCategory not found");
+                throw new Error("Category not found");
             }
+
+            let products = await req.db.products.findAll({
+                    where: {
+                        sub_category_id: sub_category.dataValues.sub_category_id
+                    },
+                    limit: 20,
+                    offset: 20 * (c_page - 1),
+                    raw: true,
+                    include: [
+                        {
+                            model: req.db.categories,
+                        },
+                        {
+                            model: req.db.sub_category
+                        }
+                    ]
+                }
+            );
 
             let sub_sub_category = await req.db.sub_sub_category.findAll({
                 where: {
-                    sub_category_id: sub_category.dataValues.sub_category_id,
+                    category_id: sub_category.dataValues.category_id,
                 },
                 raw: true,
             });
 
             let recomendations = await req.db.recomendations.findAll({
                 raw: true,
+                include: {
+                    model: req.db.products
+                }
             });
 
             let bestsellers = await req.db.bestsellers.findAll({
                 raw: true,
+                include: {
+                    model: req.db.products
+                }
             });
 
-            let banners = await req.psql.banners.findOne({
+            let banners = await req.db.banners.findOne({
                 where: {
-                    category_id: category.dataValues.category_id,
+                    category_id: sub_category.dataValues.category_id,
                 },
                 raw: true,
             });
@@ -912,23 +905,55 @@ module.exports = class ProductsController {
 
             let sponsors = await req.db.sponsors.findAll({
                 raw: true,
-            });
+            })
 
-            res.render("sub_sub_category", {
-                title: "Meros | " + sub_category.dataValues.sub_category_name,
-                path:
-                    "/category/" +
-                    sub_category.dataValues.category_slug +
-                    "/" +
-                    sub_category.dataValues.sub_category_slug,
+            let sub_sub_categories = await req.db.sub_sub_category.findAll({raw: true});
+
+            // sub_categories = sub_categories.map(el => {
+            //     el.sub_sub_categories = sub_sub_categories.filter(c => c.sub_category_id === el.sub_category_id)
+            //     return el
+            // })
+
+            let goodOffers = await req.db.products.findAll({
+                where: {
+                    category_id: category.category_id,
+                    sale: {
+                        [Op.gte]: 50
+                    },
+                },
+                include: [
+                    {
+                        model: req.db.categories
+                    },
+                    {
+                        model: req.db.sub_category
+                    }
+                ],
+                raw: true
+            })
+
+            if(req.user) {
+                products = await inCart(req.db, products, req.user.id);
+                goodOffers = await inCart(req.db, goodOffers, req.user.id)
+            }
+
+            products = await howManyStar(req.db, products)
+            goodOffers = await howManyStar(req.db, goodOffers)
+
+            res.render("sub-category", {
+                title: "Meros | " + category.ru_name.toUpperCase(),
+                path: "/category/" + category.dataValues.category_slug,
                 user: req.user,
-                sub_category: sub_category.dataValues,
-                sub_sub_category,
+                category: category.dataValues,
+                sub_category,
                 recomendations,
                 bestsellers,
                 banners,
                 brands,
                 sponsors,
+                categories: req.categories,
+                products,
+                goodOffers
             });
         } catch (e) {
             res.send(e);
