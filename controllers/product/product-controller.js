@@ -853,6 +853,8 @@ module.exports = class ProductsController {
             products = await howManyStar(req.db, products)
             goodOffers = await howManyStar(req.db, goodOffers)
 
+            console.log(products[0])
+
             res.render("sub-category", {
                 title: "Meros | " + category.ru_name.toUpperCase(),
                 path: "/category/" + category.dataValues.category_slug,

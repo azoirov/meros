@@ -1,4 +1,4 @@
-import { selectOne, selectAll } from "./_functions"
+import { selectOne, selectAll, addClass, removeClass } from './_functions'
 
 export default function () {
     try {
@@ -23,33 +23,19 @@ export default function () {
                     })
                     response = await response.json()
 
+                    console.log(response)
+
                     if (response.ok) {
                         addToCartBtns.forEach(btn => {
                             if (btn.getAttribute('data-add-cart') === productId) {
-                                const parentElement = btn.parentElement
-                                parentElement.children[1].remove()
-                                parentElement.innerHTML += `
-                                <div class="product-card__cart" id="${el.id}">
-                                    <button class="product-card__cart__btn product-card__cart__btn--increment" data-increment-product="${response.result.cart_added.product_id}">
-                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M12 5V19" stroke="#8D909B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                          <path d="M5 12H19" stroke="#8D909B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                      </svg>
-                                    </button>
-                                    <span>1</span>
-                                    <button class="product-card__cart__btn product-card__cart__btn--decrement" data-decrement-product="${response.result.cart_added.product_id}">
-                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                           <path d="M5 12H19" stroke="#8D909B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                      </svg>
-                                    </button>
-                                </div>
-                            `
+                                addClass(btn, 'd-none')
+                                btn.nextElementSibling.classList.remove('d-none')
+                                btn.nextElementSibling.children[1].textContent = 1
+                                headerCartIndicator.textContent = response.result.user.productCountInCart + 1
+                                bottomCartIndicator.textContent = response.result.user.productCountInCart + 1
                             }
                         })
                     }
-
-                    increment()
-                    decrement()
                 })
             })
         }
@@ -89,7 +75,7 @@ export default function () {
 
         increment()
 
-        function decrement(a) {
+        function decrement() {
             let productDecrementBtns = selectAll('[data-decrement-product]')
             productDecrementBtns.forEach(el => {
                 el.addEventListener('click', async e => {
@@ -120,18 +106,12 @@ export default function () {
                     if (!response.ok) {
                         productDecrementBtns.forEach(el => {
                             if (el.getAttribute('data-decrement-product') === productId) {
-                                let parentElement = el.parentElement.parentElement
-                                parentElement.children[1].remove()
-                                parentElement.innerHTML += `
-                                <button class="to-cart" data-add-cart=${productId}>
-                                    В корзину
-                                </button>
-                            `
+                                addClass(el.parentElement, 'd-none')
+                                removeClass(el.parentElement.previousElementSibling, 'd-none')
                             }
                         })
                         headerCartIndicator.textContent = response.user.productCountInCart - 1
                         bottomCartIndicator.textContent = response.user.productCountInCart - 1
-                        addToCart()
                     }
                 })
             })

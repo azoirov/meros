@@ -1,8 +1,8 @@
 <% var products %>
 <%
-const capitalize = text => {
-    return text[0].toUpperCase() + text.substring(1)
-}
+    const capitalize = text => {
+        return text[0].toUpperCase() + text.substring(1)
+    }
 %>
 <%- include('partials/header') %>
 
@@ -88,7 +88,7 @@ const capitalize = text => {
                                                     </button>
                                                 </li>
                                                 <li class="product-card__action__item">
-                                                    <% if(product.inWishList) { %>
+                                                    <% if (product.inWishList) { %>
                                                         <button>
                                                             <img src="/images/icons/star.svg" alt="star icon">
                                                         </button>
@@ -123,47 +123,46 @@ const capitalize = text => {
                                         </div>
                                         <div class="product-card__body">
                                             <a class="product-card__category"
-                                               href="/category/<%= product['category.ru_name'] %>"><%= product['category.ru_name'][0].toUpperCase() + product['category.ru_name'].substring(1) %></a>
+                                               href="/category/<%= product['category.ru_name'] %>"><%= capitalize(product['category.ru_name']) %></a>
                                             <h3 class="product-card__title">
                                                 <a style="color: #273142" href="/product/<%= product.slug %>">
-                                                    <%= product.ru_name[0].toUpperCase() + product.ru_name.substring(1) %>
+                                                    <%= capitalize(product.ru_name) %>
                                                 </a>
                                             </h3>
-                                            <img class="product-card__rating-stars" src="/images/products/rating.svg"
+                                            <img class="product-card__rating-stars" src="/images/rating-stars/<%= product.stars %>.svg"
                                                  alt="rating stars">
                                         </div>
                                     </div>
                                     <div>
                                         <div class="product-card__footer">
-                                            <span class="product-card__new-price"><%= Math.round(product.price * product.sale / 100) %> сум</span>
+                                            <span class="product-card__new-price"><%= Math.round(product.price * (100 - product.sale) / 100) %> сум</span>
                                             <del class="product-card__old-price"><%= product.price %> сум</del>
                                         </div>
-                                        <% if (!product.inCart) { %>
-                                            <button class="to-cart" data-add-cart="<%= product.product_id %>">
-                                                В корзину
+                                        <button class="to-cart <%= product.inCart ? 'd-none' : '' %>"
+                                                data-add-cart="<%= product.product_id %>">
+                                            В корзину
+                                        </button>
+                                        <div class="product-card__cart <%= product.inCart ? '' : 'd-none' %>">
+                                            <button class="product-card__cart__btn product-card__cart__btn--increment"
+                                                    data-increment-product="<%= product.product_id %>">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12 5V19" stroke="#8D909B" stroke-width="2"
+                                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M5 12H19" stroke="#8D909B" stroke-width="2"
+                                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
                                             </button>
-                                        <% } %>
-                                        <% if (product.inCart) { %>
-                                            <div class="product-card__cart">
-                                                <button class="product-card__cart__btn product-card__cart__btn--increment" data-increment-product="<%= product.product_id %>">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M12 5V19" stroke="#8D909B" stroke-width="2"
-                                                              stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M5 12H19" stroke="#8D909B" stroke-width="2"
-                                                              stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </button>
-                                                <span><%= product.inCart %></span>
-                                                <button class="product-card__cart__btn product-card__cart__btn--decrement" data-decrement-product="<%= product.product_id %>">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M5 12H19" stroke="#8D909B" stroke-width="2"
-                                                              stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        <% } %>
+                                            <span><%= product.inCart %></span>
+                                            <button class="product-card__cart__btn product-card__cart__btn--decrement"
+                                                    data-decrement-product="<%= product.product_id %>">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 12H19" stroke="#8D909B" stroke-width="2"
+                                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -229,7 +228,7 @@ const capitalize = text => {
                                         </button>
                                     </li>
                                     <li class="product-card__action__item">
-                                        <% if(product.inWishList) { %>
+                                        <% if (!product.inWishList) { %>
                                             <button>
                                                 <img src="/images/icons/star.svg" alt="star icon">
                                             </button>
@@ -264,47 +263,46 @@ const capitalize = text => {
                             </div>
                             <div class="product-card__body">
                                 <a class="product-card__category"
-                                   href="/category/<%= product['category.ru_name'] %>"><%= product['category.ru_name'][0].toUpperCase() + product['category.ru_name'].substring(1) %></a>
+                                   href="/category/<%= product['category.ru_name'] %>"><%= capitalize(product['category.ru_name']) %></a>
                                 <h3 class="product-card__title">
                                     <a style="color: #273142" href="/product/<%= product.slug %>">
-                                        <%= product.ru_name[0].toUpperCase() + product.ru_name.substring(1) %>
+                                        <%= capitalize(product.ru_name) %>
                                     </a>
                                 </h3>
-                                <img class="product-card__rating-stars" src="/images/products/rating.svg"
+                                <img class="product-card__rating-stars" src="/images/rating-stars/<%= product.stars %>.svg"
                                      alt="rating stars">
                             </div>
                         </div>
                         <div>
                             <div class="product-card__footer">
-                                <span class="product-card__new-price"><%= Math.round(product.price * product.sale / 100) %> сум</span>
+                                <span class="product-card__new-price"><%= Math.round(product.price * (100 - product.sale) / 100) %> сум</span>
                                 <del class="product-card__old-price"><%= product.price %> сум</del>
                             </div>
-                            <% if (!product.inCart) { %>
-                                <button class="to-cart" data-add-cart="<%= product.product_id %>">
-                                    В корзину
+                            <button class="to-cart <%= product.inCart ? 'd-none' : '' %>"
+                                    data-add-cart="<%= product.product_id %>">
+                                В корзину
+                            </button>
+                            <div class="product-card__cart <%= product.inCart ? '' : 'd-none' %>">
+                                <button class="product-card__cart__btn product-card__cart__btn--increment"
+                                        data-increment-product="<%= product.product_id %>">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 5V19" stroke="#8D909B" stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M5 12H19" stroke="#8D909B" stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                 </button>
-                            <% } %>
-                            <% if (product.inCart) { %>
-                                <div class="product-card__cart">
-                                    <button class="product-card__cart__btn product-card__cart__btn--increment" data-increment-product="<%= product.product_id %>">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12 5V19" stroke="#8D909B" stroke-width="2"
-                                                  stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M5 12H19" stroke="#8D909B" stroke-width="2"
-                                                  stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </button>
-                                    <span><%= product.inCart %></span>
-                                    <button class="product-card__cart__btn product-card__cart__btn--decrement" data-decrement-product="<%= product.product_id %>">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5 12H19" stroke="#8D909B" stroke-width="2"
-                                                  stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            <% } %>
+                                <span><%= product.inCart %></span>
+                                <button class="product-card__cart__btn product-card__cart__btn--decrement"
+                                        data-decrement-product="<%= product.product_id %>">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 12H19" stroke="#8D909B" stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 <% }) %>
@@ -312,74 +310,6 @@ const capitalize = text => {
         </div>
     </div>
 </section>
-
-<!--<section class="section popular-authors mb-70">-->
-<!--    <div class="container">-->
-<!--        <header class="section__header">-->
-<!--            <h2 class="section__heading">Популярные категории</h2>-->
-<!--        </header>-->
-<!--        <div class="popular-authors__slider splide">-->
-<!--            <div class="splide__track">-->
-<!--                <ul class="splide__list">-->
-<!--                    <li class="splide__slide">-->
-<!--                        <div class="popular-authors__card">-->
-<!--                            <div>-->
-<!--                                <img src="/images/popular-authors/1.jpg" alt="Книги">-->
-<!--                            </div>-->
-<!--                            <h3>Шейх Мухаммад Садык Мухаммад Юсуф</h3>-->
-<!--                            <a href="/"> </a>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="splide__slide">-->
-<!--                        <div class="popular-authors__card">-->
-<!--                            <div>-->
-<!--                                <img src="/images/popular-authors/2.jpg" alt="Книги">-->
-<!--                            </div>-->
-<!--                            <h3>Шамиль Аляутдинов</h3>-->
-<!--                            <a href="/"> </a>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="splide__slide">-->
-<!--                        <div class="popular-authors__card">-->
-<!--                            <div>-->
-<!--                                <img src="/images/popular-authors/3.jpg" alt="Книги">-->
-<!--                            </div>-->
-<!--                            <h3>Эльмир Кулиев</h3>-->
-<!--                            <a href="/"> </a>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="splide__slide">-->
-<!--                        <div class="popular-authors__card">-->
-<!--                            <div>-->
-<!--                                <img src="/images/popular-authors/4.jpg" alt="Книги">-->
-<!--                            </div>-->
-<!--                            <h3>Саид Афанди Чиркейский</h3>-->
-<!--                            <a href="/"> </a>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="splide__slide">-->
-<!--                        <div class="popular-authors__card">-->
-<!--                            <div>-->
-<!--                                <img src="/images/popular-authors/5.jpg" alt="Книги">-->
-<!--                            </div>-->
-<!--                            <h3>Муфтий Шейх Равиль Гайнутдин</h3>-->
-<!--                            <a href="/"> </a>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="splide__slide">-->
-<!--                        <div class="popular-authors__card">-->
-<!--                            <div>-->
-<!--                                <img src="/images/popular-authors/6.jpg" alt="Книги">-->
-<!--                            </div>-->
-<!--                            <h3>Назаров Ариф</h3>-->
-<!--                            <a href="/"> </a>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
 
 <section class="additional">
     <div class="container">
