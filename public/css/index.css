@@ -284,6 +284,10 @@ button[disabled], button[disabled]:hover {
   margin-right: 0 !important;
 }
 
+.in-wish-list {
+  background-color: #32386B;
+}
+
 .header {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 }
