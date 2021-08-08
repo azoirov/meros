@@ -2,7 +2,7 @@ const { verifyToken } = require("../../modules/jwt");
 const { Op } = require("sequelize");
 const fs = require("fs/promises");
 const path = require("path");
-const {inCart, howManyStar} = require("../../modules/product");
+const { inCart, howManyStar } = require("../../modules/product");
 module.exports = class ProductsController {
     // static async ProductsGetController(req, res) {
     //     try {
@@ -267,7 +267,7 @@ module.exports = class ProductsController {
         try {
             let { product_id } = req.body;
 
-            if(!req.user) {
+            if (!req.user) {
                 throw new Error("User is not logged in")
             }
 
@@ -306,7 +306,7 @@ module.exports = class ProductsController {
         try {
             let { product_id } = req.body
 
-            if(!req.user) {
+            if (!req.user) {
                 throw new Error("User is not logged in")
             }
 
@@ -343,43 +343,43 @@ module.exports = class ProductsController {
     static async CartMinusPatchController(req, res) {
         try {
             let { product_id } = req.body;
-            if(!req.user) {
+            if (!req.user) {
                 throw new Error("User is not logged in")
             }
-               let cart = await req.db.carts.findOne({
+            let cart = await req.db.carts.findOne({
+                where: {
+                    user_id: req.user.id,
+                    product_id,
+                },
+                raw: true,
+            });
+            if (!cart) {
+                throw new Error("Cart is not found");
+            }
+            let isDestroyed = false
+            if (cart.count === 1) {
+
+                cart = await req.db.carts.destroy({
                     where: {
                         user_id: req.user.id,
                         product_id,
                     },
                     raw: true,
+                    returning: true,
                 });
-                if (!cart) {
-                    throw new Error("Cart is not found");
-                }
-                let isDestroyed = false
-                if (cart.count === 1) {
 
-                    cart = await req.db.carts.destroy({
-                        where: {
-                            user_id: req.user.id,
-                            product_id,
-                        },
-                        raw: true,
-                        returning: true,
-                    });
-
-                    cart = 0;
-                } else {
-                    cart = await req.db.carts.decrement("count", {
-                        by: 1,
-                        where: {
-                            user_id: req.user.id,
-                            product_id,
-                        },
-                        raw: true,
-                        returning: true,
-                    });
-                }
+                cart = 0;
+            } else {
+                cart = await req.db.carts.decrement("count", {
+                    by: 1,
+                    where: {
+                        user_id: req.user.id,
+                        product_id,
+                    },
+                    raw: true,
+                    returning: true,
+                });
+            }
             res.status(200).json({
                 ok: true,
                 message: "decremented",
@@ -478,28 +478,28 @@ module.exports = class ProductsController {
     static async WishListAddController(req, res) {
         try {
             let { product_id } = req.body;
-            if(!req.user) {
+            if (!req.user) {
                 throw new Error("User is not logged in")
             }
             let wishlist;
 
-                wishlist = await req.db.wishlists.findOne({
-                    where: {
-                        user_id: req.user.id,
-                        product_id,
-                    },
-                    raw: true,
-                });
-
-                if (wishlist) {
-                    throw new Error("Already added");
-                }
-
-                wishlist = await req.db.wishlists.create({
+            wishlist = await req.db.wishlists.findOne({
+                where: {
                     user_id: req.user.id,
-                    product_id: product_id,
-                });
-                wishlist = await wishlist.dataValues;
+                    product_id,
+                },
+                raw: true,
+            });
+
+            if (wishlist) {
+                throw new Error("Already added");
+            }
+
+            wishlist = await req.db.wishlists.create({
+                user_id: req.user.id,
+                product_id: product_id,
+            });
+            wishlist = await wishlist.dataValues;
 
 
             res.status(200).json({
@@ -520,16 +520,16 @@ module.exports = class ProductsController {
     static async WishlistDeleteController(req, res) {
         try {
             let { product_id } = req.body;
-            if(!req.user) {
+            if (!req.user) {
                 throw new Error("User is not logged in")
             }
 
-                await req.db.wishlists.destroy({
-                    where: {
-                        user_id: req.user.id,
-                        product_id,
-                    },
-                });
+            await req.db.wishlists.destroy({
+                where: {
+                    user_id: req.user.id,
+                    product_id,
+                },
+            });
 
             res.status(200).json({
                 ok: true,
@@ -548,14 +548,14 @@ module.exports = class ProductsController {
         try {
             let wishlist;
 
-            if(!req.user) throw new Error("User is not loggeed in")
+            if (!req.user) throw new Error("User is not loggeed in")
 
-                wishlist = await req.db.wishlists.findAll({
-                    where: {
-                        user_id: req.user.id,
-                    },
-                    raw: true,
-                });
+            wishlist = await req.db.wishlists.findAll({
+                where: {
+                    user_id: req.user.id,
+                },
+                raw: true,
+            });
 
 
             res.status(200).json({
@@ -579,20 +579,20 @@ module.exports = class ProductsController {
 
             let products;
 
-            if(category_id === "all" || !category_id) {
+            if (category_id === "all" || !category_id) {
                 products = await req.db.products.findAll({
                     where: {
-                            [Op.or]: {
-                                uz_name: {
-                                    [Op.iLike]: `%${q}%`
-                                },
-                                ru_name: {
-                                    [Op.iLike]: `%${q}%`
-                                },
-                                en_name: {
-                                    [Op.iLike]: `%${q}%`
-                                }
+                        [Op.or]: {
+                            uz_name: {
+                                [Op.iLike]: `%${q}%`
+                            },
+                            ru_name: {
+                                [Op.iLike]: `%${q}%`
+                            },
+                            en_name: {
+                                [Op.iLike]: `%${q}%`
                             }
+                        }
                     }
                 })
             } else {
@@ -727,7 +727,7 @@ module.exports = class ProductsController {
                 },
             });
 
-                if (!category) {
+            if (!category) {
                 throw new Error("Category not found");
             }
 
@@ -792,8 +792,8 @@ module.exports = class ProductsController {
                 raw: true,
             })
 
-            let sub_categories = await req.db.sub_category.findAll({raw: true});
-            let sub_sub_categories = await req.db.sub_sub_category.findAll({raw: true});
+            let sub_categories = await req.db.sub_category.findAll({ raw: true });
+            let sub_sub_categories = await req.db.sub_sub_category.findAll({ raw: true });
 
             sub_categories = sub_categories.map(el => {
                 el.sub_sub_categories = sub_sub_categories.filter(c => c.sub_category_id === el.sub_category_id)
@@ -818,7 +818,7 @@ module.exports = class ProductsController {
                 raw: true
             })
 
-            if(req.user) {
+            if (req.user) {
                 products = await inCart(req.db, products, req.user.id);
                 goodOffers = await inCart(req.db, goodOffers, req.user.id)
             }
@@ -958,8 +958,7 @@ module.exports = class ProductsController {
             })
 
 
-
-            if(req.user) {
+            if (req.user) {
                 products = await inCart(req.db, products, req.user.id);
                 goodOffers = await inCart(req.db, goodOffers, req.user.id)
             }
@@ -969,7 +968,7 @@ module.exports = class ProductsController {
             res.render("sub-sub-category", {
                 title: "Meros | " + sub_category.sub_category_name_ru.toUpperCase(),
                 user: req.user,
-                    sub_category,
+                sub_category,
                 recomendations,
                 bestsellers,
                 banners,
@@ -1006,7 +1005,7 @@ module.exports = class ProductsController {
             let products = await req.db.products.findAll({
                 where: {
                     sub_sub_category_id:
-                        sub_sub_category.dataValues.sub_sub_category_id,
+                    sub_sub_category.dataValues.sub_sub_category_id,
                 },
                 raw: true,
 
