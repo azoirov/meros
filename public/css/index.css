@@ -3401,21 +3401,6 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
 }
-.cart__products__info__middle span {
-  padding: 4px 12px;
-  background-color: #EE1758;
-  border-radius: 4px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
-  color: #FFFFFF;
-}
-.cart__products__info__middle span:first-child {
-  margin-right: 10px;
-  background-color: #3AC267;
-}
 
 .cart__products__info__bottom {
   display: flex;
