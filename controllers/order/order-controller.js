@@ -18,6 +18,15 @@ module.exports = class OrderController {
                 description,
             } = req.body;
 
+            let product = await req.db.products.findOne({
+                where: {
+                    product_id,
+                },
+                raw: true,
+            });
+
+            if(!product.in_stock) throw new Error("Product is not in stock")
+
             if (!req.user) {
                 throw new Error("Not authorized");
             }
@@ -46,12 +55,7 @@ module.exports = class OrderController {
 
             order_item = await order_item.dataValues;
 
-            let product = await req.db.products.findOne({
-                where: {
-                    product_id,
-                },
-                raw: true,
-            });
+
             let model;
             if (model_id) {
                 model = await req.db.models.findOne({
@@ -123,6 +127,19 @@ module.exports = class OrderController {
                 raw: true,
             });
 
+            for (let c of cart) {
+                let product = await req.db.products.findOne({
+                    where: {
+                        product_id: c.product_id
+                    },
+                    raw: true
+                });
+
+                if(!product.in_stock) {
+                    cart.splice(cart.indexOf(c), 1)
+                }
+            }
+
             if (!cart) {
                 throw new Error("user cart is empty");
             }
@@ -181,6 +198,10 @@ module.exports = class OrderController {
                     price = c.count * product_price;
                 }
                 total += price;
+            }
+
+            if(cart.length === 0) {
+                throw new Error("Nothing to order")
             }
 
             const link =
