@@ -235,6 +235,35 @@ module.exports = class ProductsController {
                 raw: true,
             });
 
+            let recomendations = await req.db.recomendations.findAll({
+                raw: true,
+                include: {
+                    model: req.db.products,
+                    include: req.db.categories
+                }
+            });
+
+            let bestseller = await req.db.bestsellers.findAll({
+                raw: true,
+                include: {
+                    model: req.db.products,
+                    include: req.db.categories
+                }
+            });
+
+            let rec = [...recomendations, ...bestseller];
+            let arr = [];
+            rec.forEach(el => {
+                if(!arr.includes(el)) {
+                    arr.push(el)
+                }
+            });
+            rec = arr
+            rec = await howManyStar(req.db, rec)
+            if(req.user) {
+                rec = await inCart(req.db, rec, req.user.id)
+            }
+
             comments.forEach(comment => {
                 let time = moment(comment.createdAt).locale("ru").format("LL")
                 comment.time = time
@@ -255,8 +284,10 @@ module.exports = class ProductsController {
             comments.forEach(comment => {
                 stars += comment.star
             })
-            stars = Math.round(stars/comments.length)
+            stars = comments.length ? Math.round(stars/comments.length) : 0
             product.star = stars
+
+            rec = rec.filter(el => el.product_id !== product.product_id)
 
             res.render("single-product", {
                 title: `Meros | ${product.ru_name}`,
@@ -264,6 +295,7 @@ module.exports = class ProductsController {
                 comments,
                 categories: req.categories,
                 user: req.user,
+                recommendation: rec
             });
         } catch (e) {
             res.status(400).json({
@@ -393,7 +425,7 @@ module.exports = class ProductsController {
             res.status(200).json({
                 ok: true,
                 message: "decremented",
-                cart_decremented: cart[0][0][0],
+                cart_decremented: cart[0][0] ? cart[0][0][0] : 0,
                 user: req.user
             });
         } catch (e) {
@@ -423,6 +455,8 @@ module.exports = class ProductsController {
                     model: req.db.products,
                 },
             });
+
+            cart = await inCart(req.db, cart);
 
             let totalPrice = 0;
 

@@ -22,20 +22,10 @@ export default function () {
                 openToast('failed', 'Вы не вошли в систему. Пожалуйста, войдите сначала')
                 closingToast()
             } else {
-                addBtn.remove();
+                addBtn.classList.add('d-none')
                 btnGroup = document.querySelector(".product-count");
-                btnGroup.innerHTML = `
-                  <h4>Количество:</h4>
-                  <div class="product-count__change">
-                      <button id="${addBtn.id}" class="single_dec_cart">
-                        <img src="/images/icons/minus.svg" alt="" />
-                      </button>
-                      <span>1</span>
-                      <button id="${addBtn.id}" class="single_inc_cart">
-                        <img src="/images/icons/plus.svg" alt="" />
-                      </button>
-                  </div>
-                `
+                btnGroup.querySelector("span").textContent = 1;
+                btnGroup.classList.remove("d-none")
                 singleProductCart()
             }
         })
