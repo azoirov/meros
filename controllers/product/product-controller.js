@@ -436,7 +436,8 @@ module.exports = class ProductsController {
                 user: req.user,
                 categories: req.categories,
                 totalPrice,
-                path: '/cart'
+                path: '/cart',
+                recommendation: rec
             });
         } catch (e) {
             res.status(400).json({
