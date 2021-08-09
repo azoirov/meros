@@ -7,29 +7,27 @@ export default function () {
         let decBtn = document.querySelector('.single_dec_cart');
         let btnGroup = document.querySelector(".product-count");
         let addBtn = document.querySelector(".single_add_to_cart");
-        // decBtn.addEventListener("click", async e => {
-        //     let response = await fetch("/cart/api/minus", {
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         method: "PATCH",
-        //         body: JSON.stringify({
-        //             product_id: decBtn.id
-        //         })
-        //     });
-        //
-        //     response = await response.json();
-        //     console.log(response)
-        //     if(response.ok) {
-        //         if(response.cart === 0) {
-        //             btnGroup.classList.add("d-none");
-        //             addBtn.classList.remove('d-none')
-        //             singleProductAddCart()
-        //         } else {
-        //             btnGroup.querySelector("span").textContent = response.cart[0][0][0].count
-        //         }
-        //     }
-        // })
+        decBtn.addEventListener("click", async e => {
+            let response = await fetch("/cart/api/minus", {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "PATCH",
+                body: JSON.stringify({
+                    product_id: decBtn.id
+                })
+            });
+
+            response = await response.json();
+            if(response.ok) {
+                if(response.cart_decremented === 0) {
+                    btnGroup.classList.add("d-none");
+                    addBtn.classList.remove('d-none')
+                } else {
+                    btnGroup.querySelector("span").textContent = response.cart_decremented.count
+                }
+            }
+        })
         incBtn.addEventListener("click", async e => {
             let response = await fetch("/cart/api/plus", {
                 headers: {

@@ -26,7 +26,6 @@ export default function () {
                 btnGroup = document.querySelector(".product-count");
                 btnGroup.querySelector("span").textContent = 1;
                 btnGroup.classList.remove("d-none")
-                singleProductCart()
             }
         })
     } catch(e) {}
