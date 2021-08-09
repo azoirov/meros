@@ -93,7 +93,8 @@ const titleNormalize = title => {
     </div>
 </section>
 
-<section class="section products">
+<% if(bestsellers.length > 0) { %>
+    <section class="section products">
     <div class="container">
         <h2 class="section__heading">Лучшие предложения!</h2>
         <div class="row mb-70">
@@ -200,7 +201,7 @@ const titleNormalize = title => {
         </div>
     </div>
 </section>
-
+<% } %>
 <div class="container">
     <div class="ad-tape">
         <a href="<%= banners.banner_horizontal_2.url ? banners.banner_horizontal_2.url : '#' %>">
@@ -212,8 +213,8 @@ const titleNormalize = title => {
         </a>
     </div>
 </div>
-
-<section class="section products mb-50">
+<% if(sale.length > 0) { %>
+    <section class="section products mb-50">
     <div class="container">
         <h2 class="section__heading">Все товары со скидками!</h2>
         <div class="row">
@@ -319,6 +320,7 @@ const titleNormalize = title => {
         </div>
     </div>
 </section>
+<% } %>
 
 <section class="additional">
     <div class="container">
@@ -339,8 +341,8 @@ const titleNormalize = title => {
         </div>
     </div>
 </section>
-
-<section class="section popular-categories">
+<% if(categories.length > 0 ) { %>
+    <section class="section popular-categories">
     <div class="container">
         <header class="section__header">
             <h2 class="section__heading">Популярные категории</h2>
@@ -364,8 +366,10 @@ const titleNormalize = title => {
         </div>
     </div>
 </section>
-
-<%- include("recommendation") %>
+<% } %>
+<% if(recommendation.length > 0) { %>
+    <%- include("recommendation") %>
+<% } %>
 
 <%- include('partials/brands') %>
 <%- include('cabinet/toast') %>
