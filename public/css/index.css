@@ -5460,6 +5460,43 @@ li[data-thumb] img {
   padding-bottom: 20px;
 }
 
+.not-found {
+  height: 100vh;
+  background-color: #32386B;
+  color: #fff;
+  font-size: 100%;
+  line-height: 1.5;
+  margin: -8px;
+  font-family: "Roboto", sans-serif;
+}
+
+.button-404 {
+  font-weight: 300;
+  color: #fff;
+  font-size: 1.2em;
+  text-decoration: none;
+  border: 1px solid #efefef;
+  padding: 0.5em;
+  border-radius: 3px;
+  float: left;
+  margin: 6em 0 0 -155px;
+  left: 50%;
+  position: relative;
+  transition: all 0.3s linear;
+}
+
+.p-404 {
+  font-size: 2em;
+  text-align: center;
+  font-weight: 100;
+}
+
+.h1-404 {
+  text-align: center;
+  font-size: 10em;
+  font-weight: 100;
+}
+
 @media only screen and (max-width: 1455px) {
   .site-logo {
     margin-right: 30px;
