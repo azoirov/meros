@@ -215,13 +215,17 @@ module.exports = class ProductsController {
                 raw: true,
             });
 
-            let cart = await req.db.carts.findOne({
-                where: {
-                    product_id: product.product_id,
-                    user_id: req.user.id
-                },
-                raw: true
-            })
+            let cart
+            if(req.user) {
+                cart = await req.db.carts.findOne({
+                    where: {
+                        product_id: product.product_id,
+                        user_id: req.user.id
+                    },
+                    raw: true
+                })
+            }
+
 
             product.cart = cart ? cart.count : 0
             let wishlist
@@ -313,6 +317,8 @@ module.exports = class ProductsController {
                 recommendation: rec
             });
         } catch (e) {
+            console.log(e)
+
             res.status(400).json({
                 ok: false,
                 message: e + "",
@@ -440,7 +446,7 @@ module.exports = class ProductsController {
             res.status(200).json({
                 ok: true,
                 message: "decremented",
-                cart_decremented: cart[0][0] ? cart[0][0][0] : 0,
+                cart_decremented: cart[0] ? cart[0][0][0] : 0,
                 user: req.user
             });
         } catch (e) {
