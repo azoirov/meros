@@ -72,6 +72,7 @@ export default function () {
         })
 
         const wishlistRemoveBtns = selectAll('[data-wishlist-remove]')
+
         wishlistRemoveBtns.forEach(el => {
             el.addEventListener('click', async e => {
                 const productId = e.currentTarget.getAttribute('data-wishlist-remove')

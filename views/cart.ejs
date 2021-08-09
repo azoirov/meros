@@ -45,15 +45,15 @@
                                                     </a>
                                                 </h3>
                                                 <div class="cart__products__info__count">
-                                                    <button>
+                                                    <button data-cart-product-minus="<%= c['product.product_id']%>">
                                                         <img src="/images/icons/minus.svg" alt="minus icon">
                                                     </button>
                                                     <span><%= c.count %></span>
-                                                    <button>
+                                                    <button data-cart-product-plus="<%= c['product.product_id']%>">
                                                         <img src="/images/icons/plus.svg" alt="plus icon">
                                                     </button>
                                                 </div>
-                                                <button class="cart__products__info__delete">
+                                                <button class="cart__products__info__delete" data-cart-product-remove="<%= c['product.product_id']%>">
                                                     <img src="/images/icons/delete.svg" alt="">
                                                 </button>
                                             </div>
@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                         <div class="cart__products__info__bottom">
-                                            <button class="cart__products__info__favourite">
+                                            <button class="cart__products__info__favourite" data-cart-product-wishlist="<%= c['product.product_id']%>">
                                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -110,110 +110,6 @@
         <% } %>
     </div>
 </section>
-
-<!--<section class="not-available section">-->
-<!--    <div class="container">-->
-<!--        <h2 class="section__heading">Недоступны для заказа</h2>-->
-<!--        <div class="cart__products">-->
-<!--            <div class="cart__products__list">-->
-<!--                <header class="cart__products__header">-->
-<!--                    <label class="check-label">-->
-<!--                        <input class="check-input" type="checkbox">-->
-<!--                        <span class="check-rectangle"> </span>-->
-<!--                        <span class="check-text">Выбрать все</span>-->
-<!--                    </label>-->
-<!--                    <button class="delete-button">Удалить выбранные</button>-->
-<!--                </header>-->
-<!--                <main class="cart__products__main">-->
-<!--                    <ul class="cart__products__ul">-->
-<!--                        <li class="cart__products__li">-->
-<!--                            <label class="check-label mr-30">-->
-<!--                                <input class="check-input" type="checkbox">-->
-<!--                                <span class="check-rectangle"> </span>-->
-<!--                            </label>-->
-<!--                            <div class="cart__products__img">-->
-<!--                                <img src="https://picsum.photos/100/120" alt="product title">-->
-<!--                            </div>-->
-<!--                            <div class="cart__products__info">-->
-<!--                                <div>-->
-<!--                                    <div class="cart__products__info__top">-->
-<!--                                        <h3>Обложка для паспорта</h3>-->
-<!--                                        <button class="cart__products__info__delete">-->
-<!--                                            <img src="/images/icons/delete.svg" alt="">-->
-<!--                                        </button>-->
-<!--                                    </div>-->
-<!--                                    <div class="cart__products__info__middle">-->
-<!--                                        <div class="cart__products__info__ended">Закончился</div>-->
-<!--                                        <div class="cart__products__info__select">-->
-<!--                                            <div>-->
-<!--                                                <img src="/images/icons/bell.svg" alt="">-->
-<!--                                            </div>-->
-<!--                                            <button>Выбрать похожий</button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="cart__products__info__bottom">-->
-<!--                                    <button class="cart__products__info__favourite">-->
-<!--                                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none"-->
-<!--                                             xmlns="http://www.w3.org/2000/svg">-->
-<!--                                            <path fill-rule="evenodd" clip-rule="evenodd"-->
-<!--                                                  d="M9.12676 1.43969C9.42875 0.632082 10.5711 0.632081 10.8731 1.43969L12.7941 6.57703L18.2736 6.81646C19.135 6.8541 19.488 7.94053 18.8132 8.4773L14.5209 11.8918L15.9865 17.1771C16.2169 18.008 15.2927 18.6794 14.5737 18.2036L9.99992 15.1765L5.42617 18.2036C4.70716 18.6794 3.78298 18.008 4.01337 17.1771L5.47892 11.8918L1.18664 8.4773C0.511872 7.94053 0.864876 6.8541 1.72628 6.81646L7.20579 6.57703L9.12676 1.43969ZM9.99992 3.09699L8.40748 7.35571C8.27647 7.70608 7.94872 7.9442 7.57502 7.96053L3.03264 8.15902L6.59084 10.9895C6.88357 11.2224 7.00876 11.6077 6.90881 11.9682L5.69391 16.3495L9.48543 13.8402C9.79735 13.6337 10.2025 13.6337 10.5144 13.8402L14.3059 16.3495L13.091 11.9682C12.9911 11.6077 13.1163 11.2224 13.409 10.9895L16.9672 8.15902L12.4248 7.96053C12.0511 7.9442 11.7234 7.70608 11.5924 7.35571L9.99992 3.09699Z"-->
-<!--                                                  fill=""/>-->
-<!--                                            <span>Добавить в избранное</span>-->
-<!--                                        </svg>-->
-<!--                                    </button>-->
-<!--                                    <span class="price">45 000 UZS</span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </li>-->
-<!--                        <li class="cart__products__li">-->
-<!--                            <label class="check-label mr-30">-->
-<!--                                <input class="check-input" type="checkbox">-->
-<!--                                <span class="check-rectangle"></span>-->
-<!--                            </label>-->
-<!--                            <div class="cart__products__img">-->
-<!--                                <img src="https://picsum.photos/100/120?rand=1" alt="product title">-->
-<!--                            </div>-->
-<!--                            <div class="cart__products__info">-->
-<!--                                <div>-->
-<!--                                    <div class="cart__products__info__top">-->
-<!--                                        <h3>Аккумуляторная дрель-шуруповерт Metabo PowerMaxx BS 2014 Basic 2.0Ah x2 Case-->
-<!--                                            34 Н·м...</h3>-->
-<!--                                        <button class="cart__products__info__delete">-->
-<!--                                            <img src="/images/icons/delete.svg" alt="">-->
-<!--                                        </button>-->
-<!--                                    </div>-->
-<!--                                    <div class="cart__products__info__middle">-->
-<!--                                        <div class="cart__products__info__ended">Закончился</div>-->
-<!--                                        <div class="cart__products__info__select">-->
-<!--                                            <div>-->
-<!--                                                <img src="/images/icons/bell.svg" alt="">-->
-<!--                                            </div>-->
-<!--                                            <button>Выбрать похожий</button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="cart__products__info__bottom">-->
-<!--                                    <button class="cart__products__info__favourite">-->
-<!--                                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none"-->
-<!--                                             xmlns="http://www.w3.org/2000/svg">-->
-<!--                                            <path fill-rule="evenodd" clip-rule="evenodd"-->
-<!--                                                  d="M9.12676 1.43969C9.42875 0.632082 10.5711 0.632081 10.8731 1.43969L12.7941 6.57703L18.2736 6.81646C19.135 6.8541 19.488 7.94053 18.8132 8.4773L14.5209 11.8918L15.9865 17.1771C16.2169 18.008 15.2927 18.6794 14.5737 18.2036L9.99992 15.1765L5.42617 18.2036C4.70716 18.6794 3.78298 18.008 4.01337 17.1771L5.47892 11.8918L1.18664 8.4773C0.511872 7.94053 0.864876 6.8541 1.72628 6.81646L7.20579 6.57703L9.12676 1.43969ZM9.99992 3.09699L8.40748 7.35571C8.27647 7.70608 7.94872 7.9442 7.57502 7.96053L3.03264 8.15902L6.59084 10.9895C6.88357 11.2224 7.00876 11.6077 6.90881 11.9682L5.69391 16.3495L9.48543 13.8402C9.79735 13.6337 10.2025 13.6337 10.5144 13.8402L14.3059 16.3495L13.091 11.9682C12.9911 11.6077 13.1163 11.2224 13.409 10.9895L16.9672 8.15902L12.4248 7.96053C12.0511 7.9442 11.7234 7.70608 11.5924 7.35571L9.99992 3.09699Z"-->
-<!--                                                  fill=""/>-->
-<!--                                            <span>Добавить в избранное</span>-->
-<!--                                        </svg>-->
-<!--                                    </button>-->
-<!--                                    <span class="price">250 000 UZS</span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </main>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-
 
 <section class="section recommends-for-you pb-70">
     <div class="container">
@@ -621,7 +517,7 @@
     </div>
 </section>
 
+<%- include(') %>
 <%- include('partials/catalog-modal') %>
 <%- include('partials/categories-modal') %>
-
 <%- include('partials/footer') %>
