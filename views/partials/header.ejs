@@ -407,10 +407,7 @@ const titleNormalize = title => {
                     <a class="bottom-nav__link <%= (path === '/cart') ? 'active' : '' %>" href="<%= user ? '/cart' : '/users/login' %>">
                         <span class="bottom-nav__link--cart">
                             <% if (user) { %>
-
-                                    <span class="bottom-nav__link--cart-count"><%= user.productCountInCart ? user.productCountInCart : 0 %></span>
-
-
+                                <span class="bottom-nav__link--cart-count"><%= user.productCountInCart ? user.productCountInCart : 0 %></span>
                             <% } %>
                             <img src="/images/bottom-nav/cart<%= (path === '/cart') ? '-active' : '' %>.svg" alt="icon">
                         </span>

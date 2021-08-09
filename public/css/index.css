@@ -5797,6 +5797,30 @@ li[data-thumb] img {
     width: 100%;
     max-width: 100%;
   }
+
+  .checkout {
+    padding-top: 20px;
+  }
+
+  .checkout__form {
+    display: block;
+  }
+
+  .checkout__form__left {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .checkout__form__field {
+    width: 100%;
+  }
+  .checkout__form__field + .checkout__form__field {
+    margin-top: 20px;
+  }
+
+  .cart__products__total {
+    width: 100%;
+  }
 }
 @media only screen and (max-width: 1155px) {
   .product-info {
