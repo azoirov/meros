@@ -3,7 +3,8 @@ const {
    CartPlusPatchController,
    CartMinusPatchController,
    CartGetController,
-   CheckoutGetController
+   CheckoutGetController,
+    CartDeleteController
 } = require("../controllers/product/product-controller");
 const dontEnterNotAuthorized = require('../middlewares/dont-enter-not-authorized')
 
@@ -14,6 +15,7 @@ router.patch("/api/plus", CartPlusPatchController);
 router.patch("/api/minus", CartMinusPatchController);
 router.get('/', dontEnterNotAuthorized, CartGetController)
 router.get('/checkout', dontEnterNotAuthorized, CheckoutGetController)
+router.delete("/cart", CartDeleteController)
 
 module.exports = {
    path: "/cart",
