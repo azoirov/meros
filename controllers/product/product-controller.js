@@ -800,7 +800,9 @@ module.exports = class ProductsController {
             });
             rec = arr
             rec = await howManyStar(req.db, rec)
-            rec = await inCart(req.db, rec, req.user.id);
+            if(req.user) {
+                rec = await inCart(req.db, rec, req.user.id);
+            }
 
             let banners = await req.db.banners.findOne({
                 where: {
@@ -1111,7 +1113,6 @@ module.exports = class ProductsController {
             });
             rec = arr
             rec = await howManyStar(req.db, rec)
-            rec = await inCart(req.db, rec, req.user.id);
 
             let brands = await req.db.brands.findAll({
                 where: {
@@ -1159,6 +1160,7 @@ module.exports = class ProductsController {
             if(req.user) {
                 products = await inCart(req.db, products, req.user.id);
                 sale = await inCart(req.db, sale, req.user.id);
+                rec = await inCart(req.db, rec, req.user.id);
             }
             sale = await howManyStar(req.db, sale)
             let home_banners = await fs.readFile(path.join(__dirname, "..", "..", "banners.json"), {encoding: "utf-8"});
@@ -1181,7 +1183,7 @@ module.exports = class ProductsController {
             });
             let sub_category = await req.db.sub_category.findOne({
                 where: {
-                    sub_category_id: sub_sub_category.sub_sub_category_id
+                    sub_category_id: sub_sub_category.sub_category_id
                 },
                 raw: true
             })
