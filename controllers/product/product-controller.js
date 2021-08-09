@@ -254,13 +254,13 @@ module.exports = class ProductsController {
             let rec = [...recomendations, ...bestseller];
             let arr = [];
             rec.forEach(el => {
-                if(!arr.includes(el)) {
+                if (!arr.includes(el)) {
                     arr.push(el)
                 }
             });
             rec = arr
             rec = await howManyStar(req.db, rec)
-            if(req.user) {
+            if (req.user) {
                 rec = await inCart(req.db, rec, req.user.id)
             }
 
@@ -284,10 +284,12 @@ module.exports = class ProductsController {
             comments.forEach(comment => {
                 stars += comment.star
             })
-            stars = comments.length ? Math.round(stars/comments.length) : 0
+            stars = comments.length ? Math.round(stars / comments.length) : 0
             product.star = stars
 
             rec = rec.filter(el => el.product_id !== product.product_id)
+
+            console.log(product)
 
             res.render("single-product", {
                 title: `Meros | ${product.ru_name}`,
@@ -456,7 +458,7 @@ module.exports = class ProductsController {
                 },
             });
 
-            cart = await inCart(req.db, cart);
+            cart = await inCart(req.db, cart, req.user.id);
 
             let totalPrice = 0;
 
@@ -483,16 +485,15 @@ module.exports = class ProductsController {
             let rec = [...recomendations, ...bestseller];
             let arr = [];
             rec.forEach(el => {
-                if(!arr.includes(el)) {
+                if (!arr.includes(el)) {
                     arr.push(el)
                 }
             });
             rec = arr
             rec = await howManyStar(req.db, rec)
-            if(req.user) {
+            if (req.user) {
                 rec = await inCart(req.db, rec, req.user.id)
             }
-            const wishlist = await req.db.wishlists.findAll()
             res.render("cart", {
                 title: "Meros | Cart",
                 cart: cart,
@@ -654,13 +655,13 @@ module.exports = class ProductsController {
             let rec = [...recomendations, ...bestseller];
             let arr = [];
             rec.forEach(el => {
-                if(!arr.includes(el)) {
+                if (!arr.includes(el)) {
                     arr.push(el)
                 }
             });
             rec = arr
             rec = await howManyStar(req.db, rec)
-            if(req.user) {
+            if (req.user) {
                 rec = await inCart(req.db, rec, req.user.id)
             }
             res.render('wishlist', {
@@ -830,13 +831,13 @@ module.exports = class ProductsController {
         let rec = [...recomendations, ...bestseller];
         let arr = [];
         rec.forEach(el => {
-            if(!arr.includes(el)) {
+            if (!arr.includes(el)) {
                 arr.push(el)
             }
         });
         rec = arr
         rec = await howManyStar(req.db, rec)
-        if(req.user) {
+        if (req.user) {
             rec = await inCart(req.db, rec, req.user.id)
         }
         res.render("cart", {
@@ -919,13 +920,13 @@ module.exports = class ProductsController {
             let rec = [...recomendations, ...bestsellers];
             let arr = [];
             rec.forEach(el => {
-                if(!arr.includes(el)) {
+                if (!arr.includes(el)) {
                     arr.push(el)
                 }
             });
             rec = arr
             rec = await howManyStar(req.db, rec)
-            if(req.user) {
+            if (req.user) {
                 rec = await inCart(req.db, rec, req.user.id);
             }
 
@@ -972,8 +973,6 @@ module.exports = class ProductsController {
                 ],
                 raw: true
             });
-
-
 
 
             if (req.user) {
@@ -1077,13 +1076,13 @@ module.exports = class ProductsController {
             let rec = [...recomendations, ...bestsellers];
             let arr = [];
             rec.forEach(el => {
-                if(!arr.includes(el)) {
+                if (!arr.includes(el)) {
                     arr.push(el)
                 }
             });
             rec = arr
             rec = await howManyStar(req.db, rec)
-            if(req.user) {
+            if (req.user) {
                 rec = await inCart(req.db, rec, req.user.id);
             }
 
@@ -1154,7 +1153,7 @@ module.exports = class ProductsController {
             res.render("sub-sub-category", {
                 title: "Meros | " + sub_category.sub_category_name_ru.toUpperCase(),
                 user: req.user,
-                    sub_category,
+                sub_category,
                 banners,
                 brands,
                 sponsors,
@@ -1232,7 +1231,7 @@ module.exports = class ProductsController {
             let rec = [...recomendations, ...bestsellers];
             let arr = [];
             rec.forEach(el => {
-                if(!arr.includes(el)) {
+                if (!arr.includes(el)) {
                     arr.push(el)
                 }
             });
@@ -1276,19 +1275,19 @@ module.exports = class ProductsController {
             });
 
             let sale = [];
-            while (sale.length<=8 && goodOffers.length > 0) {
+            while (sale.length <= 8 && goodOffers.length > 0) {
                 let i = Math.random() * goodOffers.length - 1;
                 let item = goodOffers.pop(goodOffers[i]);
                 sale.push(item)
             }
 
-            if(req.user) {
+            if (req.user) {
                 products = await inCart(req.db, products, req.user.id);
                 sale = await inCart(req.db, sale, req.user.id);
                 rec = await inCart(req.db, rec, req.user.id);
             }
             sale = await howManyStar(req.db, sale)
-            let home_banners = await fs.readFile(path.join(__dirname, "..", "..", "banners.json"), {encoding: "utf-8"});
+            let home_banners = await fs.readFile(path.join(__dirname, "..", "..", "banners.json"), { encoding: "utf-8" });
 
             home_banners = await JSON.parse(home_banners);
 
@@ -1339,9 +1338,9 @@ module.exports = class ProductsController {
 
     static async CartDeleteController(req, res) {
         try {
-            const {product_id} = req.body;
+            const { product_id } = req.body;
 
-            if(!req.user) {
+            if (!req.user) {
                 throw new Error("User is not authorized")
             }
 
@@ -1353,9 +1352,10 @@ module.exports = class ProductsController {
                 raw: true
             });
 
-            if(!cart) {
+            if (!cart) {
                 throw new Error("Cart is not found")
-            };
+            }
+            ;
 
             await req.db.carts.destroy({
                 where: {
