@@ -3546,6 +3546,30 @@ input:checked + .slider:before {
   color: #FFFFFF;
 }
 
+.in-stock {
+  padding: 4px 12px;
+  background-color: #3AC267;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
+  color: #FFFFFF;
+}
+
+.not-in-stock {
+  padding: 4px 12px;
+  background-color: #F83333;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
+  color: #FFFFFF;
+}
+
 .checkout {
   padding-top: 50px;
   padding-bottom: 100px;
