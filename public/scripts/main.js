@@ -34,6 +34,7 @@ import userCabinet from './_user-cabinet'
 import wishList from './_wish-list';
 import singleProductCart from './_single-product-cart';
 import singleProductAddCart from "./_single-product-cart-add"
+import cartProductPlusMinus from "./_cart-product-plus-minus"
 
 document.addEventListener('DOMContentLoaded', () => {
    cabinetDropdown()
@@ -70,4 +71,5 @@ document.addEventListener('DOMContentLoaded', () => {
    wishList()
    singleProductAddCart()
    singleProductCart()
+   cartProductPlusMinus()
 })

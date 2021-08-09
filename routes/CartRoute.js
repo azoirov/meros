@@ -2,7 +2,7 @@ const {
    CartAddController,
    CartPlusPatchController,
    CartMinusPatchController,
-   cartGetController,
+   CartGetController,
    CheckoutGetController,
     CartDeleteController
 } = require("../controllers/product/product-controller");
@@ -13,9 +13,9 @@ const router = require("express").Router();
 router.post("/add", CartAddController);
 router.patch("/api/plus", CartPlusPatchController);
 router.patch("/api/minus", CartMinusPatchController);
-router.get('/', dontEnterNotAuthorized, cartGetController)
+router.get('/', dontEnterNotAuthorized, CartGetController)
 router.get('/checkout', dontEnterNotAuthorized, CheckoutGetController)
-router.delete("/cart", CartDeleteController)
+router.delete("/", CartDeleteController)
 
 module.exports = {
    path: "/cart",
