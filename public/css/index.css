@@ -5443,6 +5443,13 @@ li[data-thumb] img {
   color: #fff;
 }
 
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 50px;
+}
+
 @media only screen and (max-width: 1455px) {
   .site-logo {
     margin-right: 30px;
