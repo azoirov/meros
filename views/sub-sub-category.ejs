@@ -310,6 +310,9 @@ const titleNormalize = title => {
         </div>
     </div>
 </section>
+<div class="container pagination-container">
+    <div id="pagination"></div>
+</div>
 
 <%- include("recommendation") %>
 
@@ -332,7 +335,13 @@ const titleNormalize = title => {
         </div>
     </div>
 </section>
-
+<p class="path-path-path" style="display: none"><%= path %></p>
+<% if(size) { %>
+    <script>
+        var size = <%= size %>
+        var cPage = <%= cPage %>
+    </script>
+<% } %>
 <%- include('cabinet/toast') %>
 <%- include('partials/brands') %>
 <%- include('partials/catalog-modal') %>

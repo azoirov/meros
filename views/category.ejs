@@ -47,7 +47,15 @@ const titleNormalize = title => {
 
 <section class="section products">
     <div class="container">
-        <div class="row mb-70">
+        <div class="row">
+            <aside class="products__aside">
+                <div class="ad-column">
+                    <a href="<%= (banners?.side_banner_right_url) ? banners?.side_banner_right_url : '#' %>">
+                        <img src="<%= (banners?.side_banner_right_image) ? '/images/category_banners/' + banners.category_id + '/' + banners?.side_banner_right_image : 'https://via.placeholder.com/290x790' %>"
+                             alt="">
+                    </a>
+                </div>
+            </aside>
             <main class="products__main products--four">
                 <% products.forEach(product => { %>
                     <div class="product-card">
@@ -140,18 +148,13 @@ const titleNormalize = title => {
                     </div>
                 <% }) %>
             </main>
-            <aside class="products__aside">
-                <div class="ad-column">
-                    <a href="<%= (banners?.side_banner_right_url) ? banners?.side_banner_right_url : '#' %>">
-                        <img src="<%= (banners?.side_banner_right_image) ? '/images/category_banners/' + banners.category_id + '/' + banners?.side_banner_right_image : 'https://via.placeholder.com/290x790' %>"
-                             alt="">
-                    </a>
-                </div>
-            </aside>
+
         </div>
     </div>
 </section>
-
+<div class="container mb-70 pagination-container">
+    <div id="pagination"></div>
+</div>
 <div class="container">
     <div class="ad-tape">
         <a href="<%= home_banners.banner_horizontal_1 ? home_banners.banner_horizontal_1.url : '#' %>">
@@ -168,14 +171,6 @@ const titleNormalize = title => {
     <div class="container">
         <h2 class="section__heading">Популярные товары со скидками!</h2>
         <div class="row">
-            <aside class="products__aside">
-                <div class="ad-column">
-                    <a href="<%= (banners?.side_banner_left_url) ? banners?.side_banner_left_url : '#' %>">
-                        <img src="<%= (banners?.side_banner_left_image) ? '/images/category_banners/' + banners.category_id + '/' + banners?.side_banner_left_image : 'https://via.placeholder.com/290x790' %>"
-                             alt="">
-                    </a>
-                </div>
-            </aside>
             <main class="products__main products--four">
                 <% goodOffers.forEach(product => {  %>
                     <div class="product-card">
@@ -268,6 +263,15 @@ const titleNormalize = title => {
                     </div>
                 <% }) %>
             </main>
+            <aside class="products__aside">
+                <div class="ad-column">
+                    <a href="<%= (banners?.side_banner_left_url) ? banners?.side_banner_left_url : '#' %>">
+                        <img src="<%= (banners?.side_banner_left_image) ? '/images/category_banners/' + banners.category_id + '/' + banners?.side_banner_left_image : 'https://via.placeholder.com/290x790' %>"
+                             alt="">
+                    </a>
+                </div>
+            </aside>
+
         </div>
     </div>
 </section>
@@ -301,6 +305,8 @@ const titleNormalize = title => {
     </div>
 </section>
 
+
+
 <%- include("recommendation") %>
 
 <section class="additional">
@@ -322,7 +328,13 @@ const titleNormalize = title => {
         </div>
     </div>
 </section>
-
+<p class="path-path-path" style="display: none"><%= path %></p>
+<% if(size) { %>
+    <script>
+        var size = <%= size %>
+        var cPage = <%= cPage %>
+    </script>
+<% } %>
 <%- include("partials/brands") %>
 <%- include("cabinet/toast") %>
 <%- include('partials/catalog-modal') %>
