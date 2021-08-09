@@ -565,17 +565,21 @@ module.exports = class ProductsController {
                 where: {
                     user_id: req.user.id,
                 },
+                include: {
+                    model: req.db.products,
+                },
                 raw: true,
             });
 
+            console.log(wishlist)
 
-            res.status(200).json({
-                ok: true,
-                result: {
-                    user,
-                    wishlist,
-                },
-            });
+            res.render('wishlist', {
+                title: 'Meros | Wishlist',
+                user: req.user,
+                wishlist,
+                categories: req.categories,
+                path: '/wishlist'
+            })
         } catch (e) {
             res.status(400).json({
                 ok: false,
