@@ -597,7 +597,7 @@ module.exports = class ProductsController {
             rec = arr
             rec = await howManyStar(req.db, rec)
             if(req.user) {
-                rec = await inCart(req.db, rec)
+                rec = await inCart(req.db, rec, req.user.id)
             }
             res.render('wishlist', {
                 title: 'Meros | Wishlist',
@@ -747,11 +747,40 @@ module.exports = class ProductsController {
     }
 
     static async cartGetController(req, res) {
+        let recomendations = await req.db.recomendations.findAll({
+            raw: true,
+            include: {
+                model: req.db.products,
+                include: req.db.categories
+            }
+        });
+
+        let bestseller = await req.db.bestsellers.findAll({
+            raw: true,
+            include: {
+                model: req.db.products,
+                include: req.db.categories
+            }
+        });
+
+        let rec = [...recomendations, ...bestseller];
+        let arr = [];
+        rec.forEach(el => {
+            if(!arr.includes(el)) {
+                arr.push(el)
+            }
+        });
+        rec = arr
+        rec = await howManyStar(req.db, rec)
+        if(req.user) {
+            rec = await inCart(req.db, rec, req.user.id)
+        }
         res.render("cart", {
             title: "Meros | Cart",
             path: "/cart",
             user: req.user,
             categories: req.categories,
+            recommendation: rec
         });
     }
 
@@ -1241,6 +1270,46 @@ module.exports = class ProductsController {
         } catch (e) {
             console.log(e)
             res.send(e);
+        }
+    }
+
+    static async CartDeleteController(req, res) {
+        try {
+            const {product_id} = req.body;
+
+            if(!req.user) {
+                throw new Error("User is not authorized")
+            }
+
+            let cart = await req.db.carts.findOne({
+                where: {
+                    product_id: product_id,
+                    user_id: req.user.id
+                },
+                raw: true
+            });
+
+            if(!cart) {
+                throw new Error("Cart is not found")
+            };
+
+            await req.db.carts.destroy({
+                where: {
+                    product_id,
+                    user_id: req.user.id
+                }
+            });
+
+            res.status(200).json({
+                ok: true,
+                message: "deleted"
+            })
+
+        } catch (e) {
+            res.status(400).json({
+                ok: false,
+                message: e + ""
+            })
         }
     }
 };
