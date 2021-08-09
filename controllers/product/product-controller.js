@@ -224,6 +224,19 @@ module.exports = class ProductsController {
             })
 
             product.cart = cart ? cart.count : 0
+            let wishlist
+            if(req.user) {
+                 wishlist = await req.db.wishlists.findOne({
+                    where: {
+                        product_id: product.product_id,
+                        user_id: req.user.id
+                    },
+                    raw: true
+                });
+            }
+
+
+            product.inWishlist = wishlist ? true : false
 
             let comments = await req.db.comments.findAll({
                 where: {
