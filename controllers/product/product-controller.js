@@ -258,8 +258,6 @@ module.exports = class ProductsController {
             stars = Math.round(stars/comments.length)
             product.star = stars
 
-            console.log(comments)
-
             res.render("single-product", {
                 title: `Meros | ${product.ru_name}`,
                 product,
@@ -1143,13 +1141,13 @@ module.exports = class ProductsController {
                 products = await inCart(req.db, products, req.user.id);
                 sale = await inCart(req.db, sale, req.user.id);
             }
-
+            sale = await howManyStar(req.db, sale)
             let home_banners = await fs.readFile(path.join(__dirname, "..", "..", "banners.json"), {encoding: "utf-8"});
 
             home_banners = await JSON.parse(home_banners);
 
             console.log(home_banners)
-
+            products = await howManyStar(req.db, products)
             console.log(sale)
             res.render("category", {
                 title:
@@ -1164,6 +1162,8 @@ module.exports = class ProductsController {
                 banners,
                 brands,
                 sponsors,
+                home_banners,
+                goodOffers: sale
             });
         } catch (e) {
             console.log(e)
