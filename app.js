@@ -31,10 +31,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(userMiddleware);
 app.use(generalInfoMiddleware);
 
-app.get('*', (req, res) => {
-    res.render('partials/404')
-})
-
 const pathToRoutes = path.join(__dirname, "routes");
 
 fs.readdir(pathToRoutes, (err, files) => {
