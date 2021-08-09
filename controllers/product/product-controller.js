@@ -766,6 +766,13 @@ module.exports = class ProductsController {
                 raw: true,
             });
 
+            let allProducts = await req.db.products.findAll({
+                where: {
+                    category_id: category.dataValues.category_id
+                },
+                raw: true
+            })
+
             let recomendations = await req.db.recomendations.findAll({
                 raw: true,
                 category_id: category.category_id,
@@ -863,6 +870,7 @@ module.exports = class ProductsController {
                 products,
                 goodOffers: goodOffers,
                 recommendation: rec,
+                size: allProducts.length
             });
         } catch (e) {
             console.log(e)
@@ -905,6 +913,13 @@ module.exports = class ProductsController {
                     ]
                 }
             );
+
+            let allProducts = await req.db.products.findAll({
+                where: {
+                    sub_category_id: sub_category.sub_category_id
+                },
+                raw: true
+            })
 
             let sub_sub_category = await req.db.sub_sub_category.findAll({
                 where: {
@@ -1020,7 +1035,8 @@ module.exports = class ProductsController {
                 goodOffers,
                 sub_sub_categories,
                 category,
-                recommendation: rec
+                recommendation: rec,
+                size: allProducts.length
             });
         } catch (e) {
             console.log(e)
@@ -1146,9 +1162,15 @@ module.exports = class ProductsController {
 
             home_banners = await JSON.parse(home_banners);
 
-            console.log(home_banners)
-            products = await howManyStar(req.db, products)
-            console.log(sale)
+            products = await howManyStar(req.db, products);
+
+            let allProducts = await req.db.products.findAll({
+                where: {
+                    sub_sub_category_id: sub_sub_category.sub_sub_category_id
+                },
+                raw: true
+            })
+
             res.render("category", {
                 title:
                     "Meros | " +
@@ -1163,7 +1185,8 @@ module.exports = class ProductsController {
                 brands,
                 sponsors,
                 home_banners,
-                goodOffers: sale
+                goodOffers: sale,
+                size: allProducts.length
             });
         } catch (e) {
             console.log(e)
