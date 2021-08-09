@@ -1,0 +1,36 @@
+#pagination {
+   display: inline-block;
+   vertical-align: middle;
+}
+
+#pagination a, #pagination i {
+   display: inline-block;
+   vertical-align: middle;
+   width: 22px;
+   color: #7D7D7D;
+   text-align: center;
+   font-size: 10px;
+   padding: 3px 0 2px 0;
+   -webkit-user-select:none;
+   -moz-user-select:none;
+   -ms-user-select:none;
+   user-select:none;
+}
+
+#pagination a {
+   width: 34px;
+   height: 34px;
+   font-family: "Roboto", sans-serif;
+   font-size: 14px;
+   line-height: 31px;
+   margin: 0 2px 0 2px;
+   border-radius: 4px;
+   cursor: pointer;
+}
+#pagination i {
+   margin: 0 3px 0 3px;
+}
+#pagination a.current {
+   background-color: #32386B;
+   color: #fff;
+}
