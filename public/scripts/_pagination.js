@@ -3,7 +3,7 @@ try {
   * Pagination
   * javascript page navigation
   * * * * * * * * * * * * * * * * */
-
+        let path = document.querySelector(".path-path-path").textContent;
         var Pagination = {
 
             code: '',
@@ -15,26 +15,27 @@ try {
             // converting initialize data
             Extend: function(data) {
                 data = data || {};
-                Pagination.size = data.size || 300;
-                Pagination.page = data.page || 1;
+                Pagination.size = Math.ceil(size/8) || 31;
+                Pagination.page = cPage || 1;
                 Pagination.step = data.step || 3;
             },
+
 
             // add pages by number (from [s] to [f])
             Add: function(s, f) {
                 for (var i = s; i < f; i++) {
-                    Pagination.code += '<a>' + i + '</a>';
+                    Pagination.code += `<a href="${path}?c_page=${cPage}">${i}</a>`;
                 }
             },
 
             // add last page with separator
             Last: function() {
-                Pagination.code += '<i>...</i><a>' + Pagination.size + '</a>';
+                Pagination.code += `<i>...</i><a href="${path}?c_page=${cPage}">${Pagination.size}</a>`;
             },
 
             // add first page with separator
             First: function() {
-                Pagination.code += '<a>1</a><i>...</i>';
+                Pagination.code += `<a href="${path}?c_page=${cPage}">${1}</a><i>...</i>`;
             },
 
 

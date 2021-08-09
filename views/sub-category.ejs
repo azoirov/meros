@@ -1,5 +1,6 @@
 <%
 var products
+var size
 const capitalize = text => {
     return text[0].toUpperCase() + text.substring(1)
 }
@@ -340,6 +341,14 @@ const titleNormalize = title => {
         </div>
     </div>
 </section>
+<p class="path-path-path" style="display: none"><%= path %></p>
+<% if(size) { %>
+    <script>
+        var size = <%= size %>
+        var cPage = <%= cPage %>
+    </script>
+<% } %>
+
 
 <%- include('cabinet/toast') %>
 <%- include('partials/brands') %>
