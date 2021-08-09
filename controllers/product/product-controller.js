@@ -859,7 +859,6 @@ module.exports = class ProductsController {
             goodOffers = await howManyStar(req.db, goodOffers)
             res.render("sub-category", {
                 title: "Meros | " + category.ru_name.toUpperCase(),
-                path: "/category/" + category.dataValues.category_slug,
                 user: req.user,
                 category: category.dataValues,
                 sub_category,
@@ -870,7 +869,9 @@ module.exports = class ProductsController {
                 products,
                 goodOffers: goodOffers,
                 recommendation: rec,
-                size: allProducts.length
+                size: allProducts.length,
+                cPage: c_page,
+                path: `/category/${category.slug}`
             });
         } catch (e) {
             console.log(e)
@@ -1036,7 +1037,9 @@ module.exports = class ProductsController {
                 sub_sub_categories,
                 category,
                 recommendation: rec,
-                size: allProducts.length
+                size: allProducts.length,
+                cPage: c_page,
+                path: `/category/${category.slug}/${sub_category.sub_category_slug}`
             });
         } catch (e) {
             console.log(e)
@@ -1170,7 +1173,18 @@ module.exports = class ProductsController {
                 },
                 raw: true
             })
-
+            let category = await req.db.categories.findOne({
+                where: {
+                    category_id: sub_sub_category.category_id
+                },
+                raw: true
+            });
+            let sub_category = await req.db.sub_category.findOne({
+                where: {
+                    sub_category_id: sub_sub_category.sub_sub_category_id
+                },
+                raw: true
+            })
             res.render("category", {
                 title:
                     "Meros | " +
@@ -1186,7 +1200,9 @@ module.exports = class ProductsController {
                 sponsors,
                 home_banners,
                 goodOffers: sale,
-                size: allProducts.length
+                size: allProducts.length,
+                cPage: c_page,
+                path: `/category/${category.slug}/${sub_category.sub_category_slug}/${sub_sub_category.sub_sub_category_slug}`
             });
         } catch (e) {
             console.log(e)
