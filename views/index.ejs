@@ -34,94 +34,15 @@
 <section class="categories categories-mobile mb-30">
     <div class="container">
         <ul class="categories__list">
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/books.svg" alt="">
-                </div>
-                <div class="categories__name">Книги</div>
-                <a class="categories__link" href="/"></a>
-            </li>
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/disc.svg" alt="">
-                </div>
-                <div class="categories__name">Диски</div>
-                <a class="categories__link" href="/"></a>
-            </li>
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/atributka.svg" alt="">
-                </div>
-                <div class="categories__name">Атрибутика</div>
-                <a class="categories__link" href="/"></a>
-            </li>
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/kanstovar.svg" alt="">
-                </div>
-                <div class="categories__name">Канцтовары</div>
-                <a class="categories__link" href="/"></a>
-            </li>
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/formen.svg" alt="">
-                </div>
-                <div class="categories__name">Для мужчин</div>
-                <a class="categories__link" href="/"></a>
-            </li>
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/forwomen.svg" alt="">
-                </div>
-                <div class="categories__name">Для женщин</div>
-                <a class="categories__link" href="/"></a>
-            </li>
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/forkids.svg" alt="">
-                </div>
-                <div class="categories__name">Для детей</div>
-                <a class="categories__link" href="/"></a>
-            </li>
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/juvelir.svg" alt="">
-                </div>
-                <div class="categories__name">Ювелирные
-                    изделия
-                </div>
-                <a class="categories__link" href="/"></a>
-            </li>
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/meros-merch.svg" alt="">
-                </div>
-                <div class="categories__name">Meros Мерч</div>
-                <a class="categories__link" href="/"></a>
-            </li>
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/idea-gift.svg" alt="">
-                </div>
-                <div class="categories__name">Идеи подарка</div>
-                <a class="categories__link" href="/"></a>
-            </li>
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/meros-card.svg" alt="">
-                </div>
-                <div class="categories__name">Meros Card</div>
-                <a class="categories__link" href="/"></a>
-            </li>
-            <li class="categories__item">
-                <div class="categories__img">
-                    <img src="/images/categories/meros-diskont.svg" alt="">
-                </div>
-                <div class="categories__name">Meros
-                    Dисконт
-                </div>
-                <a class="categories__link" href="/"></a>
-            </li>
+            <% categories.slice(0, 12).forEach((category, index) => { %>
+                <li class="categories__item">
+                    <div class="categories__img">
+                        <img src="/images/categories/<%= category.thumb %>" alt="">
+                    </div>
+                    <div class="categories__name"><%= category.ru_name[0].toUpperCase() + category.ru_name.substring(1) %></div>
+                    <a class="categories__link" href="/category/<%= category.slug %>"></a>
+                </li>
+            <% }) %>
         </ul>
     </div>
 </section>

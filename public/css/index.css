@@ -5448,6 +5448,7 @@ li[data-thumb] img {
   align-items: center;
   justify-content: flex-end;
   padding-top: 50px;
+  padding-bottom: 20px;
 }
 
 @media only screen and (max-width: 1455px) {
