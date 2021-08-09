@@ -458,6 +458,7 @@ module.exports = class ProductsController {
             if(req.user) {
                 rec = await inCart(req.db, rec, req.user.id)
             }
+            const wishlist = await req.db.wishlists.findAll()
             res.render("cart", {
                 title: "Meros | Cart",
                 cart: cart,
