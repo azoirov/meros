@@ -571,14 +571,41 @@ module.exports = class ProductsController {
                 raw: true,
             });
 
-            console.log(wishlist)
+            let recomendations = await req.db.recomendations.findAll({
+                raw: true,
+                include: {
+                    model: req.db.products,
+                    include: req.db.categories
+                }
+            });
 
+            let bestseller = await req.db.bestsellers.findAll({
+                raw: true,
+                include: {
+                    model: req.db.products,
+                    include: req.db.categories
+                }
+            });
+
+            let rec = [...recomendations, ...bestseller];
+            let arr = [];
+            rec.forEach(el => {
+                if(!arr.includes(el)) {
+                    arr.push(el)
+                }
+            });
+            rec = arr
+            rec = await howManyStar(req.db, rec)
+            if(req.user) {
+                rec = await inCart(req.db, rec)
+            }
             res.render('wishlist', {
                 title: 'Meros | Wishlist',
                 user: req.user,
                 wishlist,
                 categories: req.categories,
-                path: '/wishlist'
+                path: '/wishlist',
+                recommendation: rec
             })
         } catch (e) {
             res.status(400).json({
