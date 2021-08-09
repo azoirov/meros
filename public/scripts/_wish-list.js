@@ -70,6 +70,24 @@ export default function () {
                 }
             })
         })
+
+        const wishlistRemoveBtns = selectAll('[data-wishlist-remove]')
+        wishlistRemoveBtns.forEach(el => {
+            el.addEventListener('click', async e => {
+                const productId = e.currentTarget.getAttribute('data-wishlist-remove')
+                let response = await fetch('/wishlist', {
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    method: 'DELETE',
+                    body: JSON.stringify({ product_id: productId })
+                })
+                response = await response.json()
+                if (response.ok) {
+                    window.location.reload()
+                }
+            })
+        })
     } catch (e) {
         console.log(e)
     }

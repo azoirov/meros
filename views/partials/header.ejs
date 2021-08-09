@@ -312,7 +312,7 @@ const titleNormalize = title => {
                             </div>
                         </li>
                         <li class="header-middle__li">
-                            <a class="header-middle__link" href="#">
+                            <a class="header-middle__link" href="/wishlist">
                                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M9.95221 0.72685C10.3146 -0.242283 11.6854 -0.242284 12.0478 0.72685L14.353 6.89165L20.9284 7.17897C21.9621
@@ -415,8 +415,8 @@ const titleNormalize = title => {
                     </a>
                 </li>
                 <li class="bottom-nav__li">
-                    <a class="bottom-nav__link <%= (path === '/favourites') ? 'active' : '' %>" href="<%= user ? '/favourites' : '/users/login' %>">
-                        <img src="/images/bottom-nav/star<%= (path === '/favourites') ? '-active' : '' %>.svg"
+                    <a class="bottom-nav__link <%= (path === '/wishlist') ? 'active' : '' %>" href="<%= user ? '/wishlist' : '/users/login' %>">
+                        <img src="/images/bottom-nav/star<%= (path === '/wishlist') ? '-active' : '' %>.svg"
                              alt="icon">
                         <span>Избранное</span>
                     </a>
