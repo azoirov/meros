@@ -15,15 +15,15 @@ export default function () {
                     let response = await fetch('/cart/add', {
                         headers: {
                             'Content-Type': 'application/json; charset=utf-8',
-                            'authorization': document.cookie.substring(6)
                         },
                         method: 'POST',
                         body: JSON.stringify({
                             product_id: productId
                         })
                     })
+                    console.log(response)
                     response = await response.json()
-
+                    console.log(response)
                     if (response.ok) {
                         addToCartBtns.forEach(btn => {
                             if (btn.getAttribute('data-add-cart') === productId) {
