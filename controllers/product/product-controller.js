@@ -430,7 +430,34 @@ module.exports = class ProductsController {
                 totalPrice +=
                     (c["product.price"] * (100 - c["product.sale"])) / 100;
             }
+            let recomendations = await req.db.recomendations.findAll({
+                raw: true,
+                include: {
+                    model: req.db.products,
+                    include: req.db.categories
+                }
+            });
 
+            let bestseller = await req.db.bestsellers.findAll({
+                raw: true,
+                include: {
+                    model: req.db.products,
+                    include: req.db.categories
+                }
+            });
+
+            let rec = [...recomendations, ...bestseller];
+            let arr = [];
+            rec.forEach(el => {
+                if(!arr.includes(el)) {
+                    arr.push(el)
+                }
+            });
+            rec = arr
+            rec = await howManyStar(req.db, rec)
+            if(req.user) {
+                rec = await inCart(req.db, rec, req.user.id)
+            }
             res.render("cart", {
                 title: "Meros | Cart",
                 cart: cart,
@@ -438,7 +465,7 @@ module.exports = class ProductsController {
                 categories: req.categories,
                 totalPrice,
                 path: '/cart',
-                recommendation: recommendation
+                recommendation: rec
             });
         } catch (e) {
             res.status(400).json({
@@ -446,44 +473,6 @@ module.exports = class ProductsController {
                 message: e + "",
             });
         }
-    }
-
-    static async cartGetController(req, res) {
-        let recomendations = await req.db.recomendations.findAll({
-            raw: true,
-            include: {
-                model: req.db.products,
-                include: req.db.categories
-            }
-        })
-
-        let bestseller = await req.db.bestsellers.findAll({
-            raw: true,
-            include: {
-                model: req.db.products,
-                include: req.db.categories
-            }
-        })
-
-        let rec = [...recomendations, ...bestseller];
-        let arr = [];
-        rec.forEach(el => {
-            if(!arr.includes(el)) {
-                arr.push(el)
-            }
-        })
-        rec = arr
-        rec = await howManyStar(req.db, rec)
-        if(req.user) {
-            rec = await inCart(req.db, rec, req.user.id)
-        }
-        res.render("cart", {
-            title: "Meros | Cart",
-            path: "/cart",
-            user: req.user,
-            categories: req.categories,
-            recommendation: rec
-        });
     }
 
     static async CheckoutGetController(req, res) {
@@ -784,6 +773,44 @@ module.exports = class ProductsController {
                 message: e + "",
             });
         }
+    }
+
+    static async cartGetController(req, res) {
+        let recomendations = await req.db.recomendations.findAll({
+            raw: true,
+            include: {
+                model: req.db.products,
+                include: req.db.categories
+            }
+        });
+
+        let bestseller = await req.db.bestsellers.findAll({
+            raw: true,
+            include: {
+                model: req.db.products,
+                include: req.db.categories
+            }
+        });
+
+        let rec = [...recomendations, ...bestseller];
+        let arr = [];
+        rec.forEach(el => {
+            if(!arr.includes(el)) {
+                arr.push(el)
+            }
+        });
+        rec = arr
+        rec = await howManyStar(req.db, rec)
+        if(req.user) {
+            rec = await inCart(req.db, rec, req.user.id)
+        }
+        res.render("cart", {
+            title: "Meros | Cart",
+            path: "/cart",
+            user: req.user,
+            categories: req.categories,
+            recommendation: rec
+        });
     }
 
     static async CategoryGetController(req, res) {
