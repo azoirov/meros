@@ -181,6 +181,7 @@ router.patch(
 );
 router.get("/api/secondary-category-list/:category_id", SubCategoriesGetController);
 router.get("/api/tertiary-category-list/:sub_category_id", SubSubCategoriesGetController);
+
 module.exports = {
     path: "/admin",
     router,
