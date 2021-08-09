@@ -94,16 +94,16 @@ if (product.sub_sub_category_id) {
                         </div>
                     <% } %>
                     <div class="product-count <%= product.cart > 0 ? '' : 'd-none' %>">
-                            <h4>Количество:</h4>
-                            <div class="product-count__change">
-                                <button id="<%= product.product_id %>" class="single_dec_cart">
-                                    <img src="/images/icons/minus.svg" alt=""/>
-                                </button>
-                                <span><%= product.cart %></span>
-                                <button id="<%= product.product_id %>" class="single_inc_cart">
-                                    <img src="/images/icons/plus.svg" alt=""/>
-                                </button>
-                            </div>
+                        <h4>Количество:</h4>
+                        <div class="product-count__change">
+                            <button id="<%= product.product_id %>" class="single_dec_cart">
+                                <img src="/images/icons/minus.svg" alt=""/>
+                            </button>
+                            <span><%= product.cart %></span>
+                            <button id="<%= product.product_id %>" class="single_inc_cart">
+                                <img src="/images/icons/plus.svg" alt=""/>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-price">
                         <span class="price"><%= product.price * (100 - product.sale) / 100 %> сум</span>
@@ -114,12 +114,33 @@ if (product.sub_sub_category_id) {
                 </div>
                 <div class="product-actions">
                     <div>
-                            <button class="button-blue-sm mr-20">Купить</button>
+                        <button class="button-blue-sm mr-20">Купить</button>
 
-                            <button id="<%= product.product_id %>" class="button-outline-sm single_add_to_cart <%= product.cart ? 'd-none' : '' %>">В
-                                корзину
-                            </button>
+                        <button id="<%= product.product_id %>"
+                                class="button-outline-sm single_add_to_cart <%= product.cart ? 'd-none' : '' %>">В
+                            корзину
+                        </button>
                     </div>
+                </div>
+                <div class="cart__products__info__bottom">
+                    <button class="cart__products__info__favourite cart-product-not-in-wishlist <%= product.inWishList ? 'd-none' : '' %> mb-10" data-cart-product-wishlist="<%= product.product_id %>">
+                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M9.12676 1.43969C9.42875 0.632082 10.5711 0.632081 10.8731 1.43969L12.7941 6.57703L18.2736 6.81646C19.135 6.8541 19.488 7.94053 18.8132 8.4773L14.5209 11.8918L15.9865 17.1771C16.2169 18.008 15.2927 18.6794 14.5737 18.2036L9.99992 15.1765L5.42617 18.2036C4.70716 18.6794 3.78298 18.008 4.01337 17.1771L5.47892 11.8918L1.18664 8.4773C0.511872 7.94053 0.864876 6.8541 1.72628 6.81646L7.20579 6.57703L9.12676 1.43969ZM9.99992 3.09699L8.40748 7.35571C8.27647 7.70608 7.94872 7.9442 7.57502 7.96053L3.03264 8.15902L6.59084 10.9895C6.88357 11.2224 7.00876 11.6077 6.90881 11.9682L5.69391 16.3495L9.48543 13.8402C9.79735 13.6337 10.2025 13.6337 10.5144 13.8402L14.3059 16.3495L13.091 11.9682C12.9911 11.6077 13.1163 11.2224 13.409 10.9895L16.9672 8.15902L12.4248 7.96053C12.0511 7.9442 11.7234 7.70608 11.5924 7.35571L9.99992 3.09699Z"
+                                  fill=""/>
+                        </svg>
+                        <span style="font-size: 18px; line-height: 21px;">Добавить в избранное</span>
+                    </button>
+                    <button class="cart__products__info__favourite cart-product-in-wishlist <%= product.inWishList ? '' : 'd-none' %> mb-10"
+                            data-cart-product-wishlist="<%= product.product_id %>">
+                        <svg width="18" height="18" viewBox="0 0 16 15" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.63854 14.3951C3.88405 14.5763 4.1807 14.5194 4.54384 14.2502L8.10368 11.6099L11.6635 14.2502C12.0267 14.5194 12.3284 14.5763 12.5688 14.3951C12.8041 14.2139 12.8604 13.9137 12.7172 13.4788L11.3208 9.24399L14.9063 6.63477C15.2694 6.37074 15.4126 6.09636 15.3154 5.80645C15.2234 5.52689 14.9574 5.37676 14.4971 5.38193L10.0984 5.40782L8.75325 1.15748C8.61516 0.717435 8.40034 0.5 8.10368 0.5C7.80703 0.5 7.59221 0.717435 7.45412 1.15748L6.10895 5.40782L1.71029 5.38193C1.25508 5.37676 0.984005 5.52689 0.89194 5.80645C0.79476 6.09636 0.937972 6.37074 1.30112 6.63477L4.88653 9.24399L3.49533 13.4788C3.347 13.9137 3.40326 14.2139 3.63854 14.3951Z"
+                                  fill="#EA9400"/>
+                        </svg>
+                        <span style="font-size: 18px; line-height: 21px;">Удалить из списка желаний</span>
+                    </button>
                 </div>
                 <div class="deliver">
                     <img src="/images/icons/galchka.svg" alt=""/>
@@ -168,7 +189,7 @@ if (product.sub_sub_category_id) {
 </section>
 
 <% if(recommendation.length > 0) { %>
-     <%- include("recommendation") %>
+    <%- include("recommendation") %>
 <% } %>
 <section class="section reviews" id="comment">
     <div class="container">
@@ -181,10 +202,10 @@ if (product.sub_sub_category_id) {
                             <% comments.forEach(comment => { %>
                                 <li class="comments__item">
                                     <div class="comment__owner-image">
-                                        <img src="/images/users/<%= comment['user.avatar']%>" alt="avatar"/>
+                                        <img src="/images/users/<%= comment['user.avatar'] %>" alt="avatar"/>
                                     </div>
                                     <div class="comment__info">
-                                        <h4 class="comment__owner-name"><%= comment['user.full_name']%></h4>
+                                        <h4 class="comment__owner-name"><%= comment['user.full_name'] %></h4>
                                         <div class="comment__rating-stars">
                                             <img src="/images/rating-stars/<%= comment.star %>.svg" alt="rating star"/>
                                         </div>
