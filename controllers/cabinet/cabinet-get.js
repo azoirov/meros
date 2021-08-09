@@ -1,3 +1,5 @@
+const moment = require("moment")
+
 const cabinetGet = async (req, res) => {
    res.render('cabinet/cabinet', {
       title: 'Meros | Personal Cabinet',
@@ -25,11 +27,42 @@ const savedCardsGet = async (req, res) => {
 }
 
 const ordersGet = async (req, res) => {
+
+   let orders = await req.db.orders.findAll({
+      raw: true,
+      where: {
+         user_id: req.user.id,
+      },
+      order: [["createdAt", "DESC"]]
+   });
+
+   for (let order of orders) {
+      let time = moment(order.createdAt).locale("ru").format("LL")
+      let order_items = await req.db.order_details.findAll({
+         where: {
+            order_id: order.order_id,
+         },
+         include: {
+            model: req.db.products,
+         },
+         raw: true,
+      });
+      order.items = order_items;
+      order_items.forEach(item => {
+         item.time = time
+         item.type = order.payment_method
+         item.region = order.shipping_region
+         item.address = order.shipping_address
+         item.comment = order.description
+      })
+   }
+
    res.render('cabinet/orders', {
       title: 'Meros | Orders',
       path: '/cabinet/orders',
       user: req.user,
-      categories: req.categories
+      categories: req.categories,
+      orders
    })
 }
 
