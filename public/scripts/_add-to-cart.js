@@ -1,4 +1,5 @@
 import { selectOne, selectAll, addClass, removeClass } from './_functions'
+import { openToast, closingToast } from "./_toast";
 
 export default function () {
     try {
@@ -33,6 +34,11 @@ export default function () {
                                 bottomCartIndicator.textContent = response.result.user.productCountInCart + 1
                             }
                         })
+                    }
+
+                    if (!response.ok) {
+                        openToast('failed', 'Вы не вошли в систему. Пожалуйста, войдите сначала')
+                        closingToast()
                     }
                 })
             })
