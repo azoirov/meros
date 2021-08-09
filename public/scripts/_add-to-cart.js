@@ -94,26 +94,37 @@ export default function () {
 
                     response = await response.json()
 
+                    console.log(response)
 
                     if (response.ok) {
-                        productDecrementBtns.forEach(el => {
-                            if (el.getAttribute('data-decrement-product') === productId) {
-                                el.previousElementSibling.textContent = response.cart_decremented.count
-                            }
-                        })
+                        if(response.cart_decremented === 0) {
+                            productDecrementBtns.forEach(el => {
+                                if (el.getAttribute('data-decrement-product') === productId) {
+                                    addClass(el.parentElement, 'd-none')
+                                    removeClass(el.parentElement.previousElementSibling, 'd-none')
+                                }
+                            })
+                        } else {
+                            productDecrementBtns.forEach(el => {
+                                if (el.getAttribute('data-decrement-product') === productId) {
+                                    el.previousElementSibling.textContent = response.cart_decremented.count
+                                }
+                            })
+                        }
+
                         headerCartIndicator.textContent = response.user.productCountInCart - 1
                         bottomCartIndicator.textContent = response.user.productCountInCart - 1
                     }
 
                     if (!response.ok) {
-                        productDecrementBtns.forEach(el => {
-                            if (el.getAttribute('data-decrement-product') === productId) {
-                                addClass(el.parentElement, 'd-none')
-                                removeClass(el.parentElement.previousElementSibling, 'd-none')
-                            }
-                        })
-                        headerCartIndicator.textContent = response.user.productCountInCart - 1
-                        bottomCartIndicator.textContent = response.user.productCountInCart - 1
+                        // productDecrementBtns.forEach(el => {
+                        //     if (el.getAttribute('data-decrement-product') === productId) {
+                        //         addClass(el.parentElement, 'd-none')
+                        //         removeClass(el.parentElement.previousElementSibling, 'd-none')
+                        //     }
+                        // })
+                        // headerCartIndicator.textContent = response.user.productCountInCart - 1
+                        // bottomCartIndicator.textContent = response.user.productCountInCart - 1
                     }
                 })
             })

@@ -67,14 +67,20 @@ export default function () {
                 console.log(response)
 
                 if (response.ok) {
-                    el.nextElementSibling.textContent = response.cart_decremented.count
-                    headerCartIndicator.textContent = response.user.productCountInCart + 1
-                    bottomCartIndicator.textContent = response.user.productCountInCart + 1
+                    if(response.cart_decremented === 0) {
+                        window.location.reload()
+                    } else {
+                        el.nextElementSibling.textContent = response.cart_decremented.count
+                    }
+                    if(response.user.productCountInCart >= 0) {
+                        headerCartIndicator.textContent = response.user.productCountInCart - 1
+                        bottomCartIndicator.textContent = response.user.productCountInCart - 1
+                    } else {
+                        headerCartIndicator.textContent = 0
+                        bottomCartIndicator.textContent = 0
+                    }
                 }
 
-                if (!response.ok) {
-                    window.location.reload()
-                }
             })
         })
 

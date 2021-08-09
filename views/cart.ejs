@@ -1,6 +1,17 @@
 <% var cart %>
 <%- include('partials/header') %>
-
+<%
+var categories
+const capitalize = text => {
+    return text[0].toUpperCase() + text.substring(1)
+}
+const titleNormalize = title => {
+    if (title.length <= 50) {
+        return title
+    }
+    return title.substring(0, 50) + '...'
+}
+%>
 <div class="container pt-20">
     <nav class="breadcrumb">
         <ol class="breadcrumb-list">
@@ -123,9 +134,33 @@
     </div>
 </section>
 
-<% if(recommendation.length > 0) { %>
-    <%- include("recommendation") %>
-<% } %>
+<section class="section popular-categories mb-50">
+    <div class="container">
+        <header class="section__header">
+            <h2 class="section__heading">Присмотритесь к категориям</h2>
+        </header>
+        <div class="popular-categories__slider splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <% categories.forEach(el => { %>
+                        <li class="splide__slide">
+                            <div class="popular-categories__card">
+                                <div>
+                                    <img src="/images/categories/<%= el.thumb %>"
+                                         alt="<%= el.ru_name %>">
+                                </div>
+                                <h3><%= capitalize(el.ru_name) %></h3>
+
+                                <a class=""
+                                   href="/category/<%= el.slug %>"></a>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <%- include('cabinet/toast') %>
