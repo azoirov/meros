@@ -77,6 +77,46 @@ export default function () {
                 }
             })
         })
+
+        cartProductWishlistButtons.forEach(el => {
+            el.addEventListener('click', async e => {
+                const target = e.currentTarget
+                const productId = target.getAttribute('data-cart-product-wishlist')
+                if (target.classList.contains('cart-product-in-wishlist')) {
+                    let response = await fetch('/wishlist', {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        method: 'DELETE',
+                        body: JSON.stringify({
+                            product_id: productId
+                        })
+                    })
+                    response = await response.json()
+
+                    if (response.ok) {
+                        el.classList.add('d-none')
+                        el.previousElementSibling.classList.remove('d-none')
+                    }
+                } else {
+                    let response = await fetch('/wishlist', {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        method: 'POST',
+                        body: JSON.stringify({
+                            product_id: productId
+                        })
+                    })
+                    response = await response.json()
+
+                    if (response.ok) {
+                        el.classList.add('d-none')
+                        el.nextElementSibling.classList.remove('d-none')
+                    }
+                }
+            })
+        })
     } catch (e) {
 
     }

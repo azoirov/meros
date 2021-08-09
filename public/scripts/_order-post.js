@@ -23,7 +23,7 @@ export default function () {
             body: JSON.stringify({
                shipping_region: orderRegion.textContent,
                shipping_address: orderAddress.value,
-               phone_number: orderOwnerPhone.value,
+               phone_number: orderOwnerPhone.value.replace(/\D/g,''),
                full_name: orderOwnerName.value,
                is_shipped: false,
                is_payed: false,
