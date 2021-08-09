@@ -597,7 +597,7 @@ module.exports = class ProductsController {
             rec = arr
             rec = await howManyStar(req.db, rec)
             if(req.user) {
-                rec = await inCart(req.db, rec)
+                rec = await inCart(req.db, rec, req.user.id)
             }
             res.render('wishlist', {
                 title: 'Meros | Wishlist',
