@@ -8,7 +8,7 @@ const generalInfoMiddleware = require("./middlewares/general-info-middleware");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocs = require("./modules/swagger");
 const app = express();
-// const bot = require("./order_bot/main");
+const bot = require("./order_bot/main");
 app.set("view engine", "ejs");
 
 app.use(express.json());

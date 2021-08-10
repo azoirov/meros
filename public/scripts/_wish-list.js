@@ -1,95 +1,98 @@
-import {closingToast, openToast} from './_toast'
-import {selectAll} from './_functions'
+import { closingToast, openToast } from "./_toast";
+import { selectAll } from "./_functions";
 
 export default function () {
-    try {
-        let wishListButtons = selectAll("[data-wishlist-btn]")
+  try {
+    let wishListButtons = selectAll("[data-wishlist-btn]");
 
-        wishListButtons.forEach(el => {
-            el.addEventListener('click', async e => {
-                const target = e.currentTarget
-                const product_id = target.getAttribute('data-wishlist-btn')
+    wishListButtons.forEach((el) => {
+      el.addEventListener("click", async (e) => {
+        const target = e.currentTarget;
+        const product_id = target.getAttribute("data-wishlist-btn");
 
-                if (target.classList.contains('in-wish-list')) {
-                    let response = await fetch('/wishlist', {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        method: 'DELETE',
-                        body: JSON.stringify({
-                            product_id
-                        })
-                    })
+        if (target.classList.contains("in-wish-list")) {
+          let response = await fetch("/wishlist", {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "DELETE",
+            body: JSON.stringify({
+              product_id,
+            }),
+          });
 
-                    response = await response.json()
+          response = await response.json();
 
-                    if (response.ok) {
-                        wishListButtons.forEach(el => {
-                            if (el.getAttribute('data-wishlist-btn') === product_id) {
-                                if (el.classList.contains('product-card__favourite')) {
-                                    el.querySelector('img').src = '/images/icons/favourites-passive.svg'
-                                    el.classList.remove('in-wish-list')
-                                }
-                                el.classList.remove('in-wish-list')
-                            }
-                        })
-                        openToast("failed", "Товар удален из избранного")
-                        closingToast()
-                    }
-                } else {
-                    let response = await fetch('/wishlist', {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        method: 'POST',
-                        body: JSON.stringify({
-                            product_id
-                        })
-                    })
-
-                    response = await response.json()
-
-                    if (response.ok) {
-                        wishListButtons.forEach(el => {
-                            if (el.getAttribute('data-wishlist-btn') === product_id) {
-                                if (el.classList.contains('product-card__favourite')) {
-                                    el.querySelector('img').src = '/images/icons/favourites-active.svg'
-                                    el.classList.add('in-wish-list')
-                                }
-                                el.classList.add('in-wish-list')
-                            }
-                        })
-                        openToast("success", "Товар добавлен в избранное")
-                        closingToast()
-                    }
-
-                    if (!response.ok) {
-                        openToast('failed', 'Вы не вошли в систему. Пожалуйста, войдите сначала')
-                        closingToast()
-                    }
+          if (response.ok) {
+            wishListButtons.forEach((el) => {
+              if (el.getAttribute("data-wishlist-btn") === product_id) {
+                if (el.classList.contains("product-card__favourite")) {
+                  el.querySelector("img").src =
+                    "/images/icons/favourites-passive.svg";
+                  el.classList.remove("in-wish-list");
                 }
-            })
-        })
+                el.classList.remove("in-wish-list");
+              }
+            });
+            openToast("failed", "Товар удален из избранного");
+            closingToast();
+          }
+        } else {
+          let response = await fetch("/wishlist", {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify({
+              product_id,
+            }),
+          });
 
-        const wishlistRemoveBtns = selectAll('[data-wishlist-remove]')
+          response = await response.json();
 
-        wishlistRemoveBtns.forEach(el => {
-            el.addEventListener('click', async e => {
-                const productId = e.currentTarget.getAttribute('data-wishlist-remove')
-                let response = await fetch('/wishlist', {
-                    headers: {
-                        'Content-Type': 'application/json; charset=utf-8'
-                    },
-                    method: 'DELETE',
-                    body: JSON.stringify({ product_id: productId })
-                })
-                response = await response.json()
-                if (response.ok) {
-                    window.location.reload()
+          if (response.ok) {
+            wishListButtons.forEach((el) => {
+              if (el.getAttribute("data-wishlist-btn") === product_id) {
+                if (el.classList.contains("product-card__favourite")) {
+                  el.querySelector("img").src =
+                    "/images/icons/favourites-active.svg";
+                  el.classList.add("in-wish-list");
                 }
-            })
-        })
-    } catch (e) {
-        console.log(e)
-    }
+                el.classList.add("in-wish-list");
+              }
+            });
+            openToast("success", "Товар добавлен в избранное");
+            closingToast();
+          }
+
+          if (!response.ok) {
+            openToast(
+              "failed",
+              "Вы не вошли в систему. Пожалуйста, войдите сначала"
+            );
+            closingToast();
+          }
+        }
+      });
+    });
+
+    const wishlistRemoveBtns = selectAll("[data-wishlist-remove]");
+
+    wishlistRemoveBtns.forEach((el) => {
+      el.addEventListener("click", async (e) => {
+        const productId = e.currentTarget.getAttribute("data-wishlist-remove");
+        let response = await fetch("/wishlist", {
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+          },
+          method: "DELETE",
+          body: JSON.stringify({ product_id: productId }),
+        });
+        response = await response.json();
+        if (response.ok) {
+          window.location.reload();
+        }
+      });
+    });
+  } catch (e) {}
 }
