@@ -141,6 +141,7 @@ module.exports = class UsersController {
         ok: true,
         message: "Code was sent",
         codeValidationId: attempt.dataValues.attempt_id,
+        code: code,
       });
     } catch (e) {
       res.status(400).json({

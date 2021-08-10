@@ -19,6 +19,8 @@ export default async function () {
         phone: loginPhoneInput.value.substring(1).replace(/ /g, ""),
       });
 
+      console.log(response.code);
+
       if (response.ok) {
         loginCard.innerHTML = `
                  <h2>Авторизация</h2>
