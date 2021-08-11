@@ -123,9 +123,9 @@ module.exports = class UsersController {
       if (ban) {
         throw new Error(`You have banned until ${moment(ban.expire_date)}`);
       }
-
+      console.log(true)
       let code = generateCode();
-
+      let sms = await sendSms(phone, "Merosshop.uz: ", code)
       await attempts.destroy({
         where: {
           user_id: user.user_id,
