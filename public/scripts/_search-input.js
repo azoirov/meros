@@ -11,6 +11,7 @@ export default function searchInput() {
         let searchingProductCategory = 'all'
 
         function searchingResultRender(arr) {
+            console.log(arr)
             if (arr.length === 0) {
                 searchingResultList.innerHTML = ''
                 searchInput.style.cssText = `

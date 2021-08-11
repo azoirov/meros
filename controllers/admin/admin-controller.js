@@ -96,7 +96,7 @@ module.exports = class AdminController {
         icon_thumb: `${icon_thumb.md5}.${icon_thumb.mimetype
           .split("/")[1]
           .substr(0, 3)}`,
-        slug: slugify(uz_name.toLowerCase()),
+        slug: slugify(uz_name.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
       });
 
       category = await category.dataValues;
@@ -221,7 +221,7 @@ module.exports = class AdminController {
 
       let category = await req.db.categories.findOne({
         where: {
-          slug: slugify(uz_name.toLowerCase()),
+          slug: slugify(uz_name.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
         },
         raw: true,
       });
@@ -305,7 +305,7 @@ module.exports = class AdminController {
                 .split("/")[1]
                 .substr(0, 3)}`
             : c.icon_thumb,
-          slug: slugify(uz_name.toLowerCase()),
+          slug: slugify(uz_name.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
         },
         {
           where: {
@@ -575,7 +575,7 @@ module.exports = class AdminController {
 
       let product = await req.db.products.findOne({
         where: {
-          slug: slugify(uz_name.toLowerCase()),
+          slug: slugify(uz_name.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
         },
       });
 
@@ -632,7 +632,7 @@ module.exports = class AdminController {
 
       product = await req.db.products.update(
         {
-          slug: slugify(uz_name.toLowerCase()),
+          slug: slugify(uz_name.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
           uz_name,
           ru_name,
           en_name,
@@ -695,7 +695,7 @@ module.exports = class AdminController {
 
       let product = await req.db.products.findOne({
         where: {
-          slug: slugify(uz_name.toLowerCase()),
+          slug: slugify(uz_name.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
         },
       });
 
@@ -732,7 +732,7 @@ module.exports = class AdminController {
       }
 
       product = await req.db.products.create({
-        slug: slugify(uz_name.toLowerCase()),
+        slug: slugify(uz_name.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
         uz_name,
         ru_name,
         en_name,
@@ -2240,7 +2240,7 @@ module.exports = class AdminController {
         sub_category_name_en,
         sub_category_name_ru,
         sub_category_image: `${fileName}.${fileType}`,
-        sub_category_slug: slugify(sub_category_name_uz.toLowerCase()),
+          sub_category_slug: slugify(sub_category_name_uz.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
       });
 
       res.status(201).json({
@@ -2305,7 +2305,7 @@ module.exports = class AdminController {
         sub_sub_category_name_en,
         sub_sub_category_name_ru,
         sub_sub_category_image: `${fileName}.${fileType}`,
-        sub_sub_category_slug: slugify(sub_sub_category_name_uz.toLowerCase()),
+        sub_sub_category_slug: slugify(sub_sub_category_name_uz.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
         category_id,
       });
 
@@ -2342,7 +2342,7 @@ module.exports = class AdminController {
 
       let s = await req.db.sub_category.findOne({
         where: {
-          sub_category_slug: slugify(sub_category_name_uz.toLowerCase()),
+          sub_category_slug: slugify(sub_category_name_uz.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
         },
         raw: true,
       });
@@ -2382,7 +2382,7 @@ module.exports = class AdminController {
             sub_category_name_uz,
             sub_category_name_ru,
             sub_category_name_en,
-            sub_category_slug: slugify(sub_category_name_uz),
+            sub_category_slug: slugify(sub_category_name_uz.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
             sub_category_image: `${fileName}.${fileType}`,
             category_id,
           },
@@ -2398,7 +2398,7 @@ module.exports = class AdminController {
             sub_category_name_uz,
             sub_category_name_ru,
             sub_category_name_en,
-            sub_category_slug: slugify(sub_category_name_uz),
+            sub_category_slug: slugify(sub_category_name_uz.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
             category_id,
           },
           {
@@ -2499,7 +2499,7 @@ module.exports = class AdminController {
       let s = await req.db.sub_sub_category.findOne({
         where: {
           sub_sub_category_slug: slugify(
-            sub_sub_category_name_uz.toLowerCase()
+            sub_sub_category_name_uz.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}
           ),
         },
         raw: true,
@@ -2539,7 +2539,7 @@ module.exports = class AdminController {
             sub_sub_category_name_uz,
             sub_sub_category_name_ru,
             sub_sub_category_name_en,
-            sub_sub_category_slug: slugify(sub_sub_category_name_uz),
+            sub_sub_category_slug: slugify(sub_sub_category_name_uz.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
             sub_sub_category_image: `${fileName}.${fileType}`,
             sub_category_id,
             category_id,
@@ -2556,7 +2556,7 @@ module.exports = class AdminController {
             sub_sub_category_name_uz,
             sub_sub_category_name_ru,
             sub_sub_category_name_en,
-            sub_sub_category_slug: slugify(sub_sub_category_name_uz),
+            sub_sub_category_slug: slugify(sub_sub_category_name_uz.toLowerCase(), {remove: /[*+~.()'"!:@,;><`~]/g}),
             sub_category_id,
             category_id,
           },
