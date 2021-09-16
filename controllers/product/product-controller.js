@@ -472,7 +472,7 @@ module.exports = class ProductsController {
       let totalPrice = 0;
 
       for (let c of cart) {
-        if(product.in_stock) {
+        if(c["product.in_stock"]) {
           totalPrice += (c["product.price"] * (100 - c["product.sale"])) / 100;
         }
       }
