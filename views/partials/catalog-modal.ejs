@@ -23,14 +23,14 @@
                                 <div class="catalog__content__item__card">
                                 <h3 class="catalog__content__item__heading">
                                     <a style="color: #273142" href="/category/<%= category.slug%>/<%= sub_cat.sub_category_slug %>">
-                                        <%= sub_cat.sub_category_name_ru[0].toUpperCase() + sub_cat.sub_category_name_ru.substring(1) %>
+                                        <%= lang === "ru" ? sub_cat.sub_category_name_ru[0].toUpperCase() + sub_cat.sub_category_name_ru.substring(1) : sub_cat.sub_category_name_uz[0].toUpperCase() + sub_cat.sub_category_name_uz.substring(1) %>
                                     </a>
                                 </h3>
                                 <ul class="catalog__content__item__ul">
                                     <% sub_cat.sub_sub_categories.forEach(el => { %>
                                         <li class="catalog__content__item__li">
                                             <a class="catalog__content__item__link" href="/category/<%= category.slug%>/<%= sub_cat.sub_category_slug %>/<%= el.sub_sub_category_slug%>">
-                                                <%= el.sub_sub_category_name_ru[0].toUpperCase() + el.sub_sub_category_name_ru.substring(1) %>
+                                                <%= lang === "ru" ? el.sub_sub_category_name_ru[0].toUpperCase() + el.sub_sub_category_name_ru.substring(1): el.sub_sub_category_name_uz[0].toUpperCase() + el.sub_sub_category_name_uz.substring(1) %>
                                             </a>
                                         </li>
                                     <% }) %>
