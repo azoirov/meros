@@ -472,7 +472,9 @@ module.exports = class ProductsController {
       let totalPrice = 0;
 
       for (let c of cart) {
-        totalPrice += (c["product.price"] * (100 - c["product.sale"])) / 100;
+        if(product.in_stock) {
+          totalPrice += (c["product.price"] * (100 - c["product.sale"])) / 100;
+        }
       }
       let recomendations = await req.db.recomendations.findAll({
         raw: true,
