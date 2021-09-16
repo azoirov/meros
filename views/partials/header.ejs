@@ -446,7 +446,7 @@ const titleNormalize = title => {
                 <% categories.forEach(category => { %>
                     <li class="categories-menu__item">
                         <div class="categories-menu__title">
-                            <span><%= capitalize(category.ru_name) %></span>
+                            <span><%= capitalize(lang === "ru" ? category.ru_name : sub_category_name_uz) %></span>
                             <span class="categories-menu__round"></span>
                         </div>
                         <% category.sub_categories.forEach(sub_cat => { %>
@@ -454,7 +454,7 @@ const titleNormalize = title => {
                                 <div class="categories-menu__content__card">
                                     <h3>
                                         <a href="/category/<%= category.slug %>/<%= sub_cat.sub_category_slug %>">
-                                            <%= capitalize(sub_cat.sub_category_name_ru) %>
+                                            <%= capitalize(lang === "ru" ? sub_cat.sub_category_name_ru : sub_cat.sub_category_name_ru) %>
                                         </a>
                                     </h3>
                                     <ul class="categories-menu__content__ul">
