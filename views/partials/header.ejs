@@ -376,7 +376,7 @@ const titleNormalize = title => {
                             <% if (i === 12) break; %>
                             <li class="header-bottom__li">
                                 <a class="header-bottom__link"
-                                   href="/category/<%= categories[i].slug %>"><%= categories[i].ru_name[0].toUpperCase() + categories[i].ru_name.substring(1) %></a>
+                                   href="/category/<%= categories[i].slug %>"><%= lang === "ru" ? categories[i].ru_name[0].toUpperCase() + categories[i].ru_name.substring(1) : categories[i].uz_name[0].toUpperCase() + categories[i].uz_name.substring(1) %></a>
                             </li>
                         <% } %>
                     <% } else { %>
