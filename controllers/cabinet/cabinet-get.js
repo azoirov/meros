@@ -5,7 +5,8 @@ const cabinetGet = async (req, res) => {
       title: 'Meros | Personal Cabinet',
       path: '/cabinet',
       user: req.user,
-      categories: req.categories
+      categories: req.categories,
+      lang: req.lang
    })
 }
 
@@ -14,7 +15,8 @@ const cabinetEditGet = async (req, res) => {
       title: 'Meros | Personal Cabinet Edit',
       path: '/cabinet/edit',
       user: req.user,
-      categories: req.categories
+      categories: req.categories,
+      lang: req.lang
    })
 }
 const savedCardsGet = async (req, res) => {
@@ -22,7 +24,8 @@ const savedCardsGet = async (req, res) => {
       title: 'Meros | Saved Cards',
       path: '/cabinet/saved-cards',
       user: req.user,
-      categories: req.categories
+      categories: req.categories,
+      lang: req.lang
    })
 }
 
@@ -72,7 +75,8 @@ const boughtProductsGet = async (req, res) => {
       title: 'Meros | Orders',
       path: '/cabinet/bought-products',
       user: req.user,
-      categories: req.categories
+      categories: req.categories,
+      lang: req.lang
    })
 }
 
@@ -81,7 +85,8 @@ const regularDeliveriesGet = async (req, res) => {
       title: 'Meros | Regular Deliveries',
       path: '/cabinet/regular-deliveries',
       user: req.user,
-      categories: req.categories
+      categories: req.categories,
+      lang: req.lang
    })
 }
 const notificationSettingsGet = async (req, res) => {
@@ -89,7 +94,8 @@ const notificationSettingsGet = async (req, res) => {
       title: 'Meros | Notification Settings',
       path: '/cabinet/notification-settings',
       user: req.user,
-      categories: req.categories
+      categories: req.categories,
+      lang: req.lang
    })
 }
 
@@ -98,7 +104,9 @@ const myDetailsGet = async (req, res) => {
       title: 'Meros | My Details',
       path: '/cabinet/my-details',
       user: req.user,
-      categories: req.categories
+      lang: req.lang,
+      categories: req.categories,
+      lang: req.lang
    })
 }
 
