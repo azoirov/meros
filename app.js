@@ -9,6 +9,7 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerDocs = require("./modules/swagger");
 const app = express();
 const bot = require("./order_bot/main");
+const langMiddleware = require("./middlewares/lang-middleware");
 app.set("view engine", "ejs");
 
 app.use(express.json());
@@ -23,13 +24,14 @@ app.use(async (req, res, next) => {
 
 (async () => {
     const psql = await db();
-    await bot(psql);
+    // await bot(psql);
 })();
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(userMiddleware);
 app.use(generalInfoMiddleware);
+app.use(langMiddleware);
 
 const pathToRoutes = path.join(__dirname, "routes");
 

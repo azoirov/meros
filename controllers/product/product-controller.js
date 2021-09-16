@@ -310,12 +310,10 @@ module.exports = class ProductsController {
         categories: req.categories,
         user: req.user,
         recommendation: rec,
+        lang: req.lang
       });
     } catch (e) {
-      res.status(400).json({
-        ok: false,
-        message: e + "",
-      });
+      res.render("404")
     }
   }
 
@@ -512,12 +510,10 @@ module.exports = class ProductsController {
         totalPrice,
         path: "/cart",
         recommendation: rec,
+        lang: req.lang
       });
     } catch (e) {
-      res.status(400).json({
-        ok: false,
-        message: e + "",
-      });
+      res.render("404")
     }
   }
 
@@ -551,12 +547,10 @@ module.exports = class ProductsController {
         categories: req.categories,
         cart,
         totalPrice,
+        lang: req.lang
       });
     } catch (e) {
-      res.status(400).json({
-        ok: false,
-        message: e + "",
-      });
+      res.render("404")
     }
   }
 
@@ -679,12 +673,10 @@ module.exports = class ProductsController {
         categories: req.categories,
         path: "/wishlist",
         recommendation: rec,
+        lang: req.lang
       });
     } catch (e) {
-      res.status(400).json({
-        ok: false,
-        message: e + "",
-      });
+      res.render("404")
     }
   }
 
@@ -851,6 +843,7 @@ module.exports = class ProductsController {
       user: req.user,
       categories: req.categories,
       recommendation: rec,
+      lang: req.lang
     });
   }
 
@@ -1004,9 +997,10 @@ module.exports = class ProductsController {
         size: allProducts.length,
         cPage: c_page,
         path: `/category/${category.slug}`,
+        lang: req.lang
       });
     } catch (e) {
-      res.send(e);
+      res.render("404")
     }
   }
 
@@ -1168,9 +1162,10 @@ module.exports = class ProductsController {
         size: allProducts.length,
         cPage: c_page,
         path: `/category/${category.slug}/${sub_category.sub_category_slug}`,
+        lang: req.lang
       });
     } catch (e) {
-      res.send(e);
+      res.render("404")
     }
   }
 
@@ -1329,9 +1324,10 @@ module.exports = class ProductsController {
         size: allProducts.length,
         cPage: c_page,
         path: `/category/${category.slug}/${sub_category.sub_category_slug}/${sub_sub_category.sub_sub_category_slug}`,
+        lang: req.lang
       });
     } catch (e) {
-      res.send(e);
+      res.render("404")
     }
   }
 

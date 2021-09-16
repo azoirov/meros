@@ -9,7 +9,7 @@
                         <li class="catalog__item">
                             <a class="catalog__link" href="/categories/<%= category.slug %>">
                                 <span></span>
-                                <span><%= category.ru_name[0].toUpperCase() + category.ru_name.substring(1) %></span>
+                                <span><%= lang === "ru" ? category.ru_name[0].toUpperCase() + category.ru_name.substring(1) : category.uz_name[0].toUpperCase() + category.uz_name.substring(1)%></span>
                             </a>
                         </li>
                     <% }) %>

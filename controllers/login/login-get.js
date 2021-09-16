@@ -6,6 +6,7 @@ module.exports = async (req, res) => {
       title: 'Meros | Login',
       path: '/login',
       user: req.user,
-      categories: req.categories
+      categories: req.categories,
+      lang: req.lang
    })
 }
