@@ -12,7 +12,7 @@
                 <% for (let i = 0; i < Math.floor(categories.length / 2); i++) { %>
                     <li class="categories-modal__li" data-category-modal-item="<%= categories[i].category_id %>">
                         <img src="/images/categories-icons/<%= categories[i].icon_thumb %>" alt="icon">
-                        <span><%= categories[i].ru_name[0].toUpperCase() + categories[i].ru_name.substring(1) %></span>
+                        <span><%= lang === "ru" ? categories[i].ru_name[0].toUpperCase() + categories[i].ru_name.substring(1) : categories[i].uz_name[0].toUpperCase() + categories[i].uz_name.substring(1) %></span>
                     </li>
                 <% } %>
             </ul>
@@ -20,7 +20,7 @@
                 <% for (let i = Math.floor(categories.length / 2); i < categories.length; i++) { %>
                     <li class="categories-modal__li" data-category-modal-item="<%= categories[i].category_id %>">
                         <img src="/images/categories-icons/<%= categories[i].icon_thumb %>" alt="icon">
-                        <span><%= categories[i].ru_name[0].toUpperCase() + categories[i].ru_name.substring(1) %></span>
+                        <span><%= lang === "ru" ? categories[i].ru_name[0].toUpperCase() + categories[i].ru_name.substring(1) : categories[i].uz_name[0].toUpperCase() + categories[i].uz_name.substring(1) %></span>
                     </li>
                 <% } %>
             </ul>

@@ -53,7 +53,7 @@ const titleNormalize = title => {
                                             <div class="cart__products__info__top">
                                                 <h3>
                                                     <a style="color: #273142" href="/product/<%= c['product.slug'] %>">
-                                                        <%= c['product.ru_name'] %>
+                                                        <%= lang === "ru" ? c['product.ru_name'] : c['product.uz_name']%>
                                                     </a>
                                                 </h3>
                                                 <div class="cart__products__info__count">
@@ -147,9 +147,9 @@ const titleNormalize = title => {
                             <div class="popular-categories__card">
                                 <div>
                                     <img src="/images/categories/<%= el.thumb %>"
-                                         alt="<%= el.ru_name %>">
+                                         alt="<%= lang === "ru" ? el.ru_name : el.uz_name %>">
                                 </div>
-                                <h3><%= capitalize(el.ru_name) %></h3>
+                                <h3><%= capitalize(lang === "ru" ? el.ru_name : el.uz_name) %></h3>
 
                                 <a class=""
                                    href="/category/<%= el.slug %>"></a>

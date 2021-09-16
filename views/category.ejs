@@ -62,7 +62,7 @@ const titleNormalize = title => {
                         <div>
                             <div class="product-card__header">
                                 <img src="/images/products/<%= product.thumb[0] %>"
-                                     alt="<%= product.ru_name %>">
+                                     alt="<%= lang === "ru" ? product.ru_name : product.uz_name%>">
                                 <% if (product.sale) { %>
                                     <span class="product-card__discount">-<%= product.sale %>%</span>
                                 <% } %>
@@ -103,10 +103,10 @@ const titleNormalize = title => {
                             </div>
                             <div class="product-card__body">
                                 <a class="product-card__category"
-                                   href="/category/<%= product['category.ru_name'] %>"><%= capitalize(product['category.ru_name']) %></a>
+                                   href="/category/<%= product['category.slug'] %>"><%= capitalize(product['category.ru_name']) %></a>
                                 <h3 class="product-card__title">
                                     <a style="color: #273142" href="/product/<%= product.slug %>">
-                                        <%= titleNormalize(product.ru_name) %>
+                                        <%= titleNormalize(lang === "ru" ? product.ru_name : product.uz_name) %>
                                     </a>
                                 </h3>
                                 <img class="product-card__rating-stars"
@@ -218,10 +218,10 @@ const titleNormalize = title => {
                             </div>
                             <div class="product-card__body">
                                 <a class="product-card__category"
-                                   href="/category/<%= product['category.ru_name'] %>"><%= capitalize(product['category.ru_name']) %></a>
+                                   href="/category/<%= product['category.slug'] %>"><%= capitalize(lang === "ru" ? product['category.ru_name'] : product['category.uz_name']) %></a>
                                 <h3 class="product-card__title">
                                     <a style="color: #273142" href="/product/<%= product.slug %>">
-                                        <%= titleNormalize(product.ru_name) %>
+                                        <%= titleNormalize(lang === "ru" ? product.ru_name : product.uz_name) %>
                                     </a>
                                 </h3>
                                 <img class="product-card__rating-stars"
@@ -297,7 +297,7 @@ const titleNormalize = title => {
                 <div>
                     <img style="width: 70%" src="/images/categories/<%= category.thumb %>" alt="Книги">
                 </div>
-                <h3><%= category.ru_name[0].toUpperCase() + category.ru_name.substring(1) %></h3>
+                <h3><%= lang === "ru" ? category.ru_name[0].toUpperCase() + category.ru_name.substring(1) : category.uz_name[0].toUpperCase() + category.uz_name.substring(1)%></h3>
                 <a href="/categories/<%= category.slug %>"></a>
             </div>
             <% }) %>

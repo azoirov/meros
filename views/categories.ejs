@@ -9,7 +9,7 @@
                     <div class="categories__img">
                         <img src="/images/categories/<%= category.thumb %>" alt="">
                     </div>
-                    <div class="categories__name"><%= category.ru_name[0].toUpperCase() + category.ru_name.substring(1) %></div>
+                    <div class="categories__name"><%= lang === "ru" ? category.ru_name[0].toUpperCase() + category.ru_name.substring(1) : category.uz_name[0].toUpperCase() + category.uz_name.substring(1) %></div>
                     <a class="categories__link" href="/category/<%= category.slug %>"></a>
                 </li>
             <% }) %>
