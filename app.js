@@ -44,7 +44,7 @@ fs.readdir(pathToRoutes, (err, files) => {
     });
 
     app.get("*", (req, res) => {
-        res.render("partials/404")
+        res.render("404")
     });
 });
 

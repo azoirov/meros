@@ -49,7 +49,7 @@ const titleNormalize = title => {
                                         <div class="cart__products__info">
                                             <div>
                                                 <div class="cart__products__info__top">
-                                                    <h3><a style="color: #273142" href="/product/<%= w['product.slug']%>"><%= w['product.ru_name'] %></a></h3>
+                                                    <h3><a style="color: #273142" href="/product/<%= w['product.slug']%>"><%= lang === "ru" ? w['product.ru_name'] : w['product.uz_name']%></a></h3>
                                                     <button class="cart__products__info__delete" data-wishlist-remove="<%= w['product.product_id'] %>">
                                                         <img src="/images/icons/delete.svg" alt="">
                                                     </button>
@@ -91,7 +91,7 @@ const titleNormalize = title => {
                                     <img src="/images/categories/<%= el.thumb %>"
                                          alt="<%= el.ru_name %>">
                                 </div>
-                                <h3><%= capitalize(el.ru_name) %></h3>
+                                <h3><%= capitalize(lang === ? el.ru_name : el.uz_name) %></h3>
 
                                 <a class=""
                                    href="/category/<%= el.slug %>"></a>

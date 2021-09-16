@@ -33,22 +33,22 @@ if (product.sub_sub_category_id) {
         <ol class="breadcrumb-list">
             <li class="breadcrumb-item">
                 <a class="breadcrumb-link"
-                   href="/category/<%= category.slug %>"><%= capitalize(category.ru_name) %></a>
+                   href="/category/<%= category.slug %>"><%= capitalize(lang === "ru" ? category.ru_name : category.uz_name) %></a>
             </li>
             <% if (secondaryCategory) { %>
                 <li class="breadcrumb-item">
                     <a class="breadcrumb-link"
-                       href="/category/<%= category.slug %>/<%= secondaryCategory.sub_category_slug %>"><%= capitalize(secondaryCategory.sub_category_name_ru) %></a>
+                       href="/category/<%= category.slug %>/<%= secondaryCategory.sub_category_slug %>"><%= capitalize(lang === "ru" ? secondaryCategory.sub_category_name_ru : secondaryCategory.sub_category_name_uz) %></a>
                 </li>
             <% } %>
             <% if (tertiaryCategory) { %>
                 <li class="breadcrumb-item">
                     <a class="breadcrumb-link"
-                       href="/category/<%= category.slug %>/<%= secondaryCategory.sub_category_slug %>/<%= tertiaryCategory.sub_sub_category_slug %>"><%= capitalize(tertiaryCategory.sub_sub_category_name_ru) %></a>
+                       href="/category/<%= category.slug %>/<%= secondaryCategory.sub_category_slug %>/<%= tertiaryCategory.sub_sub_category_slug %>"><%= capitalize(lang === "ru" ? tertiaryCategory.sub_sub_category_name_ru : tertiaryCategory.sub_sub_category_name_ru) %></a>
                 </li>
             <% } %>
             <li class="breadcrumb-item">
-                <%= product.ru_name %>
+                <%= lang === "ru" ? product.ru_name : product.uz_name %>
             </li>
         </ol>
     </nav>
@@ -69,7 +69,7 @@ if (product.sub_sub_category_id) {
                 </ul>
             </div>
             <div class="product-info">
-                <h2 class="product-name"><%= product.ru_name %></h2>
+                <h2 class="product-name"><%= lang === "ru" ? product.ru_name : product.uz_name %></h2>
                 <div class="product-rating">
                     <img src="/images/rating-stars/<%= product.star %>.svg" alt="rating stars"/>
                     <a href="#comment">Отзывы (<%= comments.length %>)</a>
@@ -83,10 +83,10 @@ if (product.sub_sub_category_id) {
                                                                                      index) => { %>
                                     <li class="product-short-info__li">
                                         <div class="product-short-info__definition">
-                                            <%= option['ru']['key'] %>
+                                            <%= lang === "ru" ? option['ru']['key'] : option["uz"]["key"] %>
                                         </div>
                                         <div class="product-short-info__value">
-                                            <%= option['ru']['value'] %>
+                                            <%= lang === "ru" ? option['ru']['value'] : option["uz"]["value"] %>
                                         </div>
                                     </li>
                                 <% }) %>
@@ -130,7 +130,7 @@ if (product.sub_sub_category_id) {
         </div>
         <div class="product-description mb-40">
             <h2>Описание</h2>
-            <p><%= product.ru_description %></p>
+            <p><%= lang === "ru" ? product.ru_description : product.en_description %></p>
         </div>
         <% if(JSON.parse(product.options).length > 0 && Object.keys(JSON.parse(product.options)[0]).length > 0) { %>
             <div class="product-description">
@@ -141,10 +141,10 @@ if (product.sub_sub_category_id) {
                                 2); i ++) { %>
                             <li class="product-short-info__li">
                                 <div class="product-short-info__definition">
-                                    <%= JSON.parse(product.options)[i]['ru']['key'] %>
+                                    <%= lang === "ru" ? JSON.parse(product.options)[i]['ru']['key'] : JSON.parse(product.options)[i]['uz']['key'] %>
                                 </div>
                                 <div class="product-short-info__value">
-                                    <%= JSON.parse(product.options)[i]['ru']['value'] %>
+                                    <%= lang === "ru" ? JSON.parse(product.options)[i]['ru']['value'] : JSON.parse(product.options)[i]['uz']['value'] %>
                                 </div>
                             </li>
                         <% } %>
@@ -154,10 +154,10 @@ if (product.sub_sub_category_id) {
                         < JSON.parse(product.options).length; i ++) { %>
                             <li class="product-short-info__li">
                                 <div class="product-short-info__definition">
-                                    <%= JSON.parse(product.options)[i]['ru']['key'] %>
+                                    <%= lang === "ru" ? JSON.parse(product.options)[i]['ru']['key'] : JSON.parse(product.options)[i]['uz']['key'] %>
                                 </div>
                                 <div class="product-short-info__value">
-                                    <%= JSON.parse(product.options)[i]['ru']['value'] %>
+                                    <%= lang === "ru" ? JSON.parse(product.options)[i]['ru']['value'] : JSON.parse(product.options)[i]['uz']['value'] %>
                                 </div>
                             </li>
                         <% } %>

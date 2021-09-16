@@ -62,7 +62,8 @@ const ordersGet = async (req, res) => {
       path: '/cabinet/orders',
       user: req.user,
       categories: req.categories,
-      orders
+      orders,
+      lang: req.lang
    })
 }
 

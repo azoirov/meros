@@ -66,10 +66,10 @@ const titleNormalize = title => {
                                     </div>
                                     <div class="product-card__body">
                                         <a class="product-card__category"
-                                           href="/category/<%= product["product.category.ru_name"] %>"><%= capitalize(product["product.category.ru_name"]) %></a>
+                                           href="/category/<%= product["product.category.slug"] %>"><%= capitalize(product["product.category.slug"]) %></a>
                                         <h3 class="product-card__title">
                                             <a style="color: #273142" href="/product/<%= product["product.slug"] %>">
-                                                <%= titleNormalize(product["product.ru_name"]) %>
+                                                <%= titleNormalize(lang === "ru" ? product["product.ru_name"] : product["product.uz_name"]) %>
                                             </a>
                                         </h3>
                                         <img class="product-card__rating-stars"
