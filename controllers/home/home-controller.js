@@ -71,7 +71,7 @@ module.exports = class HomeController {
       }
 
       let bestsellers = [];
-      while (sale.length <= 8 && bestseller.length > 0) {
+      while (bestseller.length <= 8 && bestseller.length > 0) {
         let i = Math.random() * goodOffers.length - 1;
         let item = bestseller.pop(bestseller[i]);
         bestsellers.push(item);
@@ -86,6 +86,8 @@ module.exports = class HomeController {
         bestsellers = await inCart(req.db, bestsellers, req.user.id);
       }
 
+      console.log(sale.length, "sale")
+      console.log(bestseller.length, "best")
       res.render("index", {
         title: "Meros | Home",
         categories: req.categories,
