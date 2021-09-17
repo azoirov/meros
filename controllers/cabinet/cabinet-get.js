@@ -6,7 +6,8 @@ const cabinetGet = async (req, res) => {
       path: '/cabinet',
       user: req.user,
       categories: req.categories,
-      lang: req.lang
+      lang: req.lang,
+      data: req.data
    })
 }
 
@@ -16,7 +17,8 @@ const cabinetEditGet = async (req, res) => {
       path: '/cabinet/edit',
       user: req.user,
       categories: req.categories,
-      lang: req.lang
+      lang: req.lang,
+      data: req.data
    })
 }
 const savedCardsGet = async (req, res) => {
@@ -25,7 +27,8 @@ const savedCardsGet = async (req, res) => {
       path: '/cabinet/saved-cards',
       user: req.user,
       categories: req.categories,
-      lang: req.lang
+      lang: req.lang,
+      data: req.data
    })
 }
 
@@ -66,7 +69,8 @@ const ordersGet = async (req, res) => {
       user: req.user,
       categories: req.categories,
       orders,
-      lang: req.lang
+      lang: req.lang,
+      data: req.data
    })
 }
 
@@ -76,7 +80,8 @@ const boughtProductsGet = async (req, res) => {
       path: '/cabinet/bought-products',
       user: req.user,
       categories: req.categories,
-      lang: req.lang
+      lang: req.lang,
+      data: req.data
    })
 }
 
@@ -86,7 +91,8 @@ const regularDeliveriesGet = async (req, res) => {
       path: '/cabinet/regular-deliveries',
       user: req.user,
       categories: req.categories,
-      lang: req.lang
+      lang: req.lang,
+      data: req.data
    })
 }
 const notificationSettingsGet = async (req, res) => {
@@ -95,7 +101,8 @@ const notificationSettingsGet = async (req, res) => {
       path: '/cabinet/notification-settings',
       user: req.user,
       categories: req.categories,
-      lang: req.lang
+      lang: req.lang,
+      data: req.data
    })
 }
 
@@ -106,7 +113,7 @@ const myDetailsGet = async (req, res) => {
       user: req.user,
       lang: req.lang,
       categories: req.categories,
-      lang: req.lang
+      data: req.data
    })
 }
 

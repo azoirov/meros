@@ -1,23 +1,103 @@
 {
     "uz": {
         "cart": {
-
+            "empty": {
+                "noProduct": "Savatcha bo'sh",
+                "search": "Kerakli tovarni topish uchun qidiruvdan foydalaning",
+                "back": "Bosh sahifaga qaytish"
+            },
+            "inStock": "Omborda bor",
+            "outOfStock": "Omborda yo'q",
+            "addToWish": "Sevimlilarga qo'shish",
+            "removeWish": "Sevimlilardan chiqarish",
+            "look": "Quyidagi ruknlardan qidiring",
+            "total": "Jami",
+            "ship": "Yetkazib berish",
+            "toPay": "To'lovga",
+            "purchase": "Buyurtmani rasmiylashtirish"
         },
         "wishlist": {
-    
+            "empty": {
+                "noProduct": "Tanlangan mahsulotlar",
+                "search": "Kerakli tovarni topish uchun qidiruvdan foydalaning",
+                "back": "Bosh sahifaga qaytish"
+            },
+            "title": "Sevimlilar",
+            "look": "Quyidagi ruknlardan qidiring",
+            "inStock": "Omborda bor",
+            "outOfStock": "Omborda yo'q"
         },
         "single": {
-    
+            "comments": "Izohlar",
+            "short": "Tovar haqida qisqacha",
+            "count": "Miqdori",
+            "description": "Tavsifi",
+            "characteristics": "Xarakteristikasi",
+            "rec": "Siz uchun tavsiya",
+            "allComments": "Izohlar",
+            "leaveComment": "Izoh qoldirish"
         },
         "home": {
-            
+            "special": "Siz uchun maxsus",
+            "saled": "Chegirmali mahsulotlar",
+            "goodOffer": "Eng yaxshi takliflar",
+            "popularCategories": "Mashhur ruknlar",
+            "rec": "Siz uchun tavsiya",
+            "popularBrands": "Mashhur brendlar" 
         },
         "header": {
             "mobile": "Mobil illova",
             "sale": "Chegirma",
             "help": "Yordam",
             "adress": "Do'konlar manzili",
-            "shipping": "Yetkazib berish"
+            "shipping": "Yetkazib berish",
+            "catalog": "Katalog",
+            "search": "Tovarlar bo'yicha qidirish",
+            "allCat": "Barcha ruknlar",
+            "wishlist": "Sevimlilar",
+            "cart": "Savatcha",
+            "login": "Kirish",
+            "cabinet": {
+                "title": "Kabinet",
+                "orders": "Buyurtmalar",
+                "own": "Shaxsiy kabinet",
+                "message": "Xabar",
+                "balls": "Ballar",
+                "leave": "Chiqish"
+            } 
+        },
+        "category": {
+            "productCount": "ta mahsulot",
+            "goodOffer": "Eng yaxshi takliflar",
+            "popularCategories": "Mashhur ruknlar",
+            "rec": "Siz uchun tavsiya",
+            "popularBrands": "Mashhur brendlar" 
+        },
+        "tertiaryCategory": {
+            "saled": "Chegirmali mahsulotlar",
+            "everyday": "Har kunlik mahsulotlar",
+            "rec": "Siz uchun tavsiya",
+            "popularBrands": "Mashhur brendlar" 
+        },
+        "cabinet": {
+            "own": {
+                "title": "Mening ma'lumotlarim",
+                "edit": {
+                    "title": "Shaxsiy ma'lumotlar",
+                    "firstName": "Ism",
+                    "lastName": "Familya",
+                    "save": "Saqlash",
+                    "toastSave": "Sizning ma'lumotlaringiz muvaffaqqiyatli o'zgartirildi",
+                    "accountInfo": "Hisob ma'lumotlari",
+                    "phone": "Telefon raqam",
+                    "email": "email",
+                    "manageAccount": {
+                        "since": "dan beri biz bilansiz",
+                        "leaveAll": "Barcha qurilmalardan chiqish",
+                        "leave": "Hisobdan chiqish"
+                    }
+                }
+            }
         }
     },
     "ru": {

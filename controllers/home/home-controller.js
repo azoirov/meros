@@ -86,10 +86,6 @@ module.exports = class HomeController {
         bestsellers = await inCart(req.db, bestsellers, req.user.id);
       }
 
-      console.log(bestseller)
-
-      console.log(sale.length, "sale")
-      console.log(bestseller.length, "best")
       res.render("index", {
         title: "Meros | Home",
         categories: req.categories,

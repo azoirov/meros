@@ -7,6 +7,7 @@ module.exports = async (req, res) => {
       path: '/login',
       user: req.user,
       categories: req.categories,
-      lang: req.lang
+      lang: req.lang,
+      data: req.data
    })
 }
