@@ -1,5 +1,5 @@
 const fs = require('fs/promises')
-
+const path = require("path")
 module.exports = async (req, res, next) => {
     let lang = req.cookies.lang
     
