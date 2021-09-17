@@ -95,7 +95,8 @@ module.exports = class HomeController {
         recommendation: rec,
         bestsellers,
         sale,
-        lang: req.lang
+        lang: req.lang,
+        data: req.data
       });
     } catch(e) {
       res.render("404")

@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
     let data = await fs.readFile("../data.json", { encoding: "utf-8" });
     data = await JSON.parse(data)
 
-    req.data = data[`lang`]
+    req.data = data[`${lang}`]
 
     next()
 }
