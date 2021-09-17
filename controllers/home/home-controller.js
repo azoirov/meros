@@ -71,7 +71,7 @@ module.exports = class HomeController {
       }
 
       let bestsellers = [];
-      while (bestseller.length <= 8 && bestseller.length > 0) {
+      while (bestsellers.length < 8 && bestseller.length > 0) {
         let i = Math.random() * goodOffers.length - 1;
         let item = bestseller.pop(bestseller[i]);
         bestsellers.push(item);
