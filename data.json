@@ -1,6 +1,10 @@
 {
     "uz": {
         "cart": {
+            "breadcrumb": {
+                "home": "Bosh sahifa",
+                "cart": "Savatcha"
+            },
             "empty": {
                 "noProduct": "Savatcha bo'sh",
                 "search": "Kerakli tovarni topish uchun qidiruvdan foydalaning",
@@ -14,7 +18,7 @@
             "total": "Jami",
             "ship": "Yetkazib berish",
             "toPay": "To'lovga",
-            "purchase": "Buyurtmani rasmiylashtirish"
+            "purchase": "Buyurtmani rasmiylashtirish",
         },
         "wishlist": {
             "empty": {
