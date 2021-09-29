@@ -7,4 +7,6 @@ module.exports = {
     TOKEN: process.env.TOKEN,
     BOT_USERNAME: process.env.BOT_USERNAME,
     PAYMENT_TOKEN: process.env.PAYMENT_TOKEN,
+    SMS_EMAIL: process.env.SMS_EMAIL,
+    SMS_PASSWORD: process.env.SMS_PASSWORD,
 };
