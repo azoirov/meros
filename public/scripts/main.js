@@ -36,6 +36,7 @@ import singleProductCart from "./_single-product-cart";
 import singleProductAddCart from "./_single-product-cart-add";
 import cartProductPlusMinus from "./_cart-product-plus-minus";
 import lang from "./_lang";
+
 document.addEventListener("DOMContentLoaded", () => {
     cabinetDropdown();
     catalogModal();

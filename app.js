@@ -16,6 +16,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
+
+app.use((req, res, next) => {
+    let lang = req.cookies.lang;
+    if (!lang) res.cookie("lang", "uz").redirect(req.url);
+    else next();
+});
+
 app.use(async (req, res, next) => {
     let psql = await db();
     req.db = await psql;
@@ -44,11 +51,8 @@ fs.readdir(pathToRoutes, (err, files) => {
     });
 
     app.get("*", (req, res) => {
-        res.render("404")
+        res.render("404");
     });
 });
-
-
-
 
 module.exports = app;

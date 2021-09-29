@@ -1,14 +1,16 @@
-const fs = require('fs/promises')
-const path = require("path")
+const fs = require("fs/promises");
+const path = require("path");
 module.exports = async (req, res, next) => {
-    let lang = req.cookies.lang
-    
-    req.lang = lang
+    let lang = req.cookies.lang;
 
-    let data = await fs.readFile(path.join(__dirname, "..", "data.json"), { encoding: "utf-8" });
-    data = await JSON.parse(data)
+    req.lang = lang;
 
-    req.data = data[`${lang}`]
+    let data = await fs.readFile(path.join(__dirname, "..", "data.json"), {
+        encoding: "utf-8",
+    });
+    data = await JSON.parse(data);
 
-    next()
-}
+    req.data = data[`${lang}`];
+
+    next();
+};
