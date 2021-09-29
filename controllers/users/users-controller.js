@@ -23,6 +23,8 @@ module.exports = class UsersController {
     res.render("login", {
       title: "Meros | Login",
       categories: req.categories,
+      lang: req.lang,
+      data: req.data
     });
   }
 

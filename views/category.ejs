@@ -121,7 +121,7 @@ const titleNormalize = title => {
                             </div>
                             <button class="to-cart <%= product.inCart ? 'd-none' : '' %>"
                                     data-add-cart="<%= product.product_id %>">
-                                В корзину
+                                <%= data.product.addToCart%>
                             </button>
                             <div class="product-card__cart <%= product.inCart ? '' : 'd-none' %>">
                                 <button class="product-card__cart__btn product-card__cart__btn--increment"

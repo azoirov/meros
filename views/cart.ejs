@@ -137,11 +137,12 @@ const titleNormalize = title => {
 <section class="section popular-categories mb-50">
     <div class="container">
         <header class="section__header">
-            <h2 class="section__heading"><%= data.cart.look%></h2>
+            <h2 class="section__heading"><%= data.cart.look %></h2>
         </header>
         <div class="popular-categories__slider splide">
             <div class="splide__track">
                 <ul class="splide__list">
+<!--                    <p><%= JSON.stringify(categories)%></p>-->
                     <% categories.forEach(el => { %>
                         <li class="splide__slide">
                             <div class="popular-categories__card">

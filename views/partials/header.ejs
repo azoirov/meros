@@ -186,27 +186,27 @@ const titleNormalize = title => {
                     </li>
                     <li class="header-top__li">
                         <a class="header-top__link" href="#">
-                            Мобильное приложение
+                           <%= data.header.mobile%>
                         </a>
                     </li>
                     <li class="header-top__li">
                         <a class="header-top__link" href="#">
-                            Скидки
+                            <%= data.header.sale %>
                         </a>
                     </li>
                     <li class="header-top__li">
                         <a class="header-top__link" href="#">
-                            Помощь
+                            <%= data.header.sale %>
                         </a>
                     </li>
                     <li class="header-top__li">
                         <a class="header-top__link" href="#">
-                            Адреса магазинов
+                            <%= data.header.address %>
                         </a>
                     </li>
                     <li class="header-top__li">
                         <a class="header-top__link" href="#">
-                            Доставка
+                            <%= data.header.shipping %>
                         </a>
                     </li>
                 </ul>
@@ -218,15 +218,15 @@ const titleNormalize = title => {
             </a>
             <button class="catalog-btn" id="catalog-btn">
                 <img src="/images/icons/catalog.svg" alt="catalog btn icon">
-                <span>Каталог</span>
+                <span><%= data.header.catalog %></span>
             </button>
             <button class="menu-btn">
                 <img src="/images/icons/menu.svg" alt="menu icon">
             </button>
             <form class="search-form" action="#">
-                <input class="search-form__input" type="text" name="product_name" placeholder="Поиск по товаром...">
+                <input class="search-form__input" type="text" name="product_name" placeholder="<%= data.header.search %>">
                 <button class="category-btn" type="button">
-                    <span>Все категории</span>
+                    <span><%= data.header.allCat%></span>
                     <img src="/images/icons/dropdownarrow.svg" alt="dropdown icon">
                 </button>
                 <button class="search-form__submit" type="button">
@@ -256,7 +256,7 @@ const titleNormalize = title => {
                                         6.64536 6.64536 2.28906 12 2.28906C17.3546 2.28906 21.7109 6.64536 21.7109 12C21.7109 14.8076 20.5128 17.34
                                         18.6019 19.1147Z" fill="" stroke="" stroke-width="0.5"/>
                                 </svg>
-                                <span data-cabinet-dropdown="true">Кабинет</span>
+                                <span data-cabinet-dropdown="true"><%= data.header.cabinet.title%></span>
                             </a>
                             <div class="cabinet-dropdown d-none">
                                 <div class="cabinet-dropdown__header" data-cabinet-dropdown="true">
@@ -271,25 +271,25 @@ const titleNormalize = title => {
                                         <li class="cabinet-dropdown__li">
                                             <a class="cabinet-dropdown__link" href="/cabinet/orders">
                                                 <img src="/images/icons/orders.svg" alt="orders icon">
-                                                <span>Заказы</span>
+                                                <span><%= data.header.cabinet.orders %></span>
                                             </a>
                                         </li>
                                         <li class="cabinet-dropdown__li">
                                             <a class="cabinet-dropdown__link" href="/cabinet">
                                                 <img class="mr-30" src="/images/icons/list.svg" alt="list icon">
-                                                <span>Личный кабинет</span>
+                                                <span><%= data.header.cabinet.own %></span>
                                             </a>
                                         </li>
                                         <li class="cabinet-dropdown__li">
                                             <a class="cabinet-dropdown__link" href="#">
                                                 <img src="/images/icons/mail.svg" alt="mail icon">
-                                                <span>Сообщения</span>
+                                                <span><%= data.header.cabinet.message %></span>
                                             </a>
                                         </li>
                                         <li class="cabinet-dropdown__li">
                                             <a class="cabinet-dropdown__link" href="#">
                                                 <img src="/images/icons/ball.svg" alt="ball icon">
-                                                <span>Баллы</span>
+                                                <span><%= data.header.cabinet.balls%></span>
                                             </a>
                                         </li>
                                         <li class="cabinet-dropdown__li">
@@ -301,7 +301,7 @@ const titleNormalize = title => {
                                         <li class="cabinet-dropdown__li">
                                             <a class="cabinet-dropdown__link cabinet-dropdown__link--exit" href="/exit">
                                                 <img src="/images/icons/exit.svg" alt="card icon">
-                                                <span>Выйти</span>
+                                                <span><%= data.header.cabinet.leave %></span>
                                             </a>
                                         </li>
                                     </ul>
@@ -321,7 +321,7 @@ const titleNormalize = title => {
                                       18.6187L14.7093 13.361C14.5894 12.9285 14.7396 12.4661 15.0909 12.1867L19.3607 8.79004L13.9099 8.55186C13.4614
                                       8.53226 13.0681 8.24651 12.9109 7.82607L11 2.71561Z" fill=""/>
                                 </svg>
-                                <span>Избранное</span>
+                                <span><%= data.header.wishlist %></span>
                             </a>
                         </li>
                         <li class="header-middle__li">
@@ -350,7 +350,7 @@ const titleNormalize = title => {
                                     <span class="header-middle__link--cart-count"><%= user.productCountInCart ? user.productCountInCart : 0 %></span>
 
                                 </span>
-                                <span>Корзина</span>
+                                <span><%= data.header.cart %></span>
                             </a>
                         </li>
                     <% } else { %>
@@ -361,7 +361,7 @@ const titleNormalize = title => {
                                     <path d="M19.7782 4.22182C17.7006 2.14421 14.9382 1 12 1C9.06168 1 6.29942 2.14421 4.22182 4.22182C2.14421 6.29942 1 9.06168 1 12C1 14.9382 2.14421 17.7006 4.22182 19.7782C6.29942 21.8558 9.06168 23 12 23C14.9382 23 17.7006 21.8558 19.7782 19.7782C21.8558 17.7006 23 14.9382 23 12C23 9.06168 21.8558 6.29942 19.7782 4.22182ZM6.5146 20.0088C6.97467 17.3598 9.27014 15.4059 12 15.4059C14.73 15.4059 17.0253 17.3598 17.4854 20.0088C15.9236 21.0818 14.034 21.7109 12 21.7109C9.96603 21.7109 8.07642 21.0818 6.5146 20.0088ZM8.50241 10.6193C8.50241 8.69057 10.0714 7.1217 12 7.1217C13.9286 7.1217 15.4976 8.69073 15.4976 10.6193C15.4976 12.5479 13.9286 14.1169 12 14.1169C10.0714 14.1169 8.50241 12.5479 8.50241 10.6193ZM18.6019 19.1147C18.255 17.8815 17.566 16.7626 16.6002 15.8887C16.0077 15.3524 15.3333 14.9293 14.6082 14.631C15.9187 13.7762 16.7868 12.2973 16.7868 10.6193C16.7868 7.9799 14.6394 5.83264 12 5.83264C9.36061 5.83264 7.21335 7.9799 7.21335 10.6193C7.21335 12.2973 8.08145 13.7762 9.39183 14.631C8.6669 14.9293 7.99232 15.3522 7.39983 15.8885C6.4342 16.7625 5.74503 17.8813 5.39809 19.1145C3.48715 17.3399 2.28906 14.8074 2.28906 12C2.28906 6.64536 6.64536 2.28906 12 2.28906C17.3546 2.28906 21.7109 6.64536 21.7109 12C21.7109 14.8076 20.5128 17.34 18.6019 19.1147Z"
                                           fill="" stroke="" stroke-width="0.5"/>
                                 </svg>
-                                <span>Войти</span>
+                                <span><%= data.header.login %></span>
                             </a>
                         </li>
                     <% } %>
@@ -390,14 +390,14 @@ const titleNormalize = title => {
                 <li class="bottom-nav__li">
                     <a class="bottom-nav__link <%= (path === '/') ? 'active' : '' %>" href="/">
                         <img src="/images/bottom-nav/home<%= (path === '/') ? '-active' : '' %>.svg" alt="icon">
-                        <span>Главная</span>
+                        <span><%= data.header.main%></span>
                     </a>
                 </li>
                 <li class="bottom-nav__li">
                     <a class="bottom-nav__link <%= (path === '/categories') ? 'active' : '' %>" href="/categories">
                         <img src="/images/bottom-nav/catalog<%= (path === '/categories') ? '-active' : '' %>.svg"
                              alt="icon">
-                        <span>Каталог</span>
+                        <span><%=data.header.catalog%></span>
                     </a>
                 </li>
                 <li class="bottom-nav__li">
@@ -408,14 +408,14 @@ const titleNormalize = title => {
                             <% } %>
                             <img src="/images/bottom-nav/cart<%= (path === '/cart') ? '-active' : '' %>.svg" alt="icon">
                         </span>
-                        <span>Корзина</span>
+                        <span><%=data.header.cart%></span>
                     </a>
                 </li>
                 <li class="bottom-nav__li">
                     <a class="bottom-nav__link <%= (path === '/wishlist') ? 'active' : '' %>" href="<%= user ? '/wishlist' : '/users/login' %>">
                         <img src="/images/bottom-nav/star<%= (path === '/wishlist') ? '-active' : '' %>.svg"
                              alt="icon">
-                        <span>Избранное</span>
+                        <span><%= data.header.wishlist%></span>
                     </a>
                 </li>
                 <li class="bottom-nav__li">
@@ -423,14 +423,14 @@ const titleNormalize = title => {
                        href="<%= user ? '/cabinet' : '/users/login' %>">
                         <img src="/images/bottom-nav/profile<%= (path === '/cabinet') ? '-active' : '' %>.svg"
                              alt="icon">
-                        <span>Профиль</span>
+                        <span><%= data.header.cabinet.title%></span>
                     </a>
                 </li>
             </ul>
         </nav>
         <div class="categories-menu">
             <header class="categories-menu__header">
-                <h2>Категории</h2>
+                <h2><%=data.header.categories %></h2>
                 <button class="categories-menu__close">
                     <svg width="18" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="22.523" height="2.40226" rx="1.20113"

@@ -61,6 +61,8 @@
             "wishlist": "Sevimlilar",
             "cart": "Savatcha",
             "login": "Kirish",
+            "main": "Bosh sahifa",
+            "categories": "Ruknlar",
             "cabinet": {
                 "title": "Kabinet",
                 "orders": "Buyurtmalar",
@@ -102,23 +104,119 @@
                     }
                 }
             }
+        },
+        "product": {
+            "addToCart": "Savatchaga qo'shish"
         }
     },
     "ru": {
         "cart": {
-
+            "breadcrumb": {
+                "home": "Главная",
+                "cart": "Корзина"
+            },
+            "empty": {
+                "noProduct": "Корзина пуста",
+                    "search": "Воспользуйтесь поиском, чтобы найти всё что нужно.",
+                "back": "Вернуться на главную"
+            },
+            "inStock": "Есть на складе",
+            "outOfStock": "Нет в наличии",
+            "addToWish": "Добавить в избранное",
+            "removeWish": "Удалить из Избранного",
+            "look": "Присмотритесь к категориям",
+            "total": "Стоимость",
+            "ship": "Доставка",
+            "toPay": "К оплате",
+            "purchase": "Оформить заказ"
         },
         "wishlist": {
-    
+            "empty": {
+                "noProduct": "Нет выбранных продуктов",
+                "search": "Воспользуйтесь поиском, чтобы найти всё что нужно.",
+                "back": "Вернуться на главную"
+            },
+            "title": "Избранное",
+            "look": "Присмотритесь к категориям",
+            "inStock": "Есть в наличии",
+            "outOfStock": "Нет в наличии"
         },
         "single": {
-    
+            "comments": "Отзывы",
+            "short": "Коротко о товарe",
+            "count": "Количество",
+            "description": "Описание",
+            "characteristics": "Характеристики",
+            "rec": "Рекомендации для вас",
+            "allComments": "Отзывы",
+            "leaveComment": "Оставить отзыв"
         },
         "home": {
-            
+            "special": "Специально для ваc",
+            "saled": "Все товары со скидками!",
+            "goodOffer": "Лучшие предложения!",
+            "popularCategories": "Mashhur ruknlar",
+            "rec": "Siz uchun tavsiya",
+            "popularBrands": "Популярные категории"
         },
         "header": {
-            "mobile": ""
+            "mobile": "Мобильное приложение",
+            "sale": "Скидки",
+            "help": "Помощь",
+            "adress": "Адреса магазинов",
+            "shipping": "Доставка",
+            "catalog": "Каталог",
+            "search": "",
+            "allCat": "Barcha ruknlar",
+            "wishlist": "Sevimlilar",
+            "cart": "Savatcha",
+            "login": "Kirish",
+            "main": "Bosh sahifa",
+            "categories": "Ruknlar",
+            "cabinet": {
+                "title": "Kabinet",
+                "orders": "Buyurtmalar",
+                "own": "Shaxsiy kabinet",
+                "message": "Xabar",
+                "balls": "Ballar",
+                "leave": "Chiqish"
+            }
+        },
+        "category": {
+            "productCount": "ta mahsulot",
+            "goodOffer": "Eng yaxshi takliflar",
+            "popularCategories": "Mashhur ruknlar",
+            "rec": "Siz uchun tavsiya",
+            "popularBrands": "Mashhur brendlar"
+        },
+        "tertiaryCategory": {
+            "saled": "Chegirmali mahsulotlar",
+            "everyday": "Har kunlik mahsulotlar",
+            "rec": "Siz uchun tavsiya",
+            "popularBrands": "Mashhur brendlar"
+        },
+        "cabinet": {
+            "own": {
+                "title": "Mening ma'lumotlarim",
+                "edit": {
+                    "title": "Shaxsiy ma'lumotlar",
+                    "firstName": "Ism",
+                    "lastName": "Familya",
+                    "save": "Saqlash",
+                    "toastSave": "Sizning ma'lumotlaringiz muvaffaqqiyatli o'zgartirildi",
+                    "accountInfo": "Hisob ma'lumotlari",
+                    "phone": "Telefon raqam",
+                    "email": "email",
+                    "manageAccount": {
+                        "since": "dan beri biz bilansiz",
+                        "leaveAll": "Barcha qurilmalardan chiqish",
+                        "leave": "Hisobdan chiqish"
+                    }
+                }
+            }
+        },
+        "product": {
+            "addToCart": "Savatchaga qo'shish"
         }
     }
 }
