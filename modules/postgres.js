@@ -34,7 +34,8 @@ module.exports = async function () {
     db.sub_category = await Models.SubCategory(Sequelize, sequelize);
     db.sub_sub_category = await Models.SubSubCategory(Sequelize, sequelize);
     db.banners = await Models.Banners(Sequelize, sequelize);
-
+    // let can = await db.users.findAll()
+    // console.log(can);
     await db.categories.hasMany(db.banners, {
       foreignKey: {
         name: "category_id",

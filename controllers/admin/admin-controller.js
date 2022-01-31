@@ -205,6 +205,7 @@ module.exports = class AdminController {
         title: "Admin | Categories",
         categories,
         totalCount,
+        user: req.user,
       });
     } catch (e) {
       res.status(400).json({

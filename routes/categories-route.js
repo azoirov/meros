@@ -5,7 +5,11 @@ router.get('/', async (req, res) => {
         title: 'Meros | Categories',
         path: '/categories',
         user: req.user,
-        categories: req.categories
+        categories: req.categories,
+        user: req.user,
+        categories: req.categories,
+        lang: req.lang,
+        data: req.data
     })
 })
 

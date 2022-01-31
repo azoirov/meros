@@ -41,6 +41,7 @@ module.exports = async (req, res) => {
 
       res.cookie('token', token).redirect('/')
    } catch (e) {
+      console.log(e);
       res.status(400).render('login', {
          title: 'Meros | Login',
          error: e + ''

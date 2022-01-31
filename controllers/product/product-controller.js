@@ -318,6 +318,93 @@ module.exports = class ProductsController {
     }
   }
 
+  static async SingleProductMobile(req,res) {
+    try {
+      const { product_id } = req.params;
+      let product = await req.db.products.findOne({
+        where: {
+          product_id: product_id,
+        },
+        raw: true,
+      });
+
+      let cart;
+      if (req.user) {
+        cart = await req.db.carts.findOne({
+          where: {
+            product_id: product.product_id,
+            user_id: req.user.id,
+          },
+          raw: true,
+        });
+
+        
+      }
+
+      product.cart = cart ? cart.count : 0;
+
+      let wishlist;
+      if (req.user) {
+        wishlist = await req.db.wishlists.findOne({
+          where: {
+            product_id: product.product_id,
+            user_id: req.user.id,
+          },
+          raw: true,
+        });
+
+        
+      }
+
+      product.inWishlist = wishlist ? true : false;
+
+      let comments = await req.db.comments.findAll({
+        where: {
+          product_id: product.product_id,
+        },
+        include: {
+          model: req.db.users,
+        },
+        raw: true,
+      });
+
+      comments.forEach((comment) => {
+        let time = moment(comment.createdAt).locale("ru").format("LL");
+        comment.time = time;
+      });
+
+      let comment_thumbs = await req.db.comment_thumbs.findAll({
+        raw: true,
+      });
+
+      for (let comment of comments) {
+        let thumbs = comment_thumbs.filter(
+          (e) => e.comment_id === comment.comment_id
+        );
+        comment.thumb = [...thumbs];
+      }
+
+      let stars = 0;
+      comments.forEach((comment) => {
+        stars += comment.star;
+      });
+      stars = comments.length ? Math.round(stars / comments.length) : 0;
+      product.star = stars;
+
+      res.status(200).json({
+        ok:true,
+        product,
+        comments,
+        user:req.user 
+      })
+    } catch (error) {
+      res.status(400).json({
+        ok:false,
+        message:error + ""
+      })
+    }
+  }
+
   static async CartAddController(req, res) {
     try {
       let { product_id } = req.body;
